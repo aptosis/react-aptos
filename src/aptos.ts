@@ -1,3 +1,4 @@
+import { APTOS_DEVNET_FULL_NODE_URL } from "@movingco/aptos";
 import { Accounts, HttpClient, Transactions } from "@movingco/aptos-api";
 import { default as fetchAdapter } from "@vespaiach/axios-fetch-adapter";
 import type { AxiosRequestConfig } from "axios";
@@ -27,3 +28,22 @@ export class AptosAPI {
     this.transactions = new Transactions(this.client);
   }
 }
+
+/**
+ * Aptos network configuration.
+ */
+export interface NetworkConfig {
+  /**
+   * Name of the network.
+   */
+  name: string;
+  /**
+   * URL to the Aptos node. This is also the network.
+   */
+  nodeUrl: string;
+}
+
+export const APTOS_DEVNET: NetworkConfig = {
+  name: "Devnet",
+  nodeUrl: APTOS_DEVNET_FULL_NODE_URL,
+};
