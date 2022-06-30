@@ -2,11 +2,13 @@ import type { SignAndSendTransactionParams } from "@omnimask/provider-interface"
 import { useCallback } from "react";
 import { useMutation } from "react-query";
 
+import { useAptos } from "../context.js";
 import { useSendTransaction } from "../omni/useSendTransaction.js";
 import type { SendParams } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
 export const useRunScript = () => {
+  const { onTXRequest, onTXSend } = useAptos();
   const sendTransaction = useSendTransaction();
   const confirmTransaction = useConfirmTX();
 
@@ -23,9 +25,7 @@ export const useRunScript = () => {
         ["arguments"]: args = [],
         ["function"]: fn,
       } = params;
-      //   notify({
-      //     message: `Requesting signature for action: ${fn}`,
-      //   });
+      onTXRequest?.(params);
       const tx = await sendTransaction({
         payload: {
           type: "script_function_payload",
@@ -36,14 +36,11 @@ export const useRunScript = () => {
         options,
       });
 
-      //   notify({
-      //     message: `Transaction sent`,
-      //     txid: tx.result.hash,
-      //   });
+      onTXSend?.(tx);
 
       return await confirmTransaction.mutateAsync(tx.result.hash);
     },
-    [confirmTransaction, sendTransaction]
+    [confirmTransaction, onTXRequest, onTXSend, sendTransaction]
   );
 
   return useMutation(doRunScript);
