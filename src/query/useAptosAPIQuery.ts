@@ -3,7 +3,13 @@ import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import type { UseQueryOptions } from "react-query";
 
-type AptosAPIQueryKey = readonly unknown[];
+import type { AptosAPIQueryType } from "./constants.js";
+
+export type AptosAPIQueryKey = readonly [
+  AptosAPIQueryType,
+  string, // node URL
+  ...(readonly unknown[])
+];
 
 export type UseAptosAPIQueryOptions<
   TQueryFnData,
