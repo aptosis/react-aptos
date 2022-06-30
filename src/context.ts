@@ -1,11 +1,15 @@
-import { createAptosClient, TEST_COIN } from "@movingco/aptos";
+import type { NetworkConfig } from "@movingco/aptos";
+import {
+  APTOS_DEVNET,
+  AptosAPI,
+  createAptosClient,
+  TEST_COIN,
+} from "@movingco/aptos";
 import type { Coin } from "@movingco/core";
 import type { AptosClient } from "aptos";
 import { useMemo } from "react";
 import { createContainer } from "unstated-next";
 
-import type { NetworkConfig } from "./aptos.js";
-import { APTOS_DEVNET, AptosAPI } from "./aptos.js";
 import type { OmniContext } from "./omni/context.js";
 import { useOmniProviderInternal } from "./omni/context.js";
 

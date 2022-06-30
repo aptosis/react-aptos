@@ -1,10 +1,10 @@
+import type { AptosAPI } from "@movingco/aptos";
 import type { AccountResource, AptosError } from "@movingco/aptos-api";
 import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import type { QueryClient, UseQueryOptions } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
-import type { AptosAPI } from "../aptos.js";
 import { useAptos } from "../context.js";
 import { useAptosAPI } from "../provider.js";
 import {

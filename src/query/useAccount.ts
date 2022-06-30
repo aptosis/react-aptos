@@ -1,7 +1,7 @@
+import type { AptosAPI } from "@movingco/aptos";
 import type { Account, Address } from "@movingco/aptos-api";
 import { useQuery } from "react-query";
 
-import type { AptosAPI } from "../aptos.js";
 import { useAptosAPI } from "../provider.js";
 import { ACCOUNT_QUERY_PREFIX } from "./constants.js";
 import type {
