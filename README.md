@@ -5,7 +5,20 @@
 [![Build Status](https://img.shields.io/github/workflow/status/aptosis/react-aptos/CI/master)](https://github.com/aptosis/react-aptos/actions/workflows/main.yml?query=branch%3Amaster)
 [![Contributors](https://img.shields.io/github/contributors/aptosis/react-aptos)](https://github.com/aptosis/react-aptos/graphs/contributors)
 
-React library for interacting with the Aptos blockchain.
+React library for interacting with the [Aptos](https://aptoslabs.com) blockchain.
+
+### Features
+
+- Global account/resource caching powered by [React Query](https://react-query.tanstack.com/)
+- Instant updates of account/resource data from the blockchain after a transaction
+
+## Installing
+
+Run:
+
+```
+yarn add @aptosis/react-aptos
+```
 
 ## License
 

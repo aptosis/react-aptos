@@ -13,7 +13,8 @@ jobs:
       - uses: ./.github/actions/yarn
       - run: yarn build
       - run: yarn docs:generate
-      - name: Update the changelog
+      - id: build-changelog
+        name: Update the changelog
         uses: mikepenz/release-changelog-builder-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,7 +30,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          body: ${{steps.github_release.outputs.changelog}}
+          body: ${{steps.build-changelog.outputs.changelog}}
           generate_release_notes: true
 
       # Deploy site
