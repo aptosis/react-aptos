@@ -35,7 +35,7 @@ export const makeAccountQuery = <TData = Account | null>(
 > =>
   makeAptosAPIQuery({
     queryKey: makeAccountQueryKey(aptos.nodeUrl, address),
-    fetchData: async ([_, address], signal) => {
+    fetchData: async ([_, _nodeUrl, address], signal) => {
       return await aptos.accounts.getAccount(address, {
         signal,
       });
