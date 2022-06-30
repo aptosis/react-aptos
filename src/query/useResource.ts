@@ -1,29 +1,29 @@
 import type { AccountResource, AptosError } from "@movingco/aptos-api";
-import type { AptosClient } from "aptos";
 import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import type { QueryClient, UseQueryOptions } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
+import type { AptosAPI } from "../aptos.js";
 import { useAptos } from "../context.js";
-import { useAptosClient } from "../provider.js";
+import { useAptosAPI } from "../provider.js";
+import {
+  ALL_RESOURCES_QUERY_PREFIX,
+  RESOURCE_QUERY_PREFIX,
+} from "./constants.js";
 
 export const makeResourceQueryKey = (
   owner: string | null | undefined,
   resourceType: string | null | undefined
-) => [
-  "react-aptos/resource",
-  owner ? owner.toLowerCase() : owner,
-  resourceType,
-];
+) => [RESOURCE_QUERY_PREFIX, owner ? owner.toLowerCase() : owner, resourceType];
 
 export const makeAllResourcesQueryKey = (owner: string | null | undefined) => [
-  "react-aptos/allResources",
+  ALL_RESOURCES_QUERY_PREFIX,
   owner ? owner.toLowerCase() : owner,
 ];
 
 export const makeResourceQuery = (
-  aptos: AptosClient,
+  aptos: AptosAPI,
   owner: string | null | undefined,
   resourceType: string | null | undefined
 ): UseQueryOptions<AccountResource | null, AptosError> => ({
@@ -33,9 +33,10 @@ export const makeResourceQuery = (
       return null;
     }
     const response = await aptos.accounts.getAccountResource(
-      owner,
-      resourceType,
-      undefined,
+      {
+        address: owner,
+        resourceType,
+      },
       { signal }
     );
     if (response.status === 404) {
@@ -48,7 +49,7 @@ export const makeResourceQuery = (
 });
 
 export const makeAllResourcesQuery = (
-  aptos: AptosClient,
+  aptos: AptosAPI,
   client: QueryClient,
   owner: string | null | undefined
 ): UseQueryOptions<readonly AccountResource[] | null, AptosError> => ({
@@ -58,8 +59,7 @@ export const makeAllResourcesQuery = (
       return null;
     }
     const response = await aptos.accounts.getAccountResources(
-      owner,
-      undefined,
+      { address: owner },
       { signal }
     );
     if (response.status === 404) {
@@ -79,7 +79,7 @@ export const makeAllResourcesQuery = (
       );
     } else {
       // null, data should be cleared
-      void client.invalidateQueries(["react-aptos/resource", owner]);
+      void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
     }
   },
   enabled: owner !== undefined,
@@ -96,7 +96,7 @@ export const useResource = (
   owner: string | null | undefined,
   resourceType: string | null | undefined
 ) => {
-  const aptos = useAptosClient();
+  const aptos = useAptosAPI();
   return useQuery(makeResourceQuery(aptos, owner, resourceType));
 };
 
@@ -110,7 +110,7 @@ export const useResources = (
   owner: string | null | undefined,
   resourceTypes: readonly string[]
 ) => {
-  const aptos = useAptosClient();
+  const aptos = useAptosAPI();
   return useQueries(
     resourceTypes.map((rt) => makeResourceQuery(aptos, owner, rt))
   );
@@ -122,7 +122,7 @@ export const useResources = (
  * @returns
  */
 export const useAllResources = (owner: string | null | undefined) => {
-  const aptos = useAptosClient();
+  const aptos = useAptosAPI();
   const client = useQueryClient();
   return useQuery(makeAllResourcesQuery(aptos, client, owner));
 };

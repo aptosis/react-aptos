@@ -1,41 +1,47 @@
-import type { Account, Address, AptosError } from "@movingco/aptos-api";
-import { raiseForStatus } from "aptos";
-import type { AxiosResponse } from "axios";
-import type { UseQueryOptions } from "react-query";
+import type { Account, Address } from "@movingco/aptos-api";
 import { useQuery } from "react-query";
 
 import type { AptosAPI } from "../aptos.js";
 import { useAptosAPI } from "../provider.js";
+import { ACCOUNT_QUERY_PREFIX } from "./constants.js";
+import type {
+  UseAptosAPIQueryOptions,
+  UseAptosAPIQueryUserOptions,
+} from "./useAptosAPIQuery.js";
+import { makeAptosAPIQuery } from "./useAptosAPIQuery.js";
 
 export const makeAccountQueryKey = (
   nodeUrl: string,
   address: Address | null | undefined
-) => [
-  "react-aptos/account",
-  nodeUrl,
-  address ? address.toLowerCase() : address,
-];
+) =>
+  [
+    ACCOUNT_QUERY_PREFIX,
+    nodeUrl,
+    address ? address.toLowerCase() : address,
+  ] as const;
 
-export const makeAccountQuery = (
+export const makeAccountQuery = <TData = Account | null>(
   aptos: AptosAPI,
-  address: Address | null | undefined
-): UseQueryOptions<Account | null, AptosError> => ({
-  queryKey: makeAccountQueryKey(aptos.nodeUrl, address),
-  queryFn: async ({ signal }) => {
-    if (!address) {
-      return null;
-    }
-    const response = await aptos.accounts.getAccount(address, {
-      signal,
-    });
-    if (response.status === 404) {
-      return null;
-    }
-    raiseForStatus(200, response as AxiosResponse<Account, AptosError>);
-    return response.data;
-  },
-  enabled: address !== undefined,
-});
+  address: Address | null | undefined,
+  options: UseAptosAPIQueryUserOptions<
+    Account,
+    TData,
+    ReturnType<typeof makeAccountQueryKey>
+  > = {}
+): UseAptosAPIQueryOptions<
+  Account,
+  TData,
+  ReturnType<typeof makeAccountQueryKey>
+> =>
+  makeAptosAPIQuery({
+    queryKey: makeAccountQueryKey(aptos.nodeUrl, address),
+    fetchData: async ([_, address], signal) => {
+      return await aptos.accounts.getAccount(address, {
+        signal,
+      });
+    },
+    ...options,
+  });
 
 /**
  * Fetches an individual account.
@@ -43,7 +49,14 @@ export const makeAccountQuery = (
  * @param address
  * @returns
  */
-export const useAccount = (address: Address | null | undefined) => {
+export const useAccount = <TData = Account | null>(
+  address: Address | null | undefined,
+  options: UseAptosAPIQueryUserOptions<
+    Account,
+    TData,
+    ReturnType<typeof makeAccountQueryKey>
+  > = {}
+) => {
   const aptos = useAptosAPI();
-  return useQuery(makeAccountQuery(aptos, address));
+  return useQuery(makeAccountQuery(aptos, address, options));
 };
