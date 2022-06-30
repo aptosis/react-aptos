@@ -4,7 +4,7 @@
   "description": "React library for interacting with the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
-  "license": "AGPL-3.0",
+  "license": "Apache-2.0",
   "type": "module",
   "exports": {
     ".": {
