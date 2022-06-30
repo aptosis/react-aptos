@@ -9,8 +9,8 @@ React library for interacting with the [Aptos](https://aptoslabs.com) blockchain
 
 ### Features
 
-- Global account/resource caching powered by [React Query](https://react-query.tanstack.com/)
-- Instant updates of account/resource data from the blockchain after a transaction
+- 📦 Global account/resource caching powered by [React Query](https://react-query.tanstack.com/)
+- ⚡️ Instant updates of account/resource data from the blockchain after a transaction
 
 ## Installing
 
