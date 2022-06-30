@@ -1,4 +1,5 @@
 import { confirmTransaction } from "@movingco/aptos";
+import type { UserTransaction } from "@movingco/aptos-api";
 import type {
   OmniProvider,
   ProviderState,
@@ -6,7 +7,7 @@ import type {
   RequestFaucetResult,
 } from "@omnimask/provider-interface";
 import { OmniRPC } from "@omnimask/provider-interface";
-import type { AptosClient, Types } from "aptos";
+import type { AptosClient } from "aptos";
 import { startTransition, useCallback, useEffect } from "react";
 import type { QueryObserverResult } from "react-query";
 import { useQuery } from "react-query";
@@ -76,7 +77,7 @@ export const useOmniProviderInternal = ({
       await Promise.all(
         result.txs.map(async (tx) => {
           const result = await confirmTransaction(aptos, tx);
-          handleTXSuccess(result as Types.UserTransaction);
+          handleTXSuccess(result as UserTransaction);
         })
       );
       return result;
