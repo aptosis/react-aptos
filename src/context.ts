@@ -38,8 +38,6 @@ const useAptosInner = ({
   },
   network = APTOS_DEVNET,
 }: UseAptosArgs = {}) => {
-  const omni = useOmniProviderInternal();
-
   const aptos = useMemo(
     () => createAptosClient(network.nodeUrl),
     [network.nodeUrl]
@@ -48,6 +46,8 @@ const useAptosInner = ({
     () => new AptosAPI(network.nodeUrl),
     [network.nodeUrl]
   );
+
+  const omni = useOmniProviderInternal({ aptos });
 
   return { ...omni, aptos, aptosAPI, coins };
 };
