@@ -16,9 +16,9 @@ __metadata:
     "@movingco/prelude": ^0.1.37
     "@omnimask/provider-interface": ^0.1.0
     "@rushstack/eslint-patch": ^1.1.4
-    "@saberhq/eslint-config": ^1.13.32
-    "@saberhq/eslint-config-react": ^1.13.32
-    "@saberhq/tsconfig": ^1.13.32
+    "@saberhq/eslint-config": ^2.0.1
+    "@saberhq/eslint-config-react": ^2.0.1
+    "@saberhq/tsconfig": ^2.0.1
     "@saberhq/tuple-utils": ^1.13.31
     "@types/eslint": ^8.4.3
     "@types/lodash.groupby": ^4.6.7
@@ -317,36 +317,36 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saberhq/eslint-config-react@npm:^1.13.32":
-  version: 1.13.32
-  resolution: "@saberhq/eslint-config-react@npm:1.13.32"
+"@saberhq/eslint-config-react@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@saberhq/eslint-config-react@npm:2.0.1"
   dependencies:
-    "@saberhq/eslint-config": ^1.13.32
+    "@saberhq/eslint-config": ^2.0.1
     eslint-plugin-jsx-a11y: ^6.6.0
     eslint-plugin-react: ^7.30.1
     eslint-plugin-react-hooks: ^4.6.0
   peerDependencies:
     eslint: ">=7"
-  checksum: e1338d85325555541f5ded2caf605887cf473049a4131d3886c94d50e4161ca2c5223b7345ac28642c7eb022584d737831ed1b9a975d8d76cc46eaf19bd3d08b
+  checksum: 086cff509b081f990582a0689ba1964d08a5ea7e3410be98231094b03acbfc99658af48f68a3b7bb310f408c97968489f4d5b90bb3dcf80180d435ebf9ae7bb4
   languageName: node
   linkType: hard
 
-"@saberhq/eslint-config@npm:^1.13.32":
-  version: 1.13.32
-  resolution: "@saberhq/eslint-config@npm:1.13.32"
+"@saberhq/eslint-config@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@saberhq/eslint-config@npm:2.0.1"
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.30.0
     "@typescript-eslint/parser": ^5.30.0
     eslint-config-prettier: ^8.5.0
     eslint-import-resolver-node: ^0.3.6
     eslint-plugin-import: ^2.26.0
-    eslint-plugin-prettier: ^4.1.0
+    eslint-plugin-prettier: ^4.2.1
     eslint-plugin-simple-import-sort: ^7.0.0
     eslint-plugin-unused-imports: ^2.0.0
     prettier: ^2.7.1
   peerDependencies:
     eslint: ">=7"
-  checksum: dc85b0a91fd054bbeb0cda36d0b41ade1dcd3668890fe12d08c8cb870c8efd0f23d8f0ae5368041b459739149611df74e6396487937b8a5eaddca630037b700c
+  checksum: 3a468e11a794972c4d3f1af0fbdeba161c520eca29f3741141dd0969a1e6b2c143cb5c31762b9f500169ab8a46cd69f89767f255780a6dbcee548c940ab75eb5
   languageName: node
   linkType: hard
 
@@ -359,10 +359,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@saberhq/tsconfig@npm:^1.13.32":
-  version: 1.13.32
-  resolution: "@saberhq/tsconfig@npm:1.13.32"
-  checksum: 77767690d5219a40e35d30d2f64e9b291a32060dc7feae1da46953c7bf5f2a47eced433dd0cf9827a8cfb4ca845fcbe56d7c9cf0a6e8d88bc725341fe3ef87d4
+"@saberhq/tsconfig@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@saberhq/tsconfig@npm:2.0.1"
+  checksum: 6a57098dc2131f51915dba92c9ac2427a68da93733492e9ea8b92ebe6e35271de250551e0461065155d55c1dd0afa9904f60250268e84f3140d7b81fd87a1fd0
   languageName: node
   linkType: hard
 
@@ -2049,7 +2049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:^4.1.0":
+"eslint-plugin-prettier@npm:^4.2.1":
   version: 4.2.1
   resolution: "eslint-plugin-prettier@npm:4.2.1"
   dependencies:

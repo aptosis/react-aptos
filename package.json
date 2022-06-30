@@ -50,9 +50,9 @@
   "devDependencies": {
     "@movingco/prelude": "^0.1.37",
     "@rushstack/eslint-patch": "^1.1.4",
-    "@saberhq/eslint-config": "^1.13.32",
-    "@saberhq/eslint-config-react": "^1.13.32",
-    "@saberhq/tsconfig": "^1.13.32",
+    "@saberhq/eslint-config": "^2.0.1",
+    "@saberhq/eslint-config-react": "^2.0.1",
+    "@saberhq/tsconfig": "^2.0.1",
     "@types/eslint": "^8.4.3",
     "@types/node": "^18.0.0",
     "@types/prettier": "^2.6.3",
