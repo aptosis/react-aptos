@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "React library for interacting with the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
-  "author": "Ian Macalinao <ian@moving.wtf>",
+  "author": "Ian Macalinao <ian@aptos.is>",
   "license": "AGPL-3.0",
   "type": "module",
   "exports": {
@@ -30,8 +30,8 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Omnimask/provider-interface/issues",
-    "email": "ian@moving.wtf"
+    "url": "https://github.com/aptosis/react-aptos/issues",
+    "email": "ian@aptos.is"
   },
   "scripts": {
     "build": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
