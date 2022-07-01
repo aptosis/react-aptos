@@ -3,7 +3,6 @@ import type { AccountResource, Address } from "@movingco/aptos-api";
 import type { QueryClient } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
-import { useAptos } from "../context.js";
 import { useAptosAPI } from "../hooks.js";
 import {
   ALL_RESOURCES_QUERY_PREFIX,
@@ -111,13 +110,4 @@ export const useAllResources = (owner: string | null | undefined) => {
   const aptos = useAptosAPI();
   const client = useQueryClient();
   return useQuery(makeAllResourcesQuery(aptos, client, owner));
-};
-
-/**
- * Fetches all of the user's resources.
- * @returns
- */
-export const useAllUserResources = () => {
-  const { wallet } = useAptos();
-  return useAllResources(wallet?.selectedAccount);
 };

@@ -67,15 +67,3 @@ export const useCoinBalance = <N extends number>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [owner, ...tokens, balances]);
 };
-
-export const useMyBalances = (): CoinAmount[] | null | undefined => {
-  const owner = useAptos().wallet?.selectedAccount;
-  return useBalances(owner);
-};
-
-export const useMyCoinBalance = <N extends number>(
-  ...tokens: Tuple<Coin | null | undefined, N>
-): Tuple<CoinAmount | null | undefined, N> => {
-  const owner = useAptos().wallet?.selectedAccount;
-  return useCoinBalance(owner, ...tokens);
-};

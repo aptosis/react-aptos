@@ -8,3 +8,4 @@ export type {
 } from "./useAptosAPIQuery.js";
 export * from "./useBalances.js";
 export * from "./useResource.js";
+export * from "./wallet.js";
