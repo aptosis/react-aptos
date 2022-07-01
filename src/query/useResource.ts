@@ -6,7 +6,7 @@ import type { QueryClient, UseQueryOptions } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
 import { useAptos } from "../context.js";
-import { useAptosAPI } from "../provider.js";
+import { useAptosAPI } from "../hooks.js";
 import {
   ALL_RESOURCES_QUERY_PREFIX,
   RESOURCE_QUERY_PREFIX,

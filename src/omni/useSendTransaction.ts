@@ -9,7 +9,7 @@ import { AptosAccount, HexString } from "aptos";
 import { useCallback } from "react";
 
 import { useAptos } from "../context.js";
-import { useAptosAPI } from "../provider.js";
+import { useAptosAPI } from "../hooks.js";
 import { useAccount } from "../query/useAccount.js";
 import { ensureProvider } from "./context.js";
 
