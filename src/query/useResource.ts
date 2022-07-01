@@ -5,7 +5,10 @@ import { useQueries, useQuery, useQueryClient } from "react-query";
 
 import { useAptos } from "../context.js";
 import { useAptosAPI } from "../hooks.js";
-import { RESOURCE_QUERY_PREFIX } from "./constants.js";
+import {
+  ALL_RESOURCES_QUERY_PREFIX,
+  RESOURCE_QUERY_PREFIX,
+} from "./constants.js";
 import type { UseAptosAPIQueryOptions } from "./useAptosAPIQuery.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";
 
@@ -45,7 +48,7 @@ const allResources = makeQueryFunctions<
   readonly AccountResource[],
   readonly [owner: Address | null | undefined]
 >({
-  type: RESOURCE_QUERY_PREFIX,
+  type: ALL_RESOURCES_QUERY_PREFIX,
   normalizeArgs: ([owner]) => [owner ? owner.toLowerCase() : owner],
   fetchData: async (aptos, [owner], signal) => {
     return await aptos.accounts.getAccountResources(
