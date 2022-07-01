@@ -8,6 +8,7 @@ import { default as keyBy } from "lodash.keyby";
 import { useCallback } from "react";
 import { useQueryClient } from "react-query";
 
+import { useAptosAPI } from "../hooks.js";
 import {
   makeAllResourcesQueryKey,
   makeResourceQueryKey,
@@ -15,6 +16,7 @@ import {
 
 export const useHandleTXSuccess = () => {
   const client = useQueryClient();
+  const aptosAPI = useAptosAPI();
   return useCallback(
     (data: UserTransaction) => {
       // the data is in the response, so updates should be relatively
@@ -24,7 +26,11 @@ export const useHandleTXSuccess = () => {
       );
       writes.forEach((change) => {
         client.setQueryData(
-          makeResourceQueryKey(change.address, change.data.type),
+          makeResourceQueryKey(
+            aptosAPI.nodeUrl,
+            change.address,
+            change.data.type
+          ),
           change.data
         );
       });
@@ -47,6 +53,6 @@ export const useHandleTXSuccess = () => {
         }
       );
     },
-    [client]
+    [aptosAPI.nodeUrl, client]
   );
 };

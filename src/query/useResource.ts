@@ -11,41 +11,40 @@ import {
   ALL_RESOURCES_QUERY_PREFIX,
   RESOURCE_QUERY_PREFIX,
 } from "./constants.js";
-
-export const makeResourceQueryKey = (
-  owner: string | null | undefined,
-  resourceType: string | null | undefined
-) => [RESOURCE_QUERY_PREFIX, owner ? owner.toLowerCase() : owner, resourceType];
+import { makeQueryFunctions } from "./useAptosAPIQuery.js";
 
 export const makeAllResourcesQueryKey = (owner: string | null | undefined) => [
   ALL_RESOURCES_QUERY_PREFIX,
   owner ? owner.toLowerCase() : owner,
 ];
 
-export const makeResourceQuery = (
-  aptos: AptosAPI,
-  owner: string | null | undefined,
-  resourceType: string | null | undefined
-): UseQueryOptions<AccountResource | null, AptosError> => ({
-  queryKey: makeResourceQueryKey(owner, resourceType),
-  queryFn: async ({ signal }) => {
-    if (!owner || !resourceType) {
-      return null;
-    }
-    const response = await aptos.accounts.getAccountResource(
+/**
+ * Fetches an account.
+ */
+export const {
+  makeQueryKey: makeResourceQueryKey,
+  makeQuery: makeResourceQuery,
+  useQuery: useResource,
+} = makeQueryFunctions<
+  AccountResource,
+  readonly [
+    owner: string | null | undefined,
+    resourceType: string | null | undefined
+  ]
+>({
+  type: RESOURCE_QUERY_PREFIX,
+  normalizeArgs: ([owner, resourceType]) => [
+    owner ? owner.toLowerCase() : owner,
+    resourceType,
+  ],
+  fetchData: async (aptos, [owner, resourceType], signal) => {
+    return await aptos.accounts.getAccountResource(
+      { address: owner, resourceType },
       {
-        address: owner,
-        resourceType,
-      },
-      { signal }
+        signal,
+      }
     );
-    if (response.status === 404) {
-      return null;
-    }
-    raiseForStatus(200, response as AxiosResponse<AccountResource, AptosError>);
-    return response.data;
   },
-  enabled: owner !== undefined && resourceType !== undefined,
 });
 
 export const makeAllResourcesQuery = (
@@ -74,7 +73,7 @@ export const makeAllResourcesQuery = (
   onSuccess: (d) => {
     if (d) {
       client.setQueriesData(
-        d.map((v) => makeResourceQueryKey(owner, v.type)),
+        d.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
         d
       );
     } else {
@@ -85,20 +84,6 @@ export const makeAllResourcesQuery = (
   enabled: owner !== undefined,
   staleTime: 500,
 });
-
-/**
- * Fetches an individual resource.
- * @param owner
- * @param resourceType
- * @returns
- */
-export const useResource = (
-  owner: string | null | undefined,
-  resourceType: string | null | undefined
-) => {
-  const aptos = useAptosAPI();
-  return useQuery(makeResourceQuery(aptos, owner, resourceType));
-};
 
 /**
  * Fetches multiple resources.
@@ -112,7 +97,7 @@ export const useResources = (
 ) => {
   const aptos = useAptosAPI();
   return useQueries(
-    resourceTypes.map((rt) => makeResourceQuery(aptos, owner, rt))
+    resourceTypes.map((rt) => makeResourceQuery(aptos, [owner, rt]))
   );
 };
 
