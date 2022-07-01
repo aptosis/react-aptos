@@ -1,25 +1,16 @@
 import type { AptosAPI } from "@movingco/aptos";
-import type { AccountResource, AptosError } from "@movingco/aptos-api";
-import { raiseForStatus } from "aptos";
-import type { AxiosResponse } from "axios";
-import type { QueryClient, UseQueryOptions } from "react-query";
+import type { AccountResource, Address } from "@movingco/aptos-api";
+import type { QueryClient } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
 import { useAptos } from "../context.js";
 import { useAptosAPI } from "../hooks.js";
-import {
-  ALL_RESOURCES_QUERY_PREFIX,
-  RESOURCE_QUERY_PREFIX,
-} from "./constants.js";
+import { RESOURCE_QUERY_PREFIX } from "./constants.js";
+import type { UseAptosAPIQueryOptions } from "./useAptosAPIQuery.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";
 
-export const makeAllResourcesQueryKey = (owner: string | null | undefined) => [
-  ALL_RESOURCES_QUERY_PREFIX,
-  owner ? owner.toLowerCase() : owner,
-];
-
 /**
- * Fetches an account.
+ * Fetches a single resource.
  */
 export const {
   makeQueryKey: makeResourceQueryKey,
@@ -47,43 +38,50 @@ export const {
   },
 });
 
+/**
+ * Fetches all resources associated with an account.
+ */
+const allResources = makeQueryFunctions<
+  readonly AccountResource[],
+  readonly [owner: Address | null | undefined]
+>({
+  type: RESOURCE_QUERY_PREFIX,
+  normalizeArgs: ([owner]) => [owner ? owner.toLowerCase() : owner],
+  fetchData: async (aptos, [owner], signal) => {
+    return await aptos.accounts.getAccountResources(
+      { address: owner },
+      {
+        signal,
+      }
+    );
+  },
+});
+
+export const { makeQueryKey: makeAllResourcesQueryKey } = allResources;
+
 export const makeAllResourcesQuery = (
   aptos: AptosAPI,
   client: QueryClient,
-  owner: string | null | undefined
-): UseQueryOptions<readonly AccountResource[] | null, AptosError> => ({
-  queryKey: makeAllResourcesQueryKey(owner),
-  queryFn: async ({ signal }) => {
-    if (!owner) {
-      return null;
-    }
-    const response = await aptos.accounts.getAccountResources(
-      { address: owner },
-      { signal }
-    );
-    if (response.status === 404) {
-      return null;
-    }
-    raiseForStatus(
-      200,
-      response as AxiosResponse<AccountResource[], AptosError>
-    );
-    return response.data;
-  },
-  onSuccess: (d) => {
-    if (d) {
-      client.setQueriesData(
-        d.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
-        d
-      );
-    } else {
-      // null, data should be cleared
-      void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
-    }
-  },
-  enabled: owner !== undefined,
-  staleTime: 500,
-});
+  owner: Address | null | undefined
+): UseAptosAPIQueryOptions<
+  readonly AccountResource[],
+  readonly AccountResource[] | null,
+  readonly [owner: Address | null | undefined]
+> =>
+  allResources.makeQuery(aptos, [owner], {
+    onSuccess: (d) => {
+      if (d) {
+        client.setQueriesData(
+          d.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
+          d
+        );
+      } else {
+        // null, data should be cleared
+        void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
+      }
+    },
+    staleTime: 500,
+  });
 
 /**
  * Fetches multiple resources.

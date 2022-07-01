@@ -37,7 +37,7 @@ export const useHandleTXSuccess = () => {
       Object.entries(groupBy(writes, (w) => w.address)).forEach(
         ([address, writes]) => {
           client.setQueryData(
-            makeAllResourcesQueryKey(address),
+            makeAllResourcesQueryKey(aptosAPI.nodeUrl, address),
             (
               values: AccountResource[] | null | undefined
             ): AccountResource[] | null => {
