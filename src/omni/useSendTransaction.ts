@@ -8,10 +8,9 @@ import { OmniRPC } from "@omnimask/provider-interface";
 import { AptosAccount, HexString } from "aptos";
 import { useCallback } from "react";
 
-import { useAptos } from "../context.js";
 import { useAptosAPI } from "../hooks.js";
 import { useAccount } from "../query/useAccount.js";
-import { ensureProvider } from "./context.js";
+import { ensureProvider, useOmni } from "./context.js";
 
 export type SendTransactionParams = {
   payload: TransactionPayload;
@@ -26,7 +25,7 @@ export type SendTransactionParams = {
 };
 
 export const useSendTransaction = () => {
-  const { provider, wallet } = useAptos();
+  const { provider, wallet } = useOmni();
   const aptos = useAptosAPI();
   const { data: account } = useAccount(wallet?.selectedAccount);
   return useCallback(

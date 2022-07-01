@@ -8,7 +8,12 @@ declare global {
   }
 }
 
-export const useOmniProvider = () => {
+/**
+ * Loads the Omni provider. Internal use only.
+ *
+ * @returns
+ */
+export const useOmniProviderInternal = () => {
   const [provider, setProvider] = useState<OmniProvider | null | undefined>(
     undefined
   );

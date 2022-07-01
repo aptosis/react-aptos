@@ -1,5 +1,6 @@
 export * from "./cache.js";
 export * from "./constants.js";
+export * from "./context.js";
 export * from "./useAccount.js";
 export type {
   AptosAPIQueryKey,

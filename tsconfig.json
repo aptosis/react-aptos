@@ -2,6 +2,7 @@
   "extends": "@saberhq/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "outDir": "dist/esm/",
+    "jsx": "react-jsx",
     "types": ["node"]
   },
   "include": ["./src", "src/**/*.json", ".eslintrc.cjs"]

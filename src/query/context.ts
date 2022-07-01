@@ -6,18 +6,15 @@ import {
   TEST_COIN,
 } from "@movingco/aptos";
 import type { Coin } from "@movingco/core";
-import type { AptosClient } from "aptos";
 import { useMemo } from "react";
 import { createContainer } from "unstated-next";
 
-import type { AptosEventHandlers } from "./events.js";
-import type { OmniContext } from "./omni/context.js";
-import { useOmniProviderInternal } from "./omni/context.js";
+import type { AptosEventHandlers } from "../index.js";
 
 /**
  * Arguments for the Aptos client.
  */
-export interface AptosProviderConfig {
+export interface AptosConnectionConfig {
   /**
    * A map of coin addresses to coins on this network.
    */
@@ -31,22 +28,16 @@ export interface AptosProviderConfig {
 /**
  * Arguments for the Aptos client.
  */
-export interface UseAptosArgs
-  extends Partial<AptosProviderConfig>,
-    AptosEventHandlers {}
+export type UseAptosConnectionArgs = Partial<AptosConnectionConfig> &
+  AptosEventHandlers;
 
-export interface AptosContext extends OmniContext, AptosProviderConfig {
-  aptos: AptosClient;
-  aptosAPI: AptosAPI;
-}
-
-const useAptosInner = ({
+const useAptosConnectionInner = ({
   coins = {
     [TEST_COIN.address]: TEST_COIN,
   },
   network = APTOS_DEVNET,
   ...rest
-}: UseAptosArgs = {}) => {
+}: UseAptosConnectionArgs = {}) => {
   const aptos = useMemo(
     () => createAptosClient(network.nodeUrl),
     [network.nodeUrl]
@@ -56,10 +47,10 @@ const useAptosInner = ({
     [network.nodeUrl]
   );
 
-  const omni = useOmniProviderInternal({ aptos });
-
-  return { ...omni, aptos, aptosAPI, coins, ...rest };
+  return { aptos, aptosAPI, coins, ...rest };
 };
 
-export const { useContainer: useAptos, Provider: AptosProvider } =
-  createContainer(useAptosInner);
+export const {
+  useContainer: useAptosConnection,
+  Provider: AptosConnectionProvider,
+} = createContainer(useAptosConnectionInner);

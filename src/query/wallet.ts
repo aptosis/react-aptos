@@ -4,7 +4,8 @@
 import type { Coin, CoinAmount } from "@movingco/core";
 import type { Tuple } from "@saberhq/tuple-utils";
 
-import { useAptos, useBalances, useCoinBalance } from "../index.js";
+import { useBalances, useCoinBalance } from "../index.js";
+import { useOmni } from "../omni/context.js";
 import { useAllResources } from "./useResource.js";
 
 /**
@@ -12,7 +13,7 @@ import { useAllResources } from "./useResource.js";
  * @returns
  */
 export const useAllWalletResources = () => {
-  const { wallet } = useAptos();
+  const { wallet } = useOmni();
   return useAllResources(wallet?.selectedAccount);
 };
 
@@ -21,7 +22,7 @@ export const useAllWalletResources = () => {
  * @returns
  */
 export const useWalletBalances = (): CoinAmount[] | null | undefined => {
-  const owner = useAptos().wallet?.selectedAccount;
+  const owner = useOmni().wallet?.selectedAccount;
   return useBalances(owner);
 };
 
@@ -33,6 +34,6 @@ export const useWalletBalances = (): CoinAmount[] | null | undefined => {
 export const useWalletBalance = <N extends number>(
   ...coins: Tuple<Coin | null | undefined, N>
 ): Tuple<CoinAmount | null | undefined, N> => {
-  const owner = useAptos().wallet?.selectedAccount;
+  const owner = useOmni().wallet?.selectedAccount;
   return useCoinBalance(owner, ...coins);
 };
