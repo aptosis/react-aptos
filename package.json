@@ -74,7 +74,7 @@
   "dependencies": {
     "@movingco/aptos": "^0.1.38",
     "@movingco/aptos-api": "^0.1.38",
-    "@movingco/aptos-coin": "^0.1.37",
+    "@movingco/aptos-coin": "^0.1.38",
     "@movingco/core": "^0.1.38",
     "@movingco/prelude": "^0.1.38",
     "@omnimask/provider-interface": "^0.1.0",

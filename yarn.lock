@@ -11,7 +11,7 @@ __metadata:
   dependencies:
     "@movingco/aptos": ^0.1.38
     "@movingco/aptos-api": ^0.1.38
-    "@movingco/aptos-coin": ^0.1.37
+    "@movingco/aptos-coin": ^0.1.38
     "@movingco/core": ^0.1.38
     "@movingco/prelude": ^0.1.38
     "@omnimask/provider-interface": ^0.1.0
@@ -170,16 +170,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/aptos-coin@npm:^0.1.37":
-  version: 0.1.37
-  resolution: "@movingco/aptos-coin@npm:0.1.37"
+"@movingco/aptos-coin@npm:^0.1.38":
+  version: 0.1.38
+  resolution: "@movingco/aptos-coin@npm:0.1.38"
   dependencies:
     tslib: ^2.4.0
   peerDependencies:
-    "@movingco/prelude": ^0.1.37
+    "@movingco/prelude": ^0.1.38
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: b7efd960803a238028b864c5cf658ab74017d20af3505283f029fd0683900bc5da21c2edb9c19a5ea291b1e3c68d5fd802e8d57c6f20ee80eeca85d6d9e9b752
+  checksum: 147ea462f13368e78098a463ffd6a0e18347c140d4fd3307e8f9e24b3b0521f33529334585d71154b09d9c1aff74223383b7bf88e6cfd8f6c27d997ac8ccb3aa
   languageName: node
   linkType: hard
 
