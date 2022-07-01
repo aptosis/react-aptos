@@ -65,7 +65,7 @@ export const useCoinBalance = <N extends number>(
       tokens
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...tokens, balances]);
+  }, [owner, ...tokens, balances]);
 };
 
 export const useMyBalances = (): CoinAmount[] | null | undefined => {
