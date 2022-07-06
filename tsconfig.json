@@ -10,5 +10,8 @@
   "compilerOptions": {
     "lib": ["DOM", "ES2019"]
   },
-  "references": [{ "path": "packages/react-aptos/" }]
+  "references": [
+    { "path": "packages/react-aptos/" },
+    { "path": "packages/seacliff/" }
+  ]
 }

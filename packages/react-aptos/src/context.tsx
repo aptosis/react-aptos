@@ -1,11 +1,14 @@
-import type { UseAptosConnectionArgs } from "./index.js";
-import { AptosConnectionProvider } from "./index.js";
+import type { UseSeacliffArgs } from "@aptosis/seacliff";
+import { SeacliffProvider } from "@aptosis/seacliff";
+
+import type { AptosEventHandlers } from "./index.js";
+import { AptosEventHandlersProvider } from "./index.js";
 import { ReactOmniProvider } from "./omni/context.js";
 
 /**
  * Arguments for the Aptos client.
  */
-export type UseAptosArgs = UseAptosConnectionArgs;
+export type UseAptosArgs = UseSeacliffArgs & AptosEventHandlers;
 
 interface Props extends UseAptosArgs {
   children?: React.ReactNode;
@@ -13,11 +16,24 @@ interface Props extends UseAptosArgs {
 
 export const AptosProvider: React.FC<Props> = ({
   children,
+  onTXRequest,
+  onTXSend,
+  onTXSuccess,
+  onTXError,
   ...args
 }: Props) => {
   return (
-    <AptosConnectionProvider initialState={args}>
-      <ReactOmniProvider>{children}</ReactOmniProvider>
-    </AptosConnectionProvider>
+    <SeacliffProvider {...args}>
+      <AptosEventHandlersProvider
+        initialState={{
+          onTXRequest,
+          onTXSend,
+          onTXSuccess,
+          onTXError,
+        }}
+      >
+        <ReactOmniProvider>{children}</ReactOmniProvider>
+      </AptosEventHandlersProvider>
+    </SeacliffProvider>
   );
 };

@@ -1,3 +1,4 @@
+import { useSeacliff } from "@aptosis/seacliff";
 import type { AptosAPI } from "@movingco/aptos";
 import type {
   AptosError,
@@ -10,7 +11,7 @@ import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 
-import { useAptosConnection } from "../index.js";
+import { useAptosEventHandlers } from "../events.js";
 import { FailedTXError } from "./txHelpers.js";
 import { useHandleTXSuccess } from "./useHandleTXSuccess.js";
 
@@ -59,7 +60,8 @@ export const confirmTransaction = async (
 };
 
 export const useConfirmTX = () => {
-  const { aptosAPI, onTXSuccess, onTXError } = useAptosConnection();
+  const { aptosAPI } = useSeacliff();
+  const { onTXSuccess, onTXError } = useAptosEventHandlers();
   const onSuccess = useHandleTXSuccess();
   return useMutation(
     async (txHash: string) => {

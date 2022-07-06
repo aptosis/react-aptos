@@ -1,3 +1,4 @@
+import { useAccount, useAptosAPI } from "@aptosis/seacliff";
 import type {
   MultiAgentSignature,
   TransactionPayload,
@@ -8,8 +9,6 @@ import { OmniRPC } from "@omnimask/provider-interface";
 import { AptosAccount, HexString } from "aptos";
 import { useCallback } from "react";
 
-import { useAptosAPI } from "../hooks.js";
-import { useAccount } from "../query/useAccount.js";
 import { ensureProvider, useOmni } from "./context.js";
 
 export type SendTransactionParams = {

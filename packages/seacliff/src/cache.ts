@@ -6,8 +6,11 @@ import type {
 } from "@movingco/aptos-api";
 import { default as groupBy } from "lodash.groupby";
 import { default as keyBy } from "lodash.keyby";
+import { useCallback } from "react";
 import type { QueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 
+import { useAptosAPI } from "./hooks.js";
 import {
   makeAllResourcesQueryKey,
   makeResourceQueryKey,
@@ -87,7 +90,7 @@ const applyDeletesToCache = (
 export const applyWriteSetChangesToCache = (
   nodeUrl: string,
   client: QueryClient,
-  changes: WriteSetChange[]
+  changes: readonly WriteSetChange[]
 ) => {
   const writes = changes.filter(
     (c): c is WriteResource => c.type === "write_resource"
@@ -97,4 +100,19 @@ export const applyWriteSetChangesToCache = (
   );
   applyWritesToCache(nodeUrl, client, writes);
   applyDeletesToCache(nodeUrl, client, deletes);
+};
+
+/**
+ * Applies an array of write set changes to the cache.
+ * @returns
+ */
+export const useApplyWriteSetChangesToCache = () => {
+  const client = useQueryClient();
+  const aptosAPI = useAptosAPI();
+  return useCallback(
+    (changes: readonly WriteSetChange[]) => {
+      applyWriteSetChangesToCache(aptosAPI.nodeUrl, client, changes);
+    },
+    [client, aptosAPI]
+  );
 };

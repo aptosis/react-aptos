@@ -2,13 +2,13 @@ import type { SignAndSendTransactionParams } from "@omnimask/provider-interface"
 import { useCallback } from "react";
 import { useMutation } from "react-query";
 
-import { useAptosConnection } from "../index.js";
+import { useAptosEventHandlers } from "../index.js";
 import { useSendTransaction } from "../omni/useSendTransaction.js";
 import type { SendParams } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
 export const useRunScript = () => {
-  const { onTXRequest, onTXSend } = useAptosConnection();
+  const { onTXRequest, onTXSend } = useAptosEventHandlers();
   const sendTransaction = useSendTransaction();
   const confirmTransaction = useConfirmTX();
 
