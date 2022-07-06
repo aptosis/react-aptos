@@ -1,12 +1,15 @@
 /**
  * This file contains hooks which connect to the current wallet.
  */
+import {
+  useAllResources,
+  useBalances,
+  useCoinBalance,
+} from "@aptosis/seacliff";
 import type { Coin, CoinAmount } from "@movingco/core";
 import type { Tuple } from "@saberhq/tuple-utils";
 
-import { useBalances, useCoinBalance } from "../index.js";
-import { useOmni } from "../omni/context.js";
-import { useAllResources } from "./useResource.js";
+import { useOmni } from "./omni/context.js";
 
 /**
  * Fetches all of the connected wallet's resources.

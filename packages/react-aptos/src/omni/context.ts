@@ -1,3 +1,4 @@
+import { useAptosClient } from "@aptosis/seacliff";
 import { confirmTransaction } from "@movingco/aptos";
 import type { UserTransaction } from "@movingco/aptos-api";
 import type {
@@ -13,7 +14,6 @@ import { useQuery } from "react-query";
 import { default as invariant } from "tiny-invariant";
 import { createContainer } from "unstated-next";
 
-import { useAptosClient } from "../hooks.js";
 import { useHandleTXSuccess } from "../tx/useHandleTXSuccess.js";
 import { useOmniProviderInternal } from "./useOmniProvider.js";
 

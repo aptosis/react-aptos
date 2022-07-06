@@ -9,13 +9,13 @@ import { tupleFill, tupleMapInner } from "@saberhq/tuple-utils";
 import { useCallback, useMemo } from "react";
 import { default as invariant } from "tiny-invariant";
 
-import { useAptosConnection } from "./context.js";
+import { useSeacliff } from "./context.js";
 import { useAllResources } from "./useResource.js";
 
 export const useBalances = (
   owner?: Address | null | undefined
 ): CoinAmount[] | null | undefined => {
-  const { coins } = useAptosConnection();
+  const { coins } = useSeacliff();
   const { data: resources } = useAllResources(owner);
 
   const parseCoinStore = useCallback(

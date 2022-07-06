@@ -9,12 +9,10 @@ import type { Coin } from "@movingco/core";
 import { useMemo } from "react";
 import { createContainer } from "unstated-next";
 
-import type { AptosEventHandlers } from "../index.js";
-
 /**
  * Arguments for the Aptos client.
  */
-export interface AptosConnectionConfig {
+export interface SeacliffConfig {
   /**
    * A map of coin addresses to coins on this network.
    */
@@ -28,16 +26,15 @@ export interface AptosConnectionConfig {
 /**
  * Arguments for the Aptos client.
  */
-export type UseAptosConnectionArgs = Partial<AptosConnectionConfig> &
-  AptosEventHandlers;
+export type UseSeacliffArgs = Partial<SeacliffConfig>;
 
-const useAptosConnectionInner = ({
+const useSeacliffInner = ({
   coins = {
     [TEST_COIN.address]: TEST_COIN,
   },
   network = APTOS_DEVNET,
   ...rest
-}: UseAptosConnectionArgs = {}) => {
+}: UseSeacliffArgs = {}) => {
   const aptos = useMemo(
     () => createAptosClient(network.nodeUrl),
     [network.nodeUrl]
@@ -50,7 +47,5 @@ const useAptosConnectionInner = ({
   return { aptos, aptosAPI, coins, ...rest };
 };
 
-export const {
-  useContainer: useAptosConnection,
-  Provider: AptosConnectionProvider,
-} = createContainer(useAptosConnectionInner);
+export const { useContainer: useSeacliff, Provider: SeacliffInternalProvider } =
+  createContainer(useSeacliffInner);

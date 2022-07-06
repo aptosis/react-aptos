@@ -5,8 +5,8 @@ import type { AxiosResponse } from "axios";
 import type { UseQueryOptions, UseQueryResult } from "react-query";
 import { useQuery } from "react-query";
 
-import { useAptosAPI } from "../hooks.js";
 import type { AptosAPIQueryType } from "./constants.js";
+import { useAptosAPI } from "./hooks.js";
 
 export type AptosAPIQueryKey<
   TArgs extends readonly unknown[] = readonly unknown[]

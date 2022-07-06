@@ -3,11 +3,11 @@ import type { AccountResource, Address } from "@movingco/aptos-api";
 import type { QueryClient } from "react-query";
 import { useQueries, useQuery, useQueryClient } from "react-query";
 
-import { useAptosAPI } from "../hooks.js";
 import {
   ALL_RESOURCES_QUERY_PREFIX,
   RESOURCE_QUERY_PREFIX,
 } from "./constants.js";
+import { useAptosAPI } from "./hooks.js";
 import type { UseAptosAPIQueryOptions } from "./useAptosAPIQuery.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";
 

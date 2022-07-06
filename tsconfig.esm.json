@@ -1,8 +1,0 @@
-{
-  "extends": "@saberhq/tsconfig/tsconfig.dom.json",
-  "compilerOptions": {
-    "outDir": "dist/esm/",
-    "jsx": "react-jsx"
-  },
-  "include": ["./src", "src/**/*.json"]
-}

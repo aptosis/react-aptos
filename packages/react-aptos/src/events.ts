@@ -1,5 +1,6 @@
 import type { UserTransaction } from "@movingco/aptos-api";
 import type { SignAndSendTransactionResult } from "@omnimask/provider-interface";
+import { createContainer } from "unstated-next";
 
 import type { FailedTXError, SendParams } from "./index.js";
 
@@ -57,3 +58,12 @@ export const buildDefaultEventHandlers = (
     });
   },
 });
+
+const useAptosEventHandlersInner = (handlers: AptosEventHandlers = {}) => {
+  return handlers;
+};
+
+export const {
+  useContainer: useAptosEventHandlers,
+  Provider: AptosEventHandlersProvider,
+} = createContainer(useAptosEventHandlersInner);
