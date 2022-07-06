@@ -11,7 +11,6 @@ __metadata:
   dependencies:
     "@movingco/aptos": ^0.1.39
     "@movingco/aptos-api": ^0.1.39
-    "@movingco/aptos-coin": ^0.1.39
     "@movingco/core": ^0.1.39
     "@movingco/prelude": ^0.1.39
     "@omnimask/provider-interface": ^0.1.0
@@ -61,7 +60,6 @@ __metadata:
     "@aptosis/seacliff": "workspace:^"
     "@movingco/aptos": ^0.1.39
     "@movingco/aptos-api": ^0.1.39
-    "@movingco/aptos-coin": ^0.1.39
     "@movingco/core": ^0.1.39
     "@movingco/prelude": ^0.1.39
     "@omnimask/provider-interface": ^0.1.0
@@ -94,6 +92,7 @@ __metadata:
   dependencies:
     "@movingco/aptos": ^0.1.39
     "@movingco/aptos-api": ^0.1.39
+    "@movingco/aptos-coin": ^0.1.39
     "@movingco/core": ^0.1.39
     "@movingco/prelude": ^0.1.39
     "@saberhq/tsconfig": ^2.0.1
