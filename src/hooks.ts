@@ -1,9 +1,9 @@
-import { useAptos } from "./context.js";
+import { useAptosConnection } from "./index.js";
 
 export const useAptosClient = () => {
-  return useAptos().aptos;
+  return useAptosConnection().aptos;
 };
 
 export const useAptosAPI = () => {
-  return useAptos().aptosAPI;
+  return useAptosConnection().aptosAPI;
 };

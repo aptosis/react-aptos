@@ -1,52 +1,19 @@
-import type {
-  AccountResource,
-  UserTransaction,
-  WriteResource,
-} from "@movingco/aptos-api";
-import { default as groupBy } from "lodash.groupby";
-import { default as keyBy } from "lodash.keyby";
+import type { UserTransaction } from "@movingco/aptos-api";
 import { useCallback } from "react";
 import { useQueryClient } from "react-query";
 
-import {
-  makeAllResourcesQueryKey,
-  makeResourceQueryKey,
-} from "../query/useResource.js";
+import { useAptosAPI } from "../hooks.js";
+import { applyWriteSetChangesToCache } from "../query/cache.js";
 
 export const useHandleTXSuccess = () => {
   const client = useQueryClient();
+  const aptosAPI = useAptosAPI();
   return useCallback(
     (data: UserTransaction) => {
       // the data is in the response, so updates should be relatively
       // easier to display
-      const writes = data.changes.filter(
-        (c): c is WriteResource => c.type === "write_resource"
-      );
-      writes.forEach((change) => {
-        client.setQueryData(
-          makeResourceQueryKey(change.address, change.data.type),
-          change.data
-        );
-      });
-      Object.entries(groupBy(writes, (w) => w.address)).forEach(
-        ([address, writes]) => {
-          client.setQueryData(
-            makeAllResourcesQueryKey(address),
-            (
-              values: AccountResource[] | null | undefined
-            ): AccountResource[] | null => {
-              if (!values) {
-                return writes.map((w) => w.data);
-              }
-              const byType = keyBy(writes, (w) => w.data.type);
-              return values.map((v) => {
-                return byType[v.type]?.data ?? v;
-              });
-            }
-          );
-        }
-      );
+      applyWriteSetChangesToCache(aptosAPI.nodeUrl, client, data.changes);
     },
-    [client]
+    [aptosAPI.nodeUrl, client]
   );
 };

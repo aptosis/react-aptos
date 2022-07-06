@@ -10,7 +10,7 @@ import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 
-import { useAptos } from "../context.js";
+import { useAptosConnection } from "../index.js";
 import { FailedTXError } from "./txHelpers.js";
 import { useHandleTXSuccess } from "./useHandleTXSuccess.js";
 
@@ -59,7 +59,7 @@ export const confirmTransaction = async (
 };
 
 export const useConfirmTX = () => {
-  const { aptosAPI, onTXSuccess, onTXError } = useAptos();
+  const { aptosAPI, onTXSuccess, onTXError } = useAptosConnection();
   const onSuccess = useHandleTXSuccess();
   return useMutation(
     async (txHash: string) => {

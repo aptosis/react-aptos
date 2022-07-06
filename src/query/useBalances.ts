@@ -1,5 +1,6 @@
 import type { AccountResource } from "@movingco/aptos";
 import { ZERO_TEST_COINS } from "@movingco/aptos";
+import type { Address } from "@movingco/aptos-api";
 import type { CoinStoreData } from "@movingco/aptos-coin";
 import { CoinModule } from "@movingco/aptos-coin";
 import { ChainId, Coin, CoinAmount, mapN, StructTag } from "@movingco/core";
@@ -8,12 +9,14 @@ import { tupleFill, tupleMapInner } from "@saberhq/tuple-utils";
 import { useCallback, useMemo } from "react";
 import { default as invariant } from "tiny-invariant";
 
-import { useAptos } from "../context.js";
-import { useAllUserResources } from "./useResource.js";
+import { useAptosConnection } from "./context.js";
+import { useAllResources } from "./useResource.js";
 
-export const useMyBalances = (): CoinAmount[] | null | undefined => {
-  const { coins } = useAptos();
-  const { data: resources } = useAllUserResources();
+export const useBalances = (
+  owner?: Address | null | undefined
+): CoinAmount[] | null | undefined => {
+  const { coins } = useAptosConnection();
+  const { data: resources } = useAllResources(owner);
 
   const parseCoinStore = useCallback(
     ({ type, data }: AccountResource<CoinStoreData>) => {
@@ -48,10 +51,11 @@ export const useMyBalances = (): CoinAmount[] | null | undefined => {
   }, [parseCoinStore, resources]);
 };
 
-export const useMyCoinBalance = <N extends number>(
+export const useCoinBalance = <N extends number>(
+  owner: Address | null | undefined,
   ...tokens: Tuple<Coin | null | undefined, N>
 ): Tuple<CoinAmount | null | undefined, N> => {
-  const balances = useMyBalances();
+  const balances = useBalances(owner);
   return useMemo(() => {
     if (!balances) {
       return tupleFill(balances, tokens);
@@ -61,5 +65,5 @@ export const useMyCoinBalance = <N extends number>(
       tokens
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...tokens, balances]);
+  }, [owner, ...tokens, balances]);
 };

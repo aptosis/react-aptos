@@ -7,14 +7,15 @@ import type {
   RequestFaucetResult,
 } from "@omnimask/provider-interface";
 import { OmniRPC } from "@omnimask/provider-interface";
-import type { AptosClient } from "aptos";
 import { startTransition, useCallback, useEffect } from "react";
 import type { QueryObserverResult } from "react-query";
 import { useQuery } from "react-query";
 import { default as invariant } from "tiny-invariant";
+import { createContainer } from "unstated-next";
 
+import { useAptosClient } from "../hooks.js";
 import { useHandleTXSuccess } from "../tx/useHandleTXSuccess.js";
-import { useOmniProvider } from "./useOmniProvider.js";
+import { useOmniProviderInternal } from "./useOmniProvider.js";
 
 export const ensureProvider: (
   provider: OmniProvider | null | undefined
@@ -24,12 +25,8 @@ export const ensureProvider: (
   }
 };
 
-export const useOmniProviderInternal = ({
-  aptos,
-}: {
-  aptos: AptosClient;
-}): OmniContext => {
-  const provider = useOmniProvider();
+const useOmniInner = (): OmniContext => {
+  const provider = useOmniProviderInternal();
   const { data: wallet, refetch: reloadWallet } = useQuery(
     ["omnimask/providerState"],
     async () => {
@@ -66,6 +63,8 @@ export const useOmniProviderInternal = ({
   }, [provider, reloadWallet]);
 
   const handleTXSuccess = useHandleTXSuccess();
+
+  const aptos = useAptosClient();
 
   const requestFaucet = useCallback(
     async (params: RequestFaucetParams): Promise<RequestFaucetResult> => {
@@ -121,3 +120,6 @@ export interface OmniContext {
   disconnect: () => Promise<void>;
   wallet?: ProviderState;
 }
+
+export const { useContainer: useOmni, Provider: ReactOmniProvider } =
+  createContainer(useOmniInner);
