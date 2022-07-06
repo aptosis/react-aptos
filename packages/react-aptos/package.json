@@ -1,15 +1,17 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "name": "@aptosis/react-aptos-workspace",
+  "name": "@aptosis/react-aptos",
   "version": "0.1.3",
   "description": "React library for interacting with the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
   "license": "Apache-2.0",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "keywords": [
     "react",
     "wallet",
@@ -18,15 +20,26 @@
     "move"
   ],
   "homepage": "https://aptos.is",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/aptosis/react-aptos/issues",
+    "email": "ian@aptos.is"
+  },
   "scripts": {
-    "build": "yarn workspaces foreach --exclude @aptosis/react-aptos-workspace -vpti --topological-dev run build",
-    "publish:all": "yarn workspaces foreach --exclude @aptosis/react-aptos-workspace -vpti --topological-dev npm publish",
-    "docs:generate": "typedoc --excludePrivate --includeVersion --out docs/ --entryPointStrategy packages --includes packages/ $(find ./packages -mindepth 1 -maxdepth 1 | grep -v browserslist)",
-    "bump": "yarn workspaces foreach -t version",
-    "test": "jest",
+    "build": "tsc && tsc --project tsconfig.cjs.json",
+    "clean": "rm -fr dist/",
     "lint": "eslint . --cache",
     "lint:ci": "eslint . --max-warnings=0",
-    "typecheck": "tsc --build",
+    "lint:fix": "eslint . --fix",
+    "docs:generate": "typedoc --excludePrivate --includeVersion --out site/ src/index.ts",
     "prepare": "husky install"
   },
   "packageManager": "yarn@3.2.1",
@@ -41,7 +54,6 @@
     "@saberhq/eslint-config-react": "^2.0.1",
     "@saberhq/tsconfig": "^2.0.1",
     "@types/eslint": "^8.4.5",
-    "@types/jest": "^28.1.4",
     "@types/node": "^18.0.3",
     "@types/prettier": "^2.6.3",
     "@types/react": "^18.0.15",
@@ -84,8 +96,5 @@
     "jsbi": "^4.3.0",
     "react": "*",
     "react-query": "*"
-  },
-  "resolutions": {
-    "axios": "^0.27"
   }
 }
