@@ -47,7 +47,6 @@ __metadata:
     typescript: ^4.7.4
     unstated-next: ^1.1.0
   peerDependencies:
-    aptos: ^0.27
     bn.js: ^5
     jsbi: ^4.3.0
     react: "*"
