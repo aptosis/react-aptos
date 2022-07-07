@@ -53,7 +53,7 @@
   "dependencies": {
     "@movingco/aptos": "^0.1.39",
     "@movingco/aptos-api": "^0.1.39",
-    "@movingco/aptos-coin": "^0.1.39",
+    "@movingco/aptos-coin": "^0.1.41",
     "@movingco/core": "^0.1.39",
     "@movingco/prelude": "^0.1.39",
     "@saberhq/tuple-utils": "^1.13.32",
