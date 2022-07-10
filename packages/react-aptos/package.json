@@ -5,6 +5,7 @@
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
   "license": "Apache-2.0",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
