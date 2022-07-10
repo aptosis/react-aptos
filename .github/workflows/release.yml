@@ -43,12 +43,6 @@ jobs:
         run: yarn workspaces foreach -t version ${{ github.event.inputs.version }}
         if: github.event_name == 'workflow_dispatch'
 
-      - id: build-changelog
-        name: Update the changelog
-        uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # Handle release from triggering the action
       - id: git-release
         name: (auto) Perform Git release
@@ -62,6 +56,11 @@ jobs:
           git tag "v$VERSION"
           git push origin HEAD --tags
           echo "::set-output name=version::v$VERSION"
+      - id: build-changelog
+        name: Update the changelog
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: (auto) Release
         uses: softprops/action-gh-release@v1
         if: github.event_name == 'workflow_dispatch'
