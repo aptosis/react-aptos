@@ -1,8 +1,7 @@
+import { CoinModule } from "@aptosis/aptos-framework";
 import type { AccountResource } from "@movingco/aptos";
 import { ZERO_TEST_COINS } from "@movingco/aptos";
 import type { Address } from "@movingco/aptos-api";
-import type { CoinStoreData } from "@movingco/aptos-coin";
-import { CoinModule } from "@movingco/aptos-coin";
 import { ChainId, Coin, CoinAmount, mapN, StructTag } from "@movingco/core";
 import type { Tuple } from "@saberhq/tuple-utils";
 import { tupleFill, tupleMapInner } from "@saberhq/tuple-utils";
@@ -19,7 +18,7 @@ export const useBalances = (
   const { data: resources } = useAllResources(owner);
 
   const parseCoinStore = useCallback(
-    ({ type, data }: AccountResource<CoinStoreData>) => {
+    ({ type, data }: AccountResource<CoinModule.CoinStoreData>) => {
       const parsedType = StructTag.parse(type);
       const theType = parsedType.typeParams?.[0];
       invariant(theType);
@@ -38,7 +37,7 @@ export const useBalances = (
     }
     return mapN((resources) => {
       const amounts = resources
-        .filter((r): r is AccountResource<CoinStoreData> =>
+        .filter((r): r is AccountResource<CoinModule.CoinStoreData> =>
           r.type.startsWith(CoinModule.structs.CoinStore)
         )
         .map(parseCoinStore)

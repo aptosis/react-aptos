@@ -51,9 +51,9 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
+    "@aptosis/aptos-framework": "^0.1.3",
     "@movingco/aptos": "^0.1.44",
     "@movingco/aptos-api": "^0.1.44",
-    "@movingco/aptos-coin": "^0.1.44",
     "@movingco/core": "^0.1.44",
     "@movingco/prelude": "^0.1.44",
     "@saberhq/tuple-utils": "^1.13.32",

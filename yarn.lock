@@ -5,6 +5,19 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@aptosis/aptos-framework@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@aptosis/aptos-framework@npm:0.1.3"
+  dependencies:
+    "@movingco/prelude": ^0.1.44
+    tslib: ^2.4.0
+  peerDependencies:
+    bn.js: ^5.2.0
+    jsbi: ^4.3.0
+  checksum: 232e1c43d61158ab89c8596b840c5ca090bfcc217828564149f069a6ceb37199dd54be823043eac9aa026d26bc8ff967b9c782697df10f1be2f74804d5f6d6d2
+  languageName: node
+  linkType: hard
+
 "@aptosis/react-aptos-workspace@workspace:.":
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-workspace@workspace:."
@@ -90,9 +103,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/seacliff@workspace:packages/seacliff"
   dependencies:
+    "@aptosis/aptos-framework": ^0.1.3
     "@movingco/aptos": ^0.1.44
     "@movingco/aptos-api": ^0.1.44
-    "@movingco/aptos-coin": ^0.1.44
     "@movingco/core": ^0.1.44
     "@movingco/prelude": ^0.1.44
     "@saberhq/tsconfig": ^2.0.1
@@ -242,19 +255,6 @@ __metadata:
   peerDependencies:
     axios: ^0.27.2
   checksum: 33d83fd4fd7c020ef2c24b53f37a5523c1f2eae3588cdf2edcbb1f26bac861cc54e5d5f2c306e91929e1c185cfca24daf1364ad31b6216237d5ddce37b248b3b
-  languageName: node
-  linkType: hard
-
-"@movingco/aptos-coin@npm:^0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/aptos-coin@npm:0.1.44"
-  dependencies:
-    tslib: ^2.4.0
-  peerDependencies:
-    "@movingco/prelude": ^0.1.44
-    bn.js: ^5.2.0
-    jsbi: ^4.3.0
-  checksum: ae60068d7da03463da11ad65917bfcf7d38c6b9481110ed9b2521c65e971255e46726156042b35022a6bf7910e83f3315dbfb3ee9d527b5451a955458aeb7d2c
   languageName: node
   linkType: hard
 
