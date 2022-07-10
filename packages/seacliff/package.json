@@ -51,11 +51,11 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@movingco/aptos": "^0.1.39",
-    "@movingco/aptos-api": "^0.1.39",
-    "@movingco/aptos-coin": "^0.1.39",
-    "@movingco/core": "^0.1.39",
-    "@movingco/prelude": "^0.1.39",
+    "@movingco/aptos": "^0.1.44",
+    "@movingco/aptos-api": "^0.1.44",
+    "@movingco/aptos-coin": "^0.1.44",
+    "@movingco/core": "^0.1.44",
+    "@movingco/prelude": "^0.1.44",
     "@saberhq/tuple-utils": "^1.13.32",
     "@types/lodash.groupby": "^4.6.7",
     "@types/lodash.keyby": "^4.6.7",
