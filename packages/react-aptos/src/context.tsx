@@ -19,7 +19,7 @@ export const AptosProvider: React.FC<Props> = ({
   onTXRequest,
   onTXSend,
   onTXSuccess,
-  onTXError,
+  onTXRevertError,
   ...args
 }: Props) => {
   return (
@@ -29,7 +29,7 @@ export const AptosProvider: React.FC<Props> = ({
           onTXRequest,
           onTXSend,
           onTXSuccess,
-          onTXError,
+          onTXRevertError,
         }}
       >
         <ReactOmniProvider>{children}</ReactOmniProvider>

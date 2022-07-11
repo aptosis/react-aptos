@@ -5,10 +5,11 @@ import { useMutation } from "react-query";
 import { useAptosEventHandlers } from "../index.js";
 import { useSendTransaction } from "../omni/useSendTransaction.js";
 import type { SendParams } from "./txHelpers.js";
+import { TXPrepareError } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
 export const useRunScript = () => {
-  const { onTXRequest, onTXSend } = useAptosEventHandlers();
+  const { onTXRequest, onTXSend, onTXPrepareError } = useAptosEventHandlers();
   const sendTransaction = useSendTransaction();
   const confirmTransaction = useConfirmTX();
 
@@ -26,21 +27,29 @@ export const useRunScript = () => {
         ["function"]: fn,
       } = params;
       onTXRequest?.(params);
-      const tx = await sendTransaction({
-        payload: {
-          type: "script_function_payload",
-          type_arguments,
-          arguments: args,
-          function: fn,
-        },
-        options,
-      });
-
-      onTXSend?.(tx);
-
-      return await confirmTransaction.mutateAsync(tx.result.hash);
+      try {
+        const tx = await sendTransaction({
+          payload: {
+            type: "script_function_payload",
+            type_arguments,
+            arguments: args,
+            function: fn,
+          },
+          options,
+        });
+        onTXSend?.(tx);
+        return await confirmTransaction.mutateAsync(tx.result.hash);
+      } catch (e) {
+        onTXPrepareError?.(new TXPrepareError(params, e));
+      }
     },
-    [confirmTransaction, onTXRequest, onTXSend, sendTransaction]
+    [
+      confirmTransaction,
+      onTXPrepareError,
+      onTXRequest,
+      onTXSend,
+      sendTransaction,
+    ]
   );
 
   return useMutation(doRunScript);

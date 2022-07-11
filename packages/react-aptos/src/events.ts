@@ -2,9 +2,23 @@ import type { UserTransaction } from "@movingco/aptos-api";
 import type { SignAndSendTransactionResult } from "@omnimask/provider-interface";
 import { createContainer } from "unstated-next";
 
-import type { FailedTXError, SendParams } from "./index.js";
+import type { SendParams, TXPrepareError, TXRevertError } from "./index.js";
 
-export interface AptosEventHandlers {
+/**
+ * Handlers for error events.
+ */
+export interface AptosErrorEventHandlers {
+  /**
+   * Called when the signature for a transaction is requested.
+   */
+  onTXPrepareError?: (err: TXPrepareError) => void;
+  /**
+   * Called when a transaction reverts. (fails on-chain)
+   */
+  onTXRevertError?: (data: TXRevertError) => void;
+}
+
+export interface AptosEventHandlers extends AptosErrorEventHandlers {
   /**
    * Called when the signature for a transaction is requested.
    */
@@ -17,10 +31,6 @@ export interface AptosEventHandlers {
    * Called when a transaction is confirmed successfully.
    */
   onTXSuccess?: (data: UserTransaction) => void;
-  /**
-   * Called when a transaction fails.
-   */
-  onTXError?: (data: FailedTXError) => void;
 }
 
 export type NotifyFn = (args: {
@@ -30,9 +40,32 @@ export type NotifyFn = (args: {
   description?: string;
 }) => void;
 
+export const buildDefaultErrorHandlers = (
+  notify: NotifyFn
+): AptosErrorEventHandlers => ({
+  onTXPrepareError: (err) => {
+    console.error("[TXPrepareError]", err);
+    notify({
+      message: "Error preparing transaction",
+      type: "error",
+      description:
+        err instanceof Error ? err.message : "An unknown error occurred.",
+    });
+  },
+  onTXRevertError(err) {
+    console.error("[TXRevertError]", err);
+    notify({
+      message: `Transaction failed`,
+      type: "error",
+      description: err.result.vm_status,
+    });
+  },
+});
+
 export const buildDefaultEventHandlers = (
   notify: NotifyFn
 ): AptosEventHandlers => ({
+  ...buildDefaultErrorHandlers(notify),
   onTXRequest: (data) => {
     notify({
       message: `Requesting signature for action: ${data.function}`,
@@ -42,13 +75,6 @@ export const buildDefaultEventHandlers = (
     notify({
       message: `Transaction confirmed`,
       description: data.vm_status,
-    });
-  },
-  onTXError(err) {
-    notify({
-      message: `Transaction failed`,
-      type: "error",
-      description: err.result.vm_status,
     });
   },
   onTXSend(data) {

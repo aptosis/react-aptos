@@ -12,7 +12,7 @@ import type { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 
 import { useAptosEventHandlers } from "../events.js";
-import { FailedTXError } from "./txHelpers.js";
+import { TXRevertError } from "./txHelpers.js";
 import { useHandleTXSuccess } from "./useHandleTXSuccess.js";
 
 /**
@@ -61,7 +61,7 @@ export const confirmTransaction = async (
 
 export const useConfirmTX = () => {
   const { aptosAPI } = useSeacliff();
-  const { onTXSuccess, onTXError } = useAptosEventHandlers();
+  const { onTXSuccess, onTXRevertError: onTXError } = useAptosEventHandlers();
   const onSuccess = useHandleTXSuccess();
   return useMutation(
     async (txHash: string) => {
@@ -71,7 +71,7 @@ export const useConfirmTX = () => {
       )) as UserTransaction;
 
       if (!txResult.success) {
-        throw new FailedTXError(txResult);
+        throw new TXRevertError(txResult);
       }
       return txResult;
     },
@@ -81,7 +81,7 @@ export const useConfirmTX = () => {
         onSuccess(data);
       },
       onError: (err) => {
-        if (err instanceof FailedTXError) {
+        if (err instanceof TXRevertError) {
           onTXError?.(err);
         }
       },
