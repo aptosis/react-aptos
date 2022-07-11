@@ -27,32 +27,26 @@ export const useRunScript = () => {
         ["function"]: fn,
       } = params;
       onTXRequest?.(params);
-      try {
-        const tx = await sendTransaction({
-          payload: {
-            type: "script_function_payload",
-            type_arguments,
-            arguments: args,
-            function: fn,
-          },
-          options,
-        });
-        onTXSend?.(tx);
-        return await confirmTransaction.mutateAsync(tx.result.hash);
-      } catch (e) {
-        const error = new TXPrepareError(params, e);
-        onTXPrepareError?.(error);
-        throw error;
-      }
+      const tx = await sendTransaction({
+        payload: {
+          type: "script_function_payload",
+          type_arguments,
+          arguments: args,
+          function: fn,
+        },
+        options,
+      });
+      onTXSend?.(tx);
+      return await confirmTransaction.mutateAsync(tx.result.hash);
     },
-    [
-      confirmTransaction,
-      onTXPrepareError,
-      onTXRequest,
-      onTXSend,
-      sendTransaction,
-    ]
+    [confirmTransaction, onTXRequest, onTXSend, sendTransaction]
   );
 
-  return useMutation(doRunScript);
+  return useMutation(doRunScript, {
+    onError: (e, { params }) => {
+      const error = new TXPrepareError(params, e);
+      onTXPrepareError?.(error);
+      throw error;
+    },
+  });
 };
