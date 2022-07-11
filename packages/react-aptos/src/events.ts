@@ -44,7 +44,10 @@ export const buildDefaultErrorHandlers = (
   notify: NotifyFn
 ): AptosErrorEventHandlers => ({
   onTXPrepareError: (err) => {
-    console.error("[TXPrepareError]", err);
+    console.error("[TXPrepareError]", err, {
+      data: err.data,
+      error: err.error,
+    });
     notify({
       message: "Error preparing transaction",
       type: "error",
@@ -53,7 +56,7 @@ export const buildDefaultErrorHandlers = (
     });
   },
   onTXRevertError(err) {
-    console.error("[TXRevertError]", err);
+    console.error("[TXRevertError]", err, { result: err.result });
     notify({
       message: `Transaction failed`,
       type: "error",
