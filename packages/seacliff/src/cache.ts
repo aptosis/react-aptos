@@ -1,9 +1,12 @@
 import type {
+  Account,
   AccountResource,
   DeleteResource,
+  UserTransaction,
   WriteResource,
   WriteSetChange,
 } from "@movingco/aptos-api";
+import { HexString } from "@movingco/core";
 import { default as groupBy } from "lodash.groupby";
 import { default as keyBy } from "lodash.keyby";
 import { useCallback } from "react";
@@ -11,6 +14,7 @@ import type { QueryClient } from "react-query";
 import { useQueryClient } from "react-query";
 
 import { useAptosAPI } from "./hooks.js";
+import { makeAccountQueryKey } from "./useAccount.js";
 import {
   makeAllResourcesQueryKey,
   makeResourceQueryKey,
@@ -108,15 +112,44 @@ export const applyWriteSetChangesToCache = (
 };
 
 /**
- * Applies an array of write set changes to the cache.
+ * Applies a {@link UserTransaction} to the cache.
+ * @param nodeUrl
+ * @param client
+ * @param changes
+ */
+export const applyUserTransactionToCache = (
+  nodeUrl: string,
+  client: QueryClient,
+  tx: UserTransaction
+) => {
+  client.setQueryData(
+    makeAccountQueryKey(nodeUrl, HexString.ensure(tx.sender).checksum()),
+    (data: Account | null | undefined): Account | null => {
+      if (data) {
+        data.sequence_number = Math.max(
+          // increment sequence number
+          parseInt(tx.sequence_number) + 1,
+          parseInt(data.sequence_number)
+        ).toString();
+        return data;
+      }
+      // TODO(igm): figure out how to update the account if it was never fetched
+      return null;
+    }
+  );
+  applyWriteSetChangesToCache(nodeUrl, client, tx.changes);
+};
+
+/**
+ * Applies a {@link UserTransaction}'s updates to the cache.
  * @returns
  */
-export const useApplyWriteSetChangesToCache = () => {
+export const useApplyUserTransactionToCache = () => {
   const client = useQueryClient();
   const aptosAPI = useAptosAPI();
   return useCallback(
-    (changes: readonly WriteSetChange[]) => {
-      applyWriteSetChangesToCache(aptosAPI.nodeUrl, client, changes);
+    (tx: UserTransaction) => {
+      applyUserTransactionToCache(aptosAPI.nodeUrl, client, tx);
     },
     [client, aptosAPI]
   );
