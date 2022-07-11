@@ -1,6 +1,6 @@
 {
   "name": "@aptosis/react-aptos",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "React library for interacting with the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
