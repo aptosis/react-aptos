@@ -79,6 +79,7 @@ export const buildDefaultEventHandlers = (
     notify({
       message: `Transaction confirmed`,
       description: data.vm_status,
+      txid: data.version,
     });
   },
   onTXSend(data) {
