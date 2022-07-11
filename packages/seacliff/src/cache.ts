@@ -32,16 +32,21 @@ const applyWritesToCache = (
     ([address, writes]) => {
       client.setQueryData(
         makeAllResourcesQueryKey(nodeUrl, address),
-        (
-          values: AccountResource[] | null | undefined
-        ): AccountResource[] | null => {
-          if (!values) {
+        (current: AccountResource[] | null | undefined): AccountResource[] => {
+          if (!current) {
             return writes.map((w) => w.data);
           }
           const byType = keyBy(writes, (w) => w.data.type);
-          return values.map((v) => {
-            return byType[v.type]?.data ?? v;
-          });
+          const existing = new Set([...current.map((v) => v.type)]);
+          const newValues = writes
+            .map((w) => w.data)
+            .filter((d) => !existing.has(d.type));
+          return [
+            ...current.map((v) => {
+              return byType[v.type]?.data ?? v;
+            }),
+            ...newValues,
+          ];
         }
       );
     }
