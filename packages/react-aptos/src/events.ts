@@ -58,6 +58,7 @@ export const buildDefaultErrorHandlers = (
       message: `Transaction failed`,
       type: "error",
       description: err.result.vm_status,
+      txid: err.result.version,
     });
   },
 });
