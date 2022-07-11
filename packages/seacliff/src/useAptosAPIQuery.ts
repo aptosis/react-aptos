@@ -119,12 +119,18 @@ const identity = <T>(input: T): T => input;
  * Builds functions related to a query.
  * @returns
  */
-export const makeQueryFunctions = <T, TArgs extends readonly unknown[]>({
+export const makeQueryFunctions = <
+  T,
+  TArgs extends readonly unknown[],
+  N extends number = number
+>({
   type,
+  argCount,
   normalizeArgs = identity,
   fetchData,
 }: {
   type: AptosAPIQueryType;
+  argCount: N;
   normalizeArgs?: (args: TArgs) => TArgs;
   fetchData: (
     aptosAPI: AptosAPI,
@@ -153,8 +159,8 @@ export const makeQueryFunctions = <T, TArgs extends readonly unknown[]>({
   const useQueryHook = <TData = T | null>(
     ...params: UseAptosQueryParams<T, TArgs, TData>
   ): UseQueryResult<TData, AptosError> => {
-    const args = params.slice(0, params.length - 1) as unknown as TArgs;
-    const options = params[params.length - 1] as
+    const args = params.slice(0, argCount) as unknown as TArgs;
+    const options = params[argCount - 1] as
       | UseAptosAPIQueryUserOptions<T, TData, TArgs>
       | undefined;
     const aptos = useAptosAPI();

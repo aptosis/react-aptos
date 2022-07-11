@@ -10,13 +10,16 @@ export const {
   makeQueryKey: makeAccountQueryKey,
   makeQuery: makeAccountQuery,
   useQuery: useAccount,
-} = makeQueryFunctions<Account, readonly [address: Address | null | undefined]>(
-  {
-    type: ACCOUNT_QUERY_PREFIX,
-    fetchData: async (aptos, [address], signal) => {
-      return await aptos.accounts.getAccount(address, {
-        signal,
-      });
-    },
-  }
-);
+} = makeQueryFunctions<
+  Account,
+  readonly [address: Address | null | undefined],
+  1
+>({
+  type: ACCOUNT_QUERY_PREFIX,
+  argCount: 1,
+  fetchData: async (aptos, [address], signal) => {
+    return await aptos.accounts.getAccount(address, {
+      signal,
+    });
+  },
+});

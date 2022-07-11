@@ -26,6 +26,7 @@ export const {
   ]
 >({
   type: RESOURCE_QUERY_PREFIX,
+  argCount: 2,
   normalizeArgs: ([owner, resourceType]) => [
     owner ? owner.toLowerCase() : owner,
     resourceType,
@@ -48,6 +49,7 @@ const allResources = makeQueryFunctions<
   readonly [owner: Address | null | undefined]
 >({
   type: ALL_RESOURCES_QUERY_PREFIX,
+  argCount: 1,
   normalizeArgs: ([owner]) => [owner ? owner.toLowerCase() : owner],
   fetchData: async (aptos, [owner], signal) => {
     return await aptos.accounts.getAccountResources(
