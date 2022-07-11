@@ -40,7 +40,9 @@ export const useRunScript = () => {
         onTXSend?.(tx);
         return await confirmTransaction.mutateAsync(tx.result.hash);
       } catch (e) {
-        onTXPrepareError?.(new TXPrepareError(params, e));
+        const error = new TXPrepareError(params, e);
+        onTXPrepareError?.(error);
+        throw error;
       }
     },
     [
