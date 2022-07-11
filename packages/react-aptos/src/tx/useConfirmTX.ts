@@ -1,4 +1,4 @@
-import { useSeacliff } from "@aptosis/seacliff";
+import { raiseForStatus, useSeacliff } from "@aptosis/seacliff";
 import type { AptosAPI } from "@movingco/aptos";
 import type {
   AptosError,
@@ -7,7 +7,6 @@ import type {
   UserTransaction,
 } from "@movingco/aptos-api";
 import { sleep } from "@movingco/core";
-import { raiseForStatus } from "aptos";
 import type { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 

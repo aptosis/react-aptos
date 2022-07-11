@@ -1,12 +1,13 @@
 import { useAccount, useAptosAPI } from "@aptosis/seacliff";
+import { Account } from "@movingco/aptos";
 import type {
   MultiAgentSignature,
   TransactionPayload,
   UserTransactionRequest,
 } from "@movingco/aptos-api";
+import { HexString } from "@movingco/core";
 import type { AccountObject } from "@omnimask/provider-interface";
 import { OmniRPC } from "@omnimask/provider-interface";
-import { AptosAccount, HexString } from "aptos";
 import { useCallback } from "react";
 
 import { ensureProvider, useOmni } from "./context.js";
@@ -70,17 +71,19 @@ export const useSendTransaction = () => {
           >
         | undefined = undefined;
       if (secondary_signers) {
-        const signers = secondary_signers.map((s) =>
-          AptosAccount.fromAptosAccountObject(s)
-        );
+        const signers = secondary_signers.map((s) => Account.fromObject(s));
         const messageHex = HexString.ensure(message);
         multiAgentSignature = {
-          secondary_signer_addresses: signers.map((acc) => acc.address().hex()),
-          secondary_signers: signers.map((acc) => ({
-            type: "ed25519_signature",
-            public_key: acc.pubKey().hex(),
-            signature: acc.signHexString(messageHex).hex(),
-          })),
+          secondary_signer_addresses: signers.map((acc) => acc.address.hex()),
+          secondary_signers: await Promise.all(
+            signers.map(async (acc) => ({
+              type: "ed25519_signature",
+              public_key: acc.pubKey.hex(),
+              signature: HexString.fromUint8Array(
+                await acc.signData(messageHex.toUint8Array())
+              ).hex(),
+            }))
+          ),
         };
       }
 

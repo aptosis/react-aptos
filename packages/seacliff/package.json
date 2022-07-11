@@ -42,7 +42,6 @@
   "devDependencies": {
     "@saberhq/tsconfig": "^2.0.1",
     "@types/react": "^18.0.15",
-    "aptos": "^1.2.0",
     "axios": "^0.27.2",
     "bn.js": "^5.2.1",
     "jsbi": "^4.3.0",

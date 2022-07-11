@@ -1,3 +1,4 @@
+export * from "./apiError.js";
 export * from "./cache.js";
 export * from "./constants.js";
 export type { SeacliffConfig, UseSeacliffArgs } from "./context.js";
