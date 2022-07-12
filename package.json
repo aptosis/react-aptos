@@ -36,11 +36,11 @@
     "*.{json,js,jsx,html,css,md,yml,yaml}": "prettier --write"
   },
   "devDependencies": {
-    "@movingco/prelude": "^0.1.44",
+    "@movingco/prelude": "^0.1.45",
     "@rushstack/eslint-patch": "^1.1.4",
-    "@saberhq/eslint-config": "^2.0.1",
-    "@saberhq/eslint-config-react": "^2.0.1",
-    "@saberhq/tsconfig": "^2.0.1",
+    "@saberhq/eslint-config": "^2.0.2",
+    "@saberhq/eslint-config-react": "^2.0.2",
+    "@saberhq/tsconfig": "^2.0.2",
     "@types/eslint": "^8.4.5",
     "@types/jest": "^28.1.4",
     "@types/node": "^18.0.3",
@@ -62,11 +62,11 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@movingco/aptos": "^0.1.44",
-    "@movingco/aptos-api": "^0.1.44",
-    "@movingco/core": "^0.1.44",
-    "@movingco/prelude": "^0.1.44",
-    "@omnimask/provider-interface": "^0.1.0",
+    "@movingco/aptos": "^0.1.45",
+    "@movingco/aptos-api": "^0.1.45",
+    "@movingco/core": "^0.1.45",
+    "@movingco/prelude": "^0.1.45",
+    "@omnimask/provider-interface": "^0.1.1",
     "@saberhq/tuple-utils": "^1.13.32",
     "@types/lodash.groupby": "^4.6.7",
     "@types/lodash.keyby": "^4.6.7",
