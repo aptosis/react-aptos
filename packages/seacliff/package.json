@@ -58,6 +58,7 @@
     "@saberhq/tuple-utils": "^1.13.32",
     "@types/lodash.groupby": "^4.6.7",
     "@types/lodash.keyby": "^4.6.7",
+    "aptos": "^1.2.0",
     "axios": "^0.27.2",
     "lodash.groupby": "^4.6.0",
     "lodash.keyby": "^4.6.0",

@@ -1,5 +1,4 @@
-import { useAptosClient } from "@aptosis/seacliff";
-import { confirmTransaction } from "@movingco/aptos";
+import { useAptosAPI } from "@aptosis/seacliff";
 import type { UserTransaction } from "@movingco/aptos-api";
 import type {
   OmniProvider,
@@ -14,6 +13,7 @@ import { useQuery } from "react-query";
 import { default as invariant } from "tiny-invariant";
 import { createContainer } from "unstated-next";
 
+import { confirmTransaction } from "../tx/useConfirmTX.js";
 import { useHandleTXSuccess } from "../tx/useHandleTXSuccess.js";
 import { useOmniProviderInternal } from "./useOmniProvider.js";
 
@@ -64,7 +64,7 @@ const useOmniInner = (): OmniContext => {
 
   const handleTXSuccess = useHandleTXSuccess();
 
-  const aptos = useAptosClient();
+  const aptos = useAptosAPI();
 
   const requestFaucet = useCallback(
     async (params: RequestFaucetParams): Promise<RequestFaucetResult> => {
@@ -112,13 +112,15 @@ const useOmniInner = (): OmniContext => {
 };
 
 export interface OmniContext {
-  reloadWallet: () => Promise<QueryObserverResult<ProviderState, unknown>>;
+  reloadWallet: () => Promise<
+    QueryObserverResult<ProviderState | null, unknown>
+  >;
   provider?: OmniProvider | null;
 
   requestFaucet: (params: RequestFaucetParams) => Promise<RequestFaucetResult>;
   connectWallet: () => Promise<void>;
   disconnect: () => Promise<void>;
-  wallet?: ProviderState;
+  wallet?: ProviderState | null;
 }
 
 export const { useContainer: useOmni, Provider: ReactOmniProvider } =
