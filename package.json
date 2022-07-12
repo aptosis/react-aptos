@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "name": "@aptosis/react-aptos-workspace",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "React library for interacting with the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
