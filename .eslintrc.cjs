@@ -14,4 +14,7 @@ module.exports = {
   parserOptions: {
     project: ["tsconfig.json", "./**/tsconfig*.json"],
   },
+  rules: {
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+  },
 };

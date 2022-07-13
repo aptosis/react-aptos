@@ -1,8 +1,8 @@
 import type { AptosAPI } from "@movingco/aptos";
 import type { AptosError } from "@movingco/aptos-api";
 import type { AxiosResponse } from "axios";
-import type { UseQueryOptions, UseQueryResult } from "react-query";
-import { useQuery } from "react-query";
+import type { QueryClient, UseQueryOptions, UseQueryResult } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 import { raiseForStatus } from "./apiError.js";
 import type { AptosAPIQueryType } from "./constants.js";
@@ -40,27 +40,33 @@ type NonNullableTuple<T extends readonly unknown[]> = {
   [I in keyof T]: NonNullable<T[I]>;
 };
 
+export type MakeAptosAPIQueryOpts<
+  TQueryFnData,
+  TData = TQueryFnData,
+  TArgs extends readonly unknown[] = readonly unknown[]
+> = Required<
+  Pick<UseAptosAPIQueryOptions<TQueryFnData, TData, TArgs>, "queryKey">
+> &
+  Omit<UseAptosAPIQueryOptions<TQueryFnData, TData, TArgs>, "queryFn"> & {
+    fetchData: (
+      args: NonNullableTuple<TArgs>,
+      signal?: AbortSignal
+    ) => Promise<AxiosResponse<TQueryFnData, unknown> | null>;
+  };
+
 export const makeAptosAPIQuery = <
   TQueryFnData,
   TData = TQueryFnData,
   TArgs extends readonly unknown[] = readonly unknown[]
 >(
-  opts: Required<
-    Pick<UseAptosAPIQueryOptions<TQueryFnData, TData, TArgs>, "queryKey">
-  > &
-    Omit<UseAptosAPIQueryOptions<TQueryFnData, TData, TArgs>, "queryFn"> & {
-      fetchData: (
-        args: NonNullableTuple<TArgs>,
-        signal?: AbortSignal
-      ) => Promise<AxiosResponse<TQueryFnData, unknown> | null>;
-    }
+  opts: MakeAptosAPIQueryOpts<TQueryFnData, TData, TArgs>
 ): UseAptosAPIQueryOptions<TQueryFnData, TData, TArgs> => ({
   ...opts,
-  queryFn: async ({ signal }) => {
-    if (opts.queryKey.some((q) => q === null)) {
+  queryFn: async ({ signal, queryKey }) => {
+    if (queryKey.some((q) => q === null)) {
       return null;
     }
-    const [_type, _nodeUrl, ...args] = opts.queryKey as NonNullableTuple<
+    const [_type, _nodeUrl, ...args] = queryKey as NonNullableTuple<
       AptosAPIQueryKey<TArgs>
     >;
     const response = await opts.fetchData(args, signal);
@@ -77,7 +83,7 @@ export const makeAptosAPIQuery = <
 export type AptosAPIQueryKeyArgs<T extends AptosAPIQueryKey> =
   T extends AptosAPIQueryKey<infer A> ? A : never;
 
-type UseAptosQueryParams<
+export type UseAptosQueryParams<
   T,
   TArgs extends readonly unknown[],
   TData = T | null
@@ -86,7 +92,7 @@ type UseAptosQueryParams<
   options?: UseAptosAPIQueryUserOptions<T, TData, AptosAPIQueryKey<TArgs>>
 ];
 
-type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
+export type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
   /**
    * Builds the query key.
    */
@@ -95,7 +101,7 @@ type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
    * Builds the query.
    */
   makeQuery: <TData = T | null>(
-    aptos: AptosAPI,
+    ctx: APIQueryContext,
     args: TArgs,
     options?: UseAptosAPIQueryUserOptions<T, TData, TArgs>
   ) => UseAptosAPIQueryOptions<T, TData, TArgs>;
@@ -115,6 +121,8 @@ type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
  */
 const identity = <T>(input: T): T => input;
 
+export type APIQueryContext = { aptos: AptosAPI; client: QueryClient };
+
 /**
  * Builds functions related to a query.
  * @returns
@@ -128,29 +136,35 @@ export const makeQueryFunctions = <
   argCount,
   normalizeArgs = identity,
   fetchData,
+  defaultQueryOptions,
 }: {
   type: AptosAPIQueryType;
   argCount: N;
   normalizeArgs?: (args: TArgs) => TArgs;
   fetchData: (
-    aptosAPI: AptosAPI,
+    ctx: APIQueryContext,
     args: NonNullableTuple<TArgs>,
     signal?: AbortSignal
   ) => Promise<AxiosResponse<T, unknown> | null>;
+  defaultQueryOptions?: Omit<
+    UseAptosAPIQueryUserOptions<T, T, TArgs>,
+    "onSuccess" | "onSettled" | "refetchInterval" | "select"
+  >;
 }): AptosAPIQueryFns<T, TArgs> => {
   const makeQueryKey = (
     nodeUrl: string,
     ...args: TArgs
   ): AptosAPIQueryKey<TArgs> => [type, nodeUrl, ...normalizeArgs(args)];
   const makeQuery = <TData = T | null>(
-    aptos: AptosAPI,
+    ctx: APIQueryContext,
     args: TArgs,
     options?: UseAptosAPIQueryUserOptions<T, TData, TArgs>
   ): UseAptosAPIQueryOptions<T, TData, TArgs> =>
     makeAptosAPIQuery({
+      ...defaultQueryOptions,
       ...options,
-      queryKey: makeQueryKey(aptos.nodeUrl, ...args),
-      fetchData: (args, signal) => fetchData(aptos, args, signal),
+      queryKey: makeQueryKey(ctx.aptos.nodeUrl, ...args),
+      fetchData: (args, signal) => fetchData(ctx, args, signal),
     });
 
   /**
@@ -163,8 +177,9 @@ export const makeQueryFunctions = <
     const options = params[argCount - 1] as
       | UseAptosAPIQueryUserOptions<T, TData, TArgs>
       | undefined;
+    const client = useQueryClient();
     const aptos = useAptosAPI();
-    return useQuery(makeQuery<TData>(aptos, args, options));
+    return useQuery(makeQuery<TData>({ aptos, client }, args, options));
   };
 
   return {

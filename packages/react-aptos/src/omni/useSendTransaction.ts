@@ -6,7 +6,10 @@ import type {
   UserTransactionRequest,
 } from "@movingco/aptos-api";
 import { HexString } from "@movingco/core";
-import type { AccountObject } from "@omnimask/provider-interface";
+import type {
+  AccountObject,
+  SignAndSendTransactionResult,
+} from "@omnimask/provider-interface";
 import { OmniRPC } from "@omnimask/provider-interface";
 import { useCallback } from "react";
 
@@ -24,7 +27,12 @@ export type SendTransactionParams = {
   >;
 };
 
-export const useSendTransaction = () => {
+export type SendTransactionFn = ({
+  payload,
+  options,
+}: SendTransactionParams) => Promise<SignAndSendTransactionResult>;
+
+export const useSendTransaction = (): SendTransactionFn => {
   const { provider, wallet } = useOmni();
   const aptos = useAptosAPI();
   const { data: account } = useAccount(wallet?.selectedAccount);

@@ -8,6 +8,7 @@ import type {
 } from "@movingco/aptos-api";
 import { sleep } from "@movingco/core";
 import type { AxiosResponse } from "axios";
+import type { UseMutationResult } from "react-query";
 import { useMutation } from "react-query";
 
 import { useAptosEventHandlers } from "../events.js";
@@ -58,7 +59,11 @@ export const confirmTransaction = async (
   return tx;
 };
 
-export const useConfirmTX = () => {
+export const useConfirmTX = (): UseMutationResult<
+  UserTransaction,
+  unknown,
+  string
+> => {
   const { aptosAPI } = useSeacliff();
   const { onTXSuccess, onTXRevertError: onTXError } = useAptosEventHandlers();
   const onSuccess = useHandleTXSuccess();
@@ -68,7 +73,6 @@ export const useConfirmTX = () => {
         aptosAPI,
         txHash
       )) as UserTransaction;
-
       if (!txResult.success) {
         throw new TXRevertError(txResult);
       }

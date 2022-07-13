@@ -2,7 +2,7 @@ import { useApplyUserTransactionToCache } from "@aptosis/seacliff";
 import type { UserTransaction } from "@movingco/aptos-api";
 import { useCallback } from "react";
 
-export const useHandleTXSuccess = () => {
+export const useHandleTXSuccess = (): ((data: UserTransaction) => void) => {
   const applyUserTransactionToCache = useApplyUserTransactionToCache();
   return useCallback(
     (data: UserTransaction) => {

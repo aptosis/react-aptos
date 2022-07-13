@@ -15,7 +15,7 @@ import { useOmni } from "./omni/context.js";
  * Fetches all of the connected wallet's resources.
  * @returns
  */
-export const useAllWalletResources = () => {
+export const useAllWalletResources = (): ReturnType<typeof useAllResources> => {
   const { wallet } = useOmni();
   return useAllResources(wallet?.selectedAccount);
 };

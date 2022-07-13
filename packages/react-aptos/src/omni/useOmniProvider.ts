@@ -13,7 +13,7 @@ declare global {
  *
  * @returns
  */
-export const useOmniProviderInternal = () => {
+export const useOmniProviderInternal = (): OmniProvider | null | undefined => {
   const [provider, setProvider] = useState<OmniProvider | null | undefined>(
     undefined
   );

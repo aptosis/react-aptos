@@ -100,7 +100,7 @@ export const applyWriteSetChangesToCache = (
   nodeUrl: string,
   client: QueryClient,
   changes: readonly WriteSetChange[]
-) => {
+): void => {
   const writes = changes.filter(
     (c): c is WriteResource => c.type === "write_resource"
   );
@@ -121,7 +121,7 @@ export const applyUserTransactionToCache = (
   nodeUrl: string,
   client: QueryClient,
   tx: UserTransaction
-) => {
+): void => {
   client.setQueryData(
     makeAccountQueryKey(nodeUrl, HexString.ensure(tx.sender).checksum()),
     (data: Account | null | undefined): Account | null => {
@@ -144,7 +144,9 @@ export const applyUserTransactionToCache = (
  * Applies a {@link UserTransaction}'s updates to the cache.
  * @returns
  */
-export const useApplyUserTransactionToCache = () => {
+export const useApplyUserTransactionToCache = (): ((
+  tx: UserTransaction
+) => void) => {
   const client = useQueryClient();
   const aptosAPI = useAptosAPI();
   return useCallback(

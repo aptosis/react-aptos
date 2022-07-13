@@ -1,14 +1,9 @@
-import type { AptosAPI } from "@movingco/aptos";
 import type { AccountResource, Address } from "@movingco/aptos-api";
-import type { QueryClient } from "react-query";
-import { useQueries, useQuery, useQueryClient } from "react-query";
 
 import {
   ALL_RESOURCES_QUERY_PREFIX,
   RESOURCE_QUERY_PREFIX,
 } from "./constants.js";
-import { useAptosAPI } from "./hooks.js";
-import type { UseAptosAPIQueryOptions } from "./useAptosAPIQuery.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";
 
 /**
@@ -31,7 +26,7 @@ export const {
     owner ? owner.toLowerCase() : owner,
     resourceType,
   ],
-  fetchData: async (aptos, [owner, resourceType], signal) => {
+  fetchData: async ({ aptos }, [owner, resourceType], signal) => {
     return await aptos.accounts.getAccountResource(
       { address: owner, resourceType },
       {
@@ -51,65 +46,32 @@ const allResources = makeQueryFunctions<
   type: ALL_RESOURCES_QUERY_PREFIX,
   argCount: 1,
   normalizeArgs: ([owner]) => [owner ? owner.toLowerCase() : owner],
-  fetchData: async (aptos, [owner], signal) => {
-    return await aptos.accounts.getAccountResources(
+  fetchData: async ({ aptos, client }, [owner], signal) => {
+    const response = await aptos.accounts.getAccountResources(
       { address: owner },
       {
         signal,
       }
     );
+    const { data } = response;
+    if (data) {
+      client.setQueriesData(
+        data.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
+        data
+      );
+    } else {
+      // null, data should be cleared
+      void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
+    }
+    return response;
+  },
+  defaultQueryOptions: {
+    staleTime: 500,
   },
 });
 
-export const { makeQueryKey: makeAllResourcesQueryKey } = allResources;
-
-export const makeAllResourcesQuery = (
-  aptos: AptosAPI,
-  client: QueryClient,
-  owner: Address | null | undefined
-): UseAptosAPIQueryOptions<
-  readonly AccountResource[],
-  readonly AccountResource[] | null,
-  readonly [owner: Address | null | undefined]
-> =>
-  allResources.makeQuery(aptos, [owner], {
-    onSuccess: (d) => {
-      if (d) {
-        client.setQueriesData(
-          d.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
-          d
-        );
-      } else {
-        // null, data should be cleared
-        void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
-      }
-    },
-    staleTime: 500,
-  });
-
-/**
- * Fetches multiple resources.
- * @param owner
- * @param resourceType
- * @returns
- */
-export const useResources = (
-  owner: string | null | undefined,
-  resourceTypes: readonly string[]
-) => {
-  const aptos = useAptosAPI();
-  return useQueries(
-    resourceTypes.map((rt) => makeResourceQuery(aptos, [owner, rt]))
-  );
-};
-
-/**
- * Fetches all resources.
- * @param owner
- * @returns
- */
-export const useAllResources = (owner: string | null | undefined) => {
-  const aptos = useAptosAPI();
-  const client = useQueryClient();
-  return useQuery(makeAllResourcesQuery(aptos, client, owner));
-};
+export const {
+  makeQueryKey: makeAllResourcesQueryKey,
+  makeQuery: makeAllResourcesQuery,
+  useQuery: useAllResources,
+} = allResources;

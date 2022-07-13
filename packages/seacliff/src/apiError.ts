@@ -41,7 +41,7 @@ export function raiseForStatus<T>(
   expectedStatus: number,
   response: AxiosResponse<T, AptosError>,
   requestContent?: unknown
-) {
+): void {
   if (response.status !== expectedStatus) {
     if (requestContent) {
       throw new RequestError(response, JSON.stringify(requestContent));
