@@ -1,10 +1,6 @@
-import type { NetworkConfig } from "@movingco/aptos";
-import {
-  APTOS_DEVNET,
-  AptosAPI,
-  createAptosClient,
-  TEST_COIN,
-} from "@movingco/aptos";
+import type { NetworkConfig } from "@aptosis/aptos-client";
+import { APTOS_DEVNET, AptosAPI } from "@aptosis/aptos-client";
+import { createAptosClient, TEST_COIN } from "@movingco/aptos";
 import type { Coin } from "@movingco/core";
 import { useMemo } from "react";
 import { createContainer } from "unstated-next";

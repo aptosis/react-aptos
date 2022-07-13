@@ -1,4 +1,4 @@
-import type { AccountResource, Address } from "@movingco/aptos-api";
+import type { AccountResource, Address } from "@aptosis/aptos-api";
 
 import {
   ALL_RESOURCES_QUERY_PREFIX,

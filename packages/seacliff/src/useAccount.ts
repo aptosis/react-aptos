@@ -1,4 +1,4 @@
-import type { Account, Address } from "@movingco/aptos-api";
+import type { Account, Address } from "@aptosis/aptos-api";
 
 import { ACCOUNT_QUERY_PREFIX } from "./constants.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";

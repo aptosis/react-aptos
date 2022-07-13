@@ -1,4 +1,4 @@
-import type { AptosAPI } from "@movingco/aptos";
+import type { AptosAPI } from "@aptosis/aptos-client";
 import type { AptosClient } from "aptos";
 
 import { useSeacliff } from "./context.js";

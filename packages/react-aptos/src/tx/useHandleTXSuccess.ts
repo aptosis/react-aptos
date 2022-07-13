@@ -1,5 +1,5 @@
+import type { UserTransaction } from "@aptosis/aptos-api";
 import { useApplyUserTransactionToCache } from "@aptosis/seacliff";
-import type { UserTransaction } from "@movingco/aptos-api";
 import { useCallback } from "react";
 
 export const useHandleTXSuccess = (): ((data: UserTransaction) => void) => {

@@ -50,11 +50,12 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@aptosis/aptos-framework": "^0.1.5",
-    "@movingco/aptos": "^0.1.45",
-    "@movingco/aptos-api": "^0.1.45",
-    "@movingco/core": "^0.1.45",
-    "@movingco/prelude": "^0.1.45",
+    "@aptosis/aptos-api": "^0.0.1",
+    "@aptosis/aptos-client": "^0.0.1",
+    "@aptosis/aptos-framework": "^0.1.6",
+    "@movingco/aptos": "^0.1.49",
+    "@movingco/core": "^0.1.49",
+    "@movingco/prelude": "^0.1.49",
     "@saberhq/tuple-utils": "^1.13.32",
     "@types/lodash.groupby": "^4.6.7",
     "@types/lodash.keyby": "^4.6.7",

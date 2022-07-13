@@ -5,16 +5,57 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@aptosis/aptos-framework@npm:^0.1.5":
-  version: 0.1.5
-  resolution: "@aptosis/aptos-framework@npm:0.1.5"
+"@aptosis/aptos-api@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@aptosis/aptos-api@npm:0.0.1"
   dependencies:
-    "@movingco/prelude": ^0.1.44
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: d097ef2350b7403ee2a57f765a09b88448dc08ac38499227edd56215fc5405e829d1c687ed3e751686843366de697e23cee25a176b1a2b5b6eb9b5e2a97b017c
+  languageName: node
+  linkType: hard
+
+"@aptosis/aptos-client@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@aptosis/aptos-client@npm:0.0.1"
+  dependencies:
+    "@aptosis/aptos-api": ^0.0.1
+    "@vespaiach/axios-fetch-adapter": ^0.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: a7844e988be80c9a66340ad7d34f64c6523e5ac8a974b79ef1fafec1ef8e8cfc9f45586417b71baf6d73f753af0e50ffdba349884cc13ed76597d00fd95faa23
+  languageName: node
+  linkType: hard
+
+"@aptosis/aptos-framework@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "@aptosis/aptos-framework@npm:0.1.6"
+  dependencies:
+    "@movingco/prelude": ^0.1.49
     tslib: ^2.4.0
   peerDependencies:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: d7c154c777c8391380092909416989aa22808b498084157aafafa3c3d923516f14ae196adea03dde056de5ab4e16c6a4a0465ffb4052a732b823cdcebe8f0575
+  checksum: c3c0cf48749f473856df89aa6ea86d9579615fda5a4af7706c34fc3bf8665a38cf44ff0cb0b04892e271b3cb38f15b79f3a1dafc095b9d0a6080a38be7532c99
+  languageName: node
+  linkType: hard
+
+"@aptosis/faucet-client@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@aptosis/faucet-client@npm:0.0.1"
+  dependencies:
+    "@aptosis/aptos-api": ^0.0.1
+    "@aptosis/aptos-client": ^0.0.1
+    "@movingco/core": ^0.1.47
+    "@vespaiach/axios-fetch-adapter": ^0.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+    bn.js: ^5.2.1
+    jsbi: ^4.3.0
+  checksum: 7667e3519273dad0930837a33e3dd7201e66a9a09e59067e8b745187d97d022b3d271eaa5a25ec2863cddeec13287e604be96d97de93307be2c12a1372bff72e
   languageName: node
   linkType: hard
 
@@ -22,18 +63,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-workspace@workspace:."
   dependencies:
-    "@movingco/aptos": ^0.1.45
-    "@movingco/aptos-api": ^0.1.45
-    "@movingco/core": ^0.1.45
-    "@movingco/prelude": ^0.1.45
-    "@omnimask/provider-interface": ^0.1.1
+    "@movingco/aptos": ^0.1.49
+    "@movingco/core": ^0.1.49
+    "@movingco/prelude": ^0.1.49
+    "@omnimask/provider-interface": ^0.1.4
     "@rushstack/eslint-patch": ^1.1.4
     "@saberhq/eslint-config": ^2.0.2
     "@saberhq/eslint-config-react": ^2.0.2
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/eslint": ^8.4.5
-    "@types/jest": ^28.1.4
+    "@types/jest": ^28.1.5
     "@types/lodash.groupby": ^4.6.7
     "@types/lodash.keyby": ^4.6.7
     "@types/node": ^18.0.3
@@ -70,12 +110,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos@workspace:packages/react-aptos"
   dependencies:
+    "@aptosis/aptos-api": ^0.0.1
+    "@aptosis/aptos-client": ^0.0.1
     "@aptosis/seacliff": "workspace:^"
-    "@movingco/aptos": ^0.1.45
-    "@movingco/aptos-api": ^0.1.45
-    "@movingco/core": ^0.1.45
-    "@movingco/prelude": ^0.1.45
-    "@omnimask/provider-interface": ^0.1.1
+    "@movingco/aptos": ^0.1.49
+    "@movingco/core": ^0.1.49
+    "@movingco/prelude": ^0.1.49
+    "@omnimask/provider-interface": ^0.1.4
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/react": ^18.0.15
@@ -102,11 +143,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/seacliff@workspace:packages/seacliff"
   dependencies:
-    "@aptosis/aptos-framework": ^0.1.5
-    "@movingco/aptos": ^0.1.45
-    "@movingco/aptos-api": ^0.1.45
-    "@movingco/core": ^0.1.45
-    "@movingco/prelude": ^0.1.45
+    "@aptosis/aptos-api": ^0.0.1
+    "@aptosis/aptos-client": ^0.0.1
+    "@aptosis/aptos-framework": ^0.1.6
+    "@movingco/aptos": ^0.1.49
+    "@movingco/core": ^0.1.49
+    "@movingco/prelude": ^0.1.49
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/lodash.groupby": ^4.6.7
@@ -235,52 +277,50 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/aptos-api@npm:^0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/aptos-api@npm:0.1.44"
+"@movingco/aptos@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/aptos@npm:0.1.49"
   dependencies:
-    tslib: ^2.4.0
-  peerDependencies:
-    axios: ^0.27.2
-  checksum: 33d83fd4fd7c020ef2c24b53f37a5523c1f2eae3588cdf2edcbb1f26bac861cc54e5d5f2c306e91929e1c185cfca24daf1364ad31b6216237d5ddce37b248b3b
-  languageName: node
-  linkType: hard
-
-"@movingco/aptos-api@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/aptos-api@npm:0.1.45"
-  dependencies:
-    tslib: ^2.4.0
-  peerDependencies:
-    axios: ^0.27.2
-  checksum: 5688f669e10232eb2db2f9a8b9af5f0228875c1818252317483c1e8acb52852161137660c79279eadb09083b98707b3bac16b3786ae80fbbd87cf1542fd61c7e
-  languageName: node
-  linkType: hard
-
-"@movingco/aptos@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/aptos@npm:0.1.45"
-  dependencies:
-    "@movingco/aptos-api": ^0.1.45
-    "@movingco/leb128": ^0.1.45
+    "@aptosis/aptos-api": ^0.0.1
+    "@aptosis/aptos-client": ^0.0.1
+    "@aptosis/faucet-client": ^0.0.1
+    "@movingco/leb128": ^0.1.49
     "@vespaiach/axios-fetch-adapter": ^0.3.0
     aptos: ^1.2.0
     axios: ^0.27.2
     buffer: ^6.0.3
     tslib: ^2.4.0
   peerDependencies:
-    "@movingco/core": ^0.1.45
+    "@movingco/core": ^0.1.49
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: 76a13d3fff44727bfca5ee49823552d5d79926f7530c04577e071460a8e33517661c9978aafdd0be25b9647b6c908c551b0e5c6c03009d9b71e78cf4c6d45391
+  checksum: 59080ed7d7ab7aa53f56dceab18fb4779007c051c2f0db8c6107167e2ff399ff774ee62cf0cb320ca4dd6a2aeaaf18cb2962fc95eeabbd51475f14524718fbc6
   languageName: node
   linkType: hard
 
-"@movingco/core@npm:0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/core@npm:0.1.44"
+"@movingco/core@npm:0.1.49, @movingco/core@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/core@npm:0.1.49"
   dependencies:
-    "@movingco/sha3": ^0.1.43
+    "@movingco/sha3": ^0.1.48
+    "@saberhq/option-utils": ^1.13.32
+    "@ubeswap/token-math": ^5.2.0
+    bn.js: ^5.2.1
+    buffer: ^6.0.3
+    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  peerDependencies:
+    bn.js: ^5.2.0
+    jsbi: ^4.3.0
+  checksum: 72465758cc64af4d4a476ba8af86d2d708562d9aa1f4043c667e94e7859cad5c55562491e106675aaf4172c7a080ff6232a71b2641fd3eafd693ca96a17724c7
+  languageName: node
+  linkType: hard
+
+"@movingco/core@npm:^0.1.47":
+  version: 0.1.47
+  resolution: "@movingco/core@npm:0.1.47"
+  dependencies:
+    "@movingco/sha3": ^0.1.46
     "@saberhq/option-utils": ^1.13.32
     "@ubeswap/token-math": ^5.1.6
     bn.js: ^5.2.1
@@ -290,31 +330,13 @@ __metadata:
   peerDependencies:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: 495f583c496aeb0f316b2eda318dc69cc4bdad86290e0223ff1ee1b419c62e8c2ca64585a6807e2ce915e0cd9e435194c68db919a0f63594f0f54db057ccc280
+  checksum: 28eba0066f12b37a8c8e488900410eb6bcd1a85b7a58ad2423142d5f8a8dd1f705bd9b74d3df0795e64b2aa1b30b6d02f41197e80f3a41a5cc48dc4871e57fe3
   languageName: node
   linkType: hard
 
-"@movingco/core@npm:0.1.45, @movingco/core@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/core@npm:0.1.45"
-  dependencies:
-    "@movingco/sha3": ^0.1.44
-    "@saberhq/option-utils": ^1.13.32
-    "@ubeswap/token-math": ^5.1.6
-    bn.js: ^5.2.1
-    buffer: ^6.0.3
-    tiny-invariant: ^1.2.0
-    tslib: ^2.4.0
-  peerDependencies:
-    bn.js: ^5.2.0
-    jsbi: ^4.3.0
-  checksum: 11c966c19ad8f06089e1608cad2a93c715631e077da1165d758162b8300c9b154d51d79441fb09cfe509906a24395a1951cadec0e0d7b7edbd7ae714374752d6
-  languageName: node
-  linkType: hard
-
-"@movingco/idl@npm:^0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/idl@npm:0.1.44"
+"@movingco/idl@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/idl@npm:0.1.49"
   dependencies:
     bn.js: ^5.2.1
     tiny-invariant: ^1.2.0
@@ -322,80 +344,52 @@ __metadata:
   peerDependencies:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: 851b976aca39f063693e19367d3a55678abf9752ac7fa2e52cd1e32d011a1514165b9edd8dd12c1b8d0e428c0b074b6202b07d95e12dd79aa4bd7b48c1c70657
+  checksum: 4c2057219221a4f509f12725fcbb522995244c9222b07fedb94a0ae788fa5299a8aa8abc814ab61866d45d6751b375f1b51e0dc05e80d453dc4b929d8be7e700
   languageName: node
   linkType: hard
 
-"@movingco/idl@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/idl@npm:0.1.45"
+"@movingco/leb128@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/leb128@npm:0.1.49"
   dependencies:
-    bn.js: ^5.2.1
-    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  checksum: dba44668826a6a5d0caf2fb934b73f6394136fff0240cd9acc0edb552efc5fd21f2242aaca2097429a8fdbfe00ea1fa6846c782e733bfd7c6d10a0089de328a9
+  languageName: node
+  linkType: hard
+
+"@movingco/prelude@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/prelude@npm:0.1.49"
+  dependencies:
+    "@movingco/core": 0.1.49
+    "@movingco/idl": ^0.1.49
     tslib: ^2.4.0
   peerDependencies:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: cc82ef6f4752b3d52cbcb7f9ba822d932984a023345b869f589df611b0417cf8b6be11346befe08e00929d8f26ddd797c965c07590e7a43594290e2dfad0c839
+  checksum: 2e254ab26f2e203c16f58a5068d20be1f10cf6f407cdc9da5aa737ef8686606fa43b775fda580abb520849fbb92bea6a3286e3cd8decf4422cb210b8c2097a57
   languageName: node
   linkType: hard
 
-"@movingco/leb128@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/leb128@npm:0.1.45"
-  dependencies:
-    tslib: ^2.4.0
-  checksum: e12cfd40973f862a5761ffb71a9e7ad64927e944f13ad6dfd01654fb3353efcc66135d717f21605a6205406de733b3eb3ccbead794d990febb34cb5e09e8d058
-  languageName: node
-  linkType: hard
-
-"@movingco/prelude@npm:^0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/prelude@npm:0.1.44"
-  dependencies:
-    "@movingco/core": 0.1.44
-    "@movingco/idl": ^0.1.44
-    tslib: ^2.4.0
-  peerDependencies:
-    bn.js: ^5.2.0
-    jsbi: ^4.3.0
-  checksum: a52595741ad40a3ce3646fded504c46cdca5439df96d54561cc0235c0a8659c2580fd77154949e4d394c8786047f20a7a475f88236db649c10c7852112e0d4a6
-  languageName: node
-  linkType: hard
-
-"@movingco/prelude@npm:^0.1.45":
-  version: 0.1.45
-  resolution: "@movingco/prelude@npm:0.1.45"
-  dependencies:
-    "@movingco/core": 0.1.45
-    "@movingco/idl": ^0.1.45
-    tslib: ^2.4.0
-  peerDependencies:
-    bn.js: ^5.2.0
-    jsbi: ^4.3.0
-  checksum: d5b1b66e4f97dd4e9732bb385569eeb7c4da0571ec1de851984ee60b85f3e1528876743bf8faee3eb7e600fdff3b2aefcd9a68cb62ff987048858a1e043d7709
-  languageName: node
-  linkType: hard
-
-"@movingco/sha3@npm:^0.1.43":
-  version: 0.1.43
-  resolution: "@movingco/sha3@npm:0.1.43"
+"@movingco/sha3@npm:^0.1.46":
+  version: 0.1.46
+  resolution: "@movingco/sha3@npm:0.1.46"
   dependencies:
     js-sha3: ^0.8.0
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
-  checksum: 0b63bd2e0f49c09779ab0dbf911087c4fc840f9d0f4af2bf62142d7537058ce9f98c15f8defc3b6bdd8ded17a80926d90f7e95767c91043802a680c64518a907
+  checksum: 205dac7300b5ecf53bd51c3da4c731483bbea1ddef129a36abd108cf624034c4190982e4e621bee8d9c9b1ed3622332abc3fab425bf8555419984b7658351ba9
   languageName: node
   linkType: hard
 
-"@movingco/sha3@npm:^0.1.44":
-  version: 0.1.44
-  resolution: "@movingco/sha3@npm:0.1.44"
+"@movingco/sha3@npm:^0.1.48":
+  version: 0.1.48
+  resolution: "@movingco/sha3@npm:0.1.48"
   dependencies:
     js-sha3: ^0.8.0
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
-  checksum: 630e111ab87c4d3805b55d7b65b90a4143027eef2b0cf47a3724409fa4e1761381b23955fdbc2308600eec896cb10deaeb5c541083adb193c03acfc7a1522b5d
+  checksum: 0ac0bbde1d149f2ddd0c5763f4735f4b14675513ace272cad51cb782aaefde43f8028501f6e2f05990ad12d15a55ec6f9f7de4fce1fb4dd58dd33796dea6bbd1
   languageName: node
   linkType: hard
 
@@ -426,18 +420,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@omnimask/provider-interface@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "@omnimask/provider-interface@npm:0.1.1"
+"@omnimask/provider-interface@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "@omnimask/provider-interface@npm:0.1.4"
   dependencies:
-    "@movingco/aptos-api": ^0.1.44
+    "@aptosis/aptos-api": ^0.0.1
     eventemitter3: ^4.0.7
     json-rpc-engine: ^6.1.0
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27
-  checksum: 4f05e7f013c81cb2c7c882f26d464f28cf0152a133b46bab31d42199fb1ad75c7975090ba4bfcb8df923137630f3ddbf4316d35be4cdb426ee82091fd39c9b36
+  checksum: 020c46d6a39a1b92fc19e3eeb87d82b1f6250de90f2c8d857d719960e5d06559e60f85654263472ffed4a9581d8b08d4c1875e4ab5a7661904e0ca5c8f7f5830
   languageName: node
   linkType: hard
 
@@ -537,6 +531,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/big.js@npm:^6.1.5":
+  version: 6.1.5
+  resolution: "@types/big.js@npm:6.1.5"
+  checksum: 5eb1472c1fb05fef37971aed449aa8dbe485fde1ca1c316911ae8cbd437ecd1f3a56964fc7d439bdcbe8e2585ec3febabc205d291177d5a0119bafaf872604b8
+  languageName: node
+  linkType: hard
+
 "@types/cacheable-request@npm:^6.0.1":
   version: 6.0.2
   resolution: "@types/cacheable-request@npm:6.0.2"
@@ -580,13 +581,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^28.1.4":
-  version: 28.1.4
-  resolution: "@types/jest@npm:28.1.4"
+"@types/jest@npm:^28.1.5":
+  version: 28.1.5
+  resolution: "@types/jest@npm:28.1.5"
   dependencies:
     jest-matcher-utils: ^28.0.0
     pretty-format: ^28.0.0
-  checksum: 97e22c600397bb4f30e39b595f8285ae92e4eb29a1ef6d1689749e4a4da683d88ecfe717b64492f6adc4c17c1c989520c3546f938c84a7d435c6ac3acf1a2bdc
+  checksum: 994bfc25a5e767ec1506a2a7d94e60a7a5645b2e4e8444c56ae902f3a3e27ae54e821e41c1b4e7c8d7f5022bf5abfdd0460ead223ba6f2d0a194e5b2bed1ad76
   languageName: node
   linkType: hard
 
@@ -851,6 +852,21 @@ __metadata:
     bn.js: ^5.2.0
     jsbi: ^3 || ^4
   checksum: c8a38214eeb627d6ab709858d45d30351e66cc3a490a32d7a6eb8756155da43f2c1389d047089ca90f19822416dfdcd85ce8ef1487e3d2a468a555174a51181b
+  languageName: node
+  linkType: hard
+
+"@ubeswap/token-math@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@ubeswap/token-math@npm:5.2.0"
+  dependencies:
+    "@types/big.js": ^6.1.5
+    big.js: ^6.2.1
+    decimal.js-light: ^2.5.1
+    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  peerDependencies:
+    jsbi: ^3 || ^4
+  checksum: ddbd049f1db973acabc841835bf331d74b6101e6969feb43034f20fc2ce011c06cbd7d80a241fb88a0bb159db4a294d30810df00150b46259a7fc14da7336166
   languageName: node
   linkType: hard
 
@@ -1576,6 +1592,13 @@ __metadata:
   version: 6.2.0
   resolution: "big.js@npm:6.2.0"
   checksum: 42bcbf0be703c4ae8669c969d0e108f9e1730f20e85bd779e31f7a92d28f6b3e87de96e25ef8657edc0b5dc945a0f66c184ec2654276b86f49e4e9ba025f131a
+  languageName: node
+  linkType: hard
+
+"big.js@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "big.js@npm:6.2.1"
+  checksum: 0b234a2fd56c52bed2798ed2020bcab6fef5e9523b99a05406ad071d1aed6ee97ada9fb8de9576092da74c68825c276e19015743b8d1baea269b60a5c666b0cd
   languageName: node
   linkType: hard
 

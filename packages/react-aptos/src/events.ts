@@ -1,4 +1,4 @@
-import type { UserTransaction } from "@movingco/aptos-api";
+import type { UserTransaction } from "@aptosis/aptos-api";
 import type { SignAndSendTransactionResult } from "@omnimask/provider-interface";
 import { createContainer } from "unstated-next";
 

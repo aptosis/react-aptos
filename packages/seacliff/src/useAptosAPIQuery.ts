@@ -1,10 +1,10 @@
-import type { AptosAPI } from "@movingco/aptos";
-import type { AptosError } from "@movingco/aptos-api";
+import type { AptosError } from "@aptosis/aptos-api";
+import type { AptosAPI, AptosAPIResponse } from "@aptosis/aptos-client";
+import { raiseForStatus } from "@aptosis/aptos-client";
 import type { AxiosResponse } from "axios";
 import type { QueryClient, UseQueryOptions, UseQueryResult } from "react-query";
 import { useQuery, useQueryClient } from "react-query";
 
-import { raiseForStatus } from "./apiError.js";
 import type { AptosAPIQueryType } from "./constants.js";
 import { useAptosAPI } from "./hooks.js";
 
@@ -73,7 +73,7 @@ export const makeAptosAPIQuery = <
     if (response === null || response.status === 404) {
       return null;
     }
-    raiseForStatus(200, response as AxiosResponse<TQueryFnData, AptosError>);
+    raiseForStatus(200, response as AptosAPIResponse<TQueryFnData>);
     return response.data;
   },
   enabled:

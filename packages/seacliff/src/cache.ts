@@ -5,7 +5,7 @@ import type {
   UserTransaction,
   WriteResource,
   WriteSetChange,
-} from "@movingco/aptos-api";
+} from "@aptosis/aptos-api";
 import { HexString } from "@movingco/core";
 import { default as groupBy } from "lodash.groupby";
 import { default as keyBy } from "lodash.keyby";
