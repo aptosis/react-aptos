@@ -29,16 +29,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-framework@npm:^0.1.6":
-  version: 0.1.6
-  resolution: "@aptosis/aptos-framework@npm:0.1.6"
+"@aptosis/aptos-framework@npm:^0.1.7":
+  version: 0.1.7
+  resolution: "@aptosis/aptos-framework@npm:0.1.7"
   dependencies:
     "@movingco/prelude": ^0.1.49
     tslib: ^2.4.0
   peerDependencies:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
-  checksum: c3c0cf48749f473856df89aa6ea86d9579615fda5a4af7706c34fc3bf8665a38cf44ff0cb0b04892e271b3cb38f15b79f3a1dafc095b9d0a6080a38be7532c99
+  checksum: 97347a1380d27128aa140edb888d5396028f74d5e811be6628904a458169ebae230553305be91f56e99046ca4656f7fb9818ecc56867514843998f7850867e18
   languageName: node
   linkType: hard
 
@@ -76,7 +76,7 @@ __metadata:
     "@types/jest": ^28.1.5
     "@types/lodash.groupby": ^4.6.7
     "@types/lodash.keyby": ^4.6.7
-    "@types/node": ^18.0.3
+    "@types/node": ^18.0.4
     "@types/prettier": ^2.6.3
     "@types/react": ^18.0.15
     "@typescript-eslint/utils": ^5.30.6
@@ -145,7 +145,7 @@ __metadata:
   dependencies:
     "@aptosis/aptos-api": ^0.0.1
     "@aptosis/aptos-client": ^0.0.1
-    "@aptosis/aptos-framework": ^0.1.6
+    "@aptosis/aptos-framework": ^0.1.7
     "@movingco/aptos": ^0.1.49
     "@movingco/core": ^0.1.49
     "@movingco/prelude": ^0.1.49
@@ -660,10 +660,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.0.3":
-  version: 18.0.3
-  resolution: "@types/node@npm:18.0.3"
-  checksum: 5dec59fbbc1186c808b53df1ca717dad034dbd6a901c75f5b052c845618b531b05f27217122c6254db99529a68618e4cfc534ae3dbf4e88754e9e572df80defa
+"@types/node@npm:^18.0.4":
+  version: 18.0.4
+  resolution: "@types/node@npm:18.0.4"
+  checksum: 981284fd57941f233f0e77038087c122f56e3c2b4fc4e090dfc7f0a93abfc526d5ccdd59eb3ef551d713245cf3943e37c7b957f12ba699209341a447c39fab59
   languageName: node
   linkType: hard
 

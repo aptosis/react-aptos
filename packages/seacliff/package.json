@@ -52,7 +52,7 @@
   "dependencies": {
     "@aptosis/aptos-api": "^0.0.1",
     "@aptosis/aptos-client": "^0.0.1",
-    "@aptosis/aptos-framework": "^0.1.6",
+    "@aptosis/aptos-framework": "^0.1.7",
     "@movingco/aptos": "^0.1.49",
     "@movingco/core": "^0.1.49",
     "@movingco/prelude": "^0.1.49",
