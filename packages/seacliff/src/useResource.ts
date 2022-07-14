@@ -1,4 +1,5 @@
 import type { AccountResource, Address } from "@aptosis/aptos-api";
+import { HexString, mapN } from "@movingco/core";
 
 import {
   ALL_RESOURCES_QUERY_PREFIX,
@@ -23,7 +24,7 @@ export const {
   type: RESOURCE_QUERY_PREFIX,
   argCount: 2,
   normalizeArgs: ([owner, resourceType]) => [
-    owner ? owner.toLowerCase() : owner,
+    owner ? HexString.ensure(owner).toShortString() : owner,
     resourceType,
   ],
   fetchData: async ({ aptos }, [owner, resourceType], signal) => {
@@ -45,7 +46,9 @@ const allResources = makeQueryFunctions<
 >({
   type: ALL_RESOURCES_QUERY_PREFIX,
   argCount: 1,
-  normalizeArgs: ([owner]) => [owner ? owner.toLowerCase() : owner],
+  normalizeArgs: ([owner]) => [
+    mapN((owner) => HexString.ensure(owner).toShortString(), owner),
+  ],
   fetchData: async ({ aptos, client }, [owner], signal) => {
     const response = await aptos.accounts.getAccountResources(
       { address: owner },
