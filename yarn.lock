@@ -16,6 +16,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aptosis/aptos-api@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@aptosis/aptos-api@npm:0.0.2"
+  dependencies:
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: 9fd9cf5751ffa26762dd90cdbeb5c717c9fabfd923857b3639187d2188246c76474f8f6b761a009f287c4496604d49d5e7cdd6b01c3ec24b573a152991bf9954
+  languageName: node
+  linkType: hard
+
 "@aptosis/aptos-client@npm:^0.0.1":
   version: 0.0.1
   resolution: "@aptosis/aptos-client@npm:0.0.1"
@@ -26,6 +37,19 @@ __metadata:
   peerDependencies:
     axios: ^0.27.2
   checksum: a7844e988be80c9a66340ad7d34f64c6523e5ac8a974b79ef1fafec1ef8e8cfc9f45586417b71baf6d73f753af0e50ffdba349884cc13ed76597d00fd95faa23
+  languageName: node
+  linkType: hard
+
+"@aptosis/aptos-client@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@aptosis/aptos-client@npm:0.0.2"
+  dependencies:
+    "@aptosis/aptos-api": ^0.0.2
+    "@vespaiach/axios-fetch-adapter": ^0.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: 570a2159a6ccec9ab8323f10e3ca03c0fb465df05915923df9f164ee7540347b5b88003d705f811f5308ba533e485af863333d487e2481ccbb945478ec3e983e
   languageName: node
   linkType: hard
 
@@ -63,9 +87,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-workspace@workspace:."
   dependencies:
-    "@movingco/aptos": ^0.1.49
-    "@movingco/core": ^0.1.49
-    "@movingco/prelude": ^0.1.49
+    "@movingco/aptos": ^0.1.50
+    "@movingco/core": ^0.1.50
+    "@movingco/prelude": ^0.1.50
     "@omnimask/provider-interface": ^0.1.4
     "@rushstack/eslint-patch": ^1.1.4
     "@saberhq/eslint-config": ^2.0.2
@@ -83,7 +107,6 @@ __metadata:
     "@yarnpkg/doctor": ^3.1.3
     aptos: ^1.2.0
     axios: ^0.27.2
-    bn.js: ^5.2.1
     eslint: ^8.19.0
     husky: ^8.0.1
     jsbi: ^4.3.0
@@ -99,7 +122,6 @@ __metadata:
     typescript: ^4.7.4
     unstated-next: ^1.1.0
   peerDependencies:
-    bn.js: ^5
     jsbi: ^4.3.0
     react: "*"
     react-query: "*"
@@ -110,19 +132,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos@workspace:packages/react-aptos"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.1
-    "@aptosis/aptos-client": ^0.0.1
+    "@aptosis/aptos-api": ^0.0.2
+    "@aptosis/aptos-client": ^0.0.2
     "@aptosis/seacliff": "workspace:^"
-    "@movingco/aptos": ^0.1.49
-    "@movingco/core": ^0.1.49
-    "@movingco/prelude": ^0.1.49
+    "@movingco/aptos": ^0.1.50
+    "@movingco/core": ^0.1.50
+    "@movingco/prelude": ^0.1.50
     "@omnimask/provider-interface": ^0.1.4
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/react": ^18.0.15
     "@yarnpkg/doctor": ^3.1.3
     axios: ^0.27.2
-    bn.js: ^5.2.1
     jsbi: ^4.3.0
     react: ^18.2.0
     react-query: ^3.39.1
@@ -132,7 +153,6 @@ __metadata:
     unstated-next: ^1.1.0
   peerDependencies:
     axios: ^0.27
-    bn.js: ^5
     jsbi: ^4.3.0
     react: "*"
     react-query: "*"
@@ -143,12 +163,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/seacliff@workspace:packages/seacliff"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.1
-    "@aptosis/aptos-client": ^0.0.1
+    "@aptosis/aptos-api": ^0.0.2
+    "@aptosis/aptos-client": ^0.0.2
     "@aptosis/aptos-framework": ^0.1.7
-    "@movingco/aptos": ^0.1.49
-    "@movingco/core": ^0.1.49
-    "@movingco/prelude": ^0.1.49
+    "@movingco/aptos": ^0.1.50
+    "@movingco/core": ^0.1.50
+    "@movingco/prelude": ^0.1.50
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/lodash.groupby": ^4.6.7
@@ -156,7 +176,6 @@ __metadata:
     "@types/react": ^18.0.15
     aptos: ^1.2.0
     axios: ^0.27.2
-    bn.js: ^5.2.1
     jsbi: ^4.3.0
     lodash.groupby: ^4.6.0
     lodash.keyby: ^4.6.0
@@ -168,7 +187,6 @@ __metadata:
     unstated-next: ^1.1.0
   peerDependencies:
     axios: ^0.27
-    bn.js: ^5
     jsbi: ^4.3.0
     react: "*"
     react-query: "*"
@@ -277,28 +295,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/aptos@npm:^0.1.49":
-  version: 0.1.49
-  resolution: "@movingco/aptos@npm:0.1.49"
+"@movingco/aptos@npm:^0.1.50":
+  version: 0.1.50
+  resolution: "@movingco/aptos@npm:0.1.50"
   dependencies:
     "@aptosis/aptos-api": ^0.0.1
     "@aptosis/aptos-client": ^0.0.1
     "@aptosis/faucet-client": ^0.0.1
-    "@movingco/leb128": ^0.1.49
+    "@movingco/leb128": ^0.1.50
     "@vespaiach/axios-fetch-adapter": ^0.3.0
     aptos: ^1.2.0
     axios: ^0.27.2
     buffer: ^6.0.3
     tslib: ^2.4.0
   peerDependencies:
-    "@movingco/core": ^0.1.49
-    bn.js: ^5.2.0
+    "@movingco/core": ^0.1.50
+    bn.js: ^5
     jsbi: ^4.3.0
-  checksum: 59080ed7d7ab7aa53f56dceab18fb4779007c051c2f0db8c6107167e2ff399ff774ee62cf0cb320ca4dd6a2aeaaf18cb2962fc95eeabbd51475f14524718fbc6
+  checksum: d4c1f1228470f347a95616ca90d1b42fb3208f0e76f6434527e81a31f89665de552c8d06fc4939f7e58115c27b9536c8d75a61a650f6c8a21d32c9b3c6a73f08
   languageName: node
   linkType: hard
 
-"@movingco/core@npm:0.1.49, @movingco/core@npm:^0.1.49":
+"@movingco/core@npm:0.1.49":
   version: 0.1.49
   resolution: "@movingco/core@npm:0.1.49"
   dependencies:
@@ -313,6 +331,22 @@ __metadata:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
   checksum: 72465758cc64af4d4a476ba8af86d2d708562d9aa1f4043c667e94e7859cad5c55562491e106675aaf4172c7a080ff6232a71b2641fd3eafd693ca96a17724c7
+  languageName: node
+  linkType: hard
+
+"@movingco/core@npm:0.1.50, @movingco/core@npm:^0.1.50":
+  version: 0.1.50
+  resolution: "@movingco/core@npm:0.1.50"
+  dependencies:
+    "@movingco/sha3": ^0.1.49
+    "@saberhq/option-utils": ^1.13.32
+    "@ubeswap/token-math": ^5.2.0
+    buffer: ^6.0.3
+    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  peerDependencies:
+    jsbi: ^4.3.0
+  checksum: 863917e382296ca320ae21ed8d8f50b975dd74da04ec2d11a978e794c86bcbb4ad9af52ac0ee405c273ad2ce6551be79d6f83c8ad936f957963e6fe129b5d6e3
   languageName: node
   linkType: hard
 
@@ -348,12 +382,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/leb128@npm:^0.1.49":
-  version: 0.1.49
-  resolution: "@movingco/leb128@npm:0.1.49"
+"@movingco/idl@npm:^0.1.50":
+  version: 0.1.50
+  resolution: "@movingco/idl@npm:0.1.50"
+  dependencies:
+    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  peerDependencies:
+    jsbi: ^4.3.0
+  checksum: 2bb699eea0d009d907f56e967c181ef1738095a13e666e3f132b8fbdcd29474a9e1c0b28ce7af2594b41c24d08a18572bac9d49d00a8e73d0446848d8c86ebad
+  languageName: node
+  linkType: hard
+
+"@movingco/leb128@npm:^0.1.50":
+  version: 0.1.50
+  resolution: "@movingco/leb128@npm:0.1.50"
   dependencies:
     tslib: ^2.4.0
-  checksum: dba44668826a6a5d0caf2fb934b73f6394136fff0240cd9acc0edb552efc5fd21f2242aaca2097429a8fdbfe00ea1fa6846c782e733bfd7c6d10a0089de328a9
+  checksum: a32a539ecc92bc716997aa5b730e7286eacc00cd06f211a4c8c61fdf1a93197345777724bbe9afa6ad1e36633255721bfe4bea93fd0a0630d1d0f56563d3781f
   languageName: node
   linkType: hard
 
@@ -368,6 +414,19 @@ __metadata:
     bn.js: ^5.2.0
     jsbi: ^4.3.0
   checksum: 2e254ab26f2e203c16f58a5068d20be1f10cf6f407cdc9da5aa737ef8686606fa43b775fda580abb520849fbb92bea6a3286e3cd8decf4422cb210b8c2097a57
+  languageName: node
+  linkType: hard
+
+"@movingco/prelude@npm:^0.1.50":
+  version: 0.1.50
+  resolution: "@movingco/prelude@npm:0.1.50"
+  dependencies:
+    "@movingco/core": 0.1.50
+    "@movingco/idl": ^0.1.50
+    tslib: ^2.4.0
+  peerDependencies:
+    jsbi: ^4.3.0
+  checksum: 5d667a6a7199b1fff3f7f5b58ccecbc41efe748f0e37923344a548125a56d2c1c1602db7899ddb618ef2a6ebe5119eca78c3e1d6c17cd5a073f258287bf45dc2
   languageName: node
   linkType: hard
 
@@ -390,6 +449,17 @@ __metadata:
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
   checksum: 0ac0bbde1d149f2ddd0c5763f4735f4b14675513ace272cad51cb782aaefde43f8028501f6e2f05990ad12d15a55ec6f9f7de4fce1fb4dd58dd33796dea6bbd1
+  languageName: node
+  linkType: hard
+
+"@movingco/sha3@npm:^0.1.49":
+  version: 0.1.49
+  resolution: "@movingco/sha3@npm:0.1.49"
+  dependencies:
+    js-sha3: ^0.8.0
+    tiny-invariant: ^1.2.0
+    tslib: ^2.4.0
+  checksum: 7e8c06a7ad6f6488a9e6e0242359a7a56c1bbe5cc5a542e933c08b943fbfaccb8d49e5bb376c541c2285994d380d77251c12263b65e84fbdeeb1c0f18faa8f60
   languageName: node
   linkType: hard
 
