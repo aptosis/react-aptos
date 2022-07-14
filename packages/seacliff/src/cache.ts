@@ -7,8 +7,7 @@ import type {
   WriteSetChange,
 } from "@aptosis/aptos-api";
 import { HexString } from "@movingco/core";
-import { default as groupBy } from "lodash.groupby";
-import { default as keyBy } from "lodash.keyby";
+import { groupBy, keyBy } from "lodash-es";
 import { useCallback } from "react";
 import type { QueryClient } from "react-query";
 import { useQueryClient } from "react-query";

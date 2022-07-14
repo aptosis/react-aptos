@@ -83,8 +83,6 @@ __metadata:
     "@saberhq/tuple-utils": ^1.13.32
     "@types/eslint": ^8.4.5
     "@types/jest": ^28.1.5
-    "@types/lodash.groupby": ^4.6.7
-    "@types/lodash.keyby": ^4.6.7
     "@types/node": ^18.0.4
     "@types/prettier": ^2.6.3
     "@types/react": ^18.0.15
@@ -96,8 +94,6 @@ __metadata:
     husky: ^8.0.1
     jsbi: ^4.3.0
     lint-staged: ^13.0.3
-    lodash.groupby: ^4.6.0
-    lodash.keyby: ^4.6.0
     prettier: ^2.7.1
     react: ^18.2.0
     react-query: ^3.39.1
@@ -156,14 +152,12 @@ __metadata:
     "@movingco/prelude": ^0.1.51
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
-    "@types/lodash.groupby": ^4.6.7
-    "@types/lodash.keyby": ^4.6.7
+    "@types/lodash-es": ^4.17.6
     "@types/react": ^18.0.15
     aptos: ^1.2.0
     axios: ^0.27.2
     jsbi: ^4.3.0
-    lodash.groupby: ^4.6.0
-    lodash.keyby: ^4.6.0
+    lodash-es: ^4.17.21
     react: ^18.2.0
     react-query: ^3.39.1
     tiny-invariant: ^1.2.0
@@ -609,21 +603,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.groupby@npm:^4.6.7":
-  version: 4.6.7
-  resolution: "@types/lodash.groupby@npm:4.6.7"
+"@types/lodash-es@npm:^4.17.6":
+  version: 4.17.6
+  resolution: "@types/lodash-es@npm:4.17.6"
   dependencies:
     "@types/lodash": "*"
-  checksum: 2dd7f5c43ca4e2202c73a1217ea550fd54746909c19ef38ababe1a3c851c40b1ba66c027397551f9a6f7acf7217507496e316e6de38f3208f4a1f4548b81933b
-  languageName: node
-  linkType: hard
-
-"@types/lodash.keyby@npm:^4.6.7":
-  version: 4.6.7
-  resolution: "@types/lodash.keyby@npm:4.6.7"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: 599ecefd8d4a1eb06c277b5f3f14e82ef9e58a1b7d8fc75490f0d5ee5e43069bae08f0408cb54675e7c1005c9f280ee57a537eafe69a22da5271cd6b815e4e1f
+  checksum: 9bd239dd525086e278821949ce12fbdd4f100a060fed9323fc7ad5661113e1641f28a7ebab617230ed3474680d8f4de705c1928b48252bb684be6ec9eed715db
   languageName: node
   linkType: hard
 
@@ -3365,20 +3350,6 @@ __metadata:
   version: 4.17.21
   resolution: "lodash-es@npm:4.17.21"
   checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
-  languageName: node
-  linkType: hard
-
-"lodash.groupby@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "lodash.groupby@npm:4.6.0"
-  checksum: e2d4d13d12790a1cacab3f5f120b7c072a792224e83b2f403218866d18efde76024b2579996dfebb230a61ce06469332e16639103669a35a605287e19ced6b9b
-  languageName: node
-  linkType: hard
-
-"lodash.keyby@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "lodash.keyby@npm:4.6.0"
-  checksum: 9dd96cc8b83e05a71dc328f8e489056105bc84b57b4d7f8155d6bf5744dcdb0a5534acdf6e4e89e5ddf71f2bc6b93969b12c6da09d69fdf3b1cca65a8ed61e2b
   languageName: node
   linkType: hard
 

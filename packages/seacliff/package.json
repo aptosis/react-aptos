@@ -41,6 +41,7 @@
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
     "@saberhq/tsconfig": "^2.0.2",
+    "@types/lodash-es": "^4.17.6",
     "@types/react": "^18.0.15",
     "axios": "^0.27.2",
     "jsbi": "^4.3.0",
@@ -56,12 +57,9 @@
     "@movingco/core": "^0.1.51",
     "@movingco/prelude": "^0.1.51",
     "@saberhq/tuple-utils": "^1.13.32",
-    "@types/lodash.groupby": "^4.6.7",
-    "@types/lodash.keyby": "^4.6.7",
     "aptos": "^1.2.0",
     "axios": "^0.27.2",
-    "lodash.groupby": "^4.6.0",
-    "lodash.keyby": "^4.6.0",
+    "lodash-es": "^4.17.21",
     "tiny-invariant": "^1.2.0",
     "tslib": "^2.4.0",
     "unstated-next": "^1.1.0"
