@@ -24,7 +24,7 @@ export const {
   type: RESOURCE_QUERY_PREFIX,
   argCount: 2,
   normalizeArgs: ([owner, resourceType]) => [
-    owner ? HexString.ensure(owner).toShortString() : owner,
+    owner ? HexString.ensure(owner).toShortString().toLowerCase() : owner,
     resourceType,
   ],
   fetchData: async ({ aptos }, [owner, resourceType], signal) => {
@@ -47,7 +47,10 @@ const allResources = makeQueryFunctions<
   type: ALL_RESOURCES_QUERY_PREFIX,
   argCount: 1,
   normalizeArgs: ([owner]) => [
-    mapN((owner) => HexString.ensure(owner).toShortString(), owner),
+    mapN(
+      (owner) => HexString.ensure(owner).toShortString().toLowerCase(),
+      owner
+    ),
   ],
   fetchData: async ({ aptos, client }, [owner], signal) => {
     const response = await aptos.accounts.getAccountResources(

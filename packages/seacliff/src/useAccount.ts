@@ -19,7 +19,10 @@ export const {
   type: ACCOUNT_QUERY_PREFIX,
   argCount: 1,
   normalizeArgs: ([address]) => [
-    mapN((address) => HexString.ensure(address).toShortString(), address),
+    mapN(
+      (address) => HexString.ensure(address).toShortString().toLowerCase(),
+      address
+    ),
   ],
   fetchData: async ({ aptos }, [address], signal) => {
     return await aptos.accounts.getAccount(address, {
