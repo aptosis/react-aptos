@@ -52,6 +52,10 @@ export type MakeAptosAPIQueryOpts<
       args: NonNullableTuple<TArgs>,
       signal?: AbortSignal
     ) => Promise<AxiosResponse<TQueryFnData, unknown> | null>;
+    onSuccessfulFetch?: (
+      args: NonNullableTuple<TArgs>,
+      data: TQueryFnData | null
+    ) => Promise<void>;
   };
 
 export const makeAptosAPIQuery = <
@@ -71,9 +75,11 @@ export const makeAptosAPIQuery = <
     >;
     const response = await opts.fetchData(args, signal);
     if (response === null || response.status === 404) {
+      await opts.onSuccessfulFetch?.(args, null);
       return null;
     }
     raiseForStatus(200, response as AptosAPIResponse<TQueryFnData>);
+    await opts.onSuccessfulFetch?.(args, response.data);
     return response.data;
   },
   enabled:
@@ -137,6 +143,7 @@ export const makeQueryFunctions = <
   normalizeArgs = identity,
   fetchData,
   defaultQueryOptions,
+  onSuccessfulFetch,
 }: {
   type: AptosAPIQueryType;
   argCount: N;
@@ -146,6 +153,11 @@ export const makeQueryFunctions = <
     args: NonNullableTuple<TArgs>,
     signal?: AbortSignal
   ) => Promise<AxiosResponse<T, unknown> | null>;
+  onSuccessfulFetch?: (
+    ctx: APIQueryContext,
+    args: NonNullableTuple<TArgs>,
+    data: T | null
+  ) => Promise<void>;
   defaultQueryOptions?: Omit<
     UseAptosAPIQueryUserOptions<T, T, TArgs>,
     "onSuccess" | "onSettled" | "refetchInterval" | "select"
@@ -163,6 +175,9 @@ export const makeQueryFunctions = <
     makeAptosAPIQuery({
       ...defaultQueryOptions,
       ...options,
+      onSuccessfulFetch: onSuccessfulFetch
+        ? (args, data) => onSuccessfulFetch(ctx, args, data)
+        : undefined,
       queryKey: makeQueryKey(ctx.aptos.nodeUrl, ...args),
       fetchData: (args, signal) => fetchData(ctx, args, signal),
     });

@@ -52,14 +52,15 @@ const allResources = makeQueryFunctions<
       owner
     ),
   ],
-  fetchData: async ({ aptos, client }, [owner], signal) => {
-    const response = await aptos.accounts.getAccountResources(
+  fetchData: async ({ aptos }, [owner], signal) => {
+    return await aptos.accounts.getAccountResources(
       { address: owner },
       {
         signal,
       }
     );
-    const { data } = response;
+  },
+  onSuccessfulFetch: ({ aptos, client }, [owner], data) => {
     if (data) {
       client.setQueriesData(
         data.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
@@ -69,7 +70,7 @@ const allResources = makeQueryFunctions<
       // null, data should be cleared
       void client.invalidateQueries([RESOURCE_QUERY_PREFIX, owner]);
     }
-    return response;
+    return Promise.resolve();
   },
   defaultQueryOptions: {
     staleTime: 500,
