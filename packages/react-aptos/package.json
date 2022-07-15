@@ -55,7 +55,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.2",
+    "@aptosis/aptos-api": "^0.0.3",
     "@aptosis/aptos-client": "^0.0.2",
     "@aptosis/seacliff": "workspace:^",
     "@movingco/aptos": "^0.1.51",
