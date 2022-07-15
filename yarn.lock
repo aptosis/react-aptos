@@ -27,6 +27,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aptosis/aptos-api@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@aptosis/aptos-api@npm:0.0.4"
+  dependencies:
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: 7c07b0eb3fa9db0f1889487914918887a58ab35e0e9032e6cb63bdd9e37d197b46ed820bd43b431ad6e591f927b5d3a86c483ab68de691f3c6814cff023d3731
+  languageName: node
+  linkType: hard
+
 "@aptosis/aptos-client@npm:^0.0.2":
   version: 0.0.2
   resolution: "@aptosis/aptos-client@npm:0.0.2"
@@ -37,6 +48,19 @@ __metadata:
   peerDependencies:
     axios: ^0.27.2
   checksum: 570a2159a6ccec9ab8323f10e3ca03c0fb465df05915923df9f164ee7540347b5b88003d705f811f5308ba533e485af863333d487e2481ccbb945478ec3e983e
+  languageName: node
+  linkType: hard
+
+"@aptosis/aptos-client@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@aptosis/aptos-client@npm:0.0.4"
+  dependencies:
+    "@aptosis/aptos-api": ^0.0.4
+    "@vespaiach/axios-fetch-adapter": ^0.3.0
+    tslib: ^2.4.0
+  peerDependencies:
+    axios: ^0.27.2
+  checksum: fb8e437cd2bb04317d8fbd9fb63a2075c66e5d6975a93519468bdb441f9038f00e92d9ee71c381d914816cfd11769371dbc83ad2be589998d5169a802311a672
   languageName: node
   linkType: hard
 
@@ -96,7 +120,7 @@ __metadata:
     lint-staged: ^13.0.3
     prettier: ^2.7.1
     react: ^18.2.0
-    react-query: ^3.39.1
+    react-query: ^3.39.2
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
     typedoc: ^0.23.7
@@ -113,8 +137,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos@workspace:packages/react-aptos"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.2
-    "@aptosis/aptos-client": ^0.0.2
+    "@aptosis/aptos-api": ^0.0.4
+    "@aptosis/aptos-client": ^0.0.4
     "@aptosis/seacliff": "workspace:^"
     "@movingco/aptos": ^0.1.51
     "@movingco/core": ^0.1.51
@@ -127,7 +151,7 @@ __metadata:
     axios: ^0.27.2
     jsbi: ^4.3.0
     react: ^18.2.0
-    react-query: ^3.39.1
+    react-query: ^3.39.2
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
     typescript: ^4.7.4
@@ -144,8 +168,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/seacliff@workspace:packages/seacliff"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.2
-    "@aptosis/aptos-client": ^0.0.2
+    "@aptosis/aptos-api": ^0.0.4
+    "@aptosis/aptos-client": ^0.0.4
     "@aptosis/aptos-framework": ^0.1.8
     "@movingco/aptos": ^0.1.51
     "@movingco/core": ^0.1.51
@@ -159,7 +183,7 @@ __metadata:
     jsbi: ^4.3.0
     lodash-es: ^4.17.21
     react: ^18.2.0
-    react-query: ^3.39.1
+    react-query: ^3.39.2
     tiny-invariant: ^1.2.0
     tslib: ^2.4.0
     typescript: ^4.7.4
@@ -4099,9 +4123,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query@npm:^3.39.1":
-  version: 3.39.1
-  resolution: "react-query@npm:3.39.1"
+"react-query@npm:^3.39.2":
+  version: 3.39.2
+  resolution: "react-query@npm:3.39.2"
   dependencies:
     "@babel/runtime": ^7.5.5
     broadcast-channel: ^3.4.1
@@ -4113,7 +4137,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 9273b7c2adf4a78152d3c0b0ac44cfabacc867d5e8e4ad66e6aaccd8a2bd10c5a836c4d3b462e5f083f273998e1c3dd01ed5d126b7508bcfd615eb5aba419b3b
+  checksum: 83b199e66af28ab67ec4d22e51da42f02447186623db926b75d27a1c09a3383da6ddc9e5b83d82578fac7abdba7e6f265aecbffdb91db61981950d3d59409346
   languageName: node
   linkType: hard
 
