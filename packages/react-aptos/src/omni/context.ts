@@ -48,17 +48,17 @@ const useOmniInner = (): OmniContext => {
     const reload = () => {
       void reloadWallet();
     };
-    provider.on("connect", reload);
-    provider.on("disconnect", reload);
-    provider.on("accountsChanged", reload);
-    provider.on("networkChanged", reload);
-    provider.on("unlockStateChanged", reload);
+    provider.events.on("connect", reload);
+    provider.events.on("disconnect", reload);
+    provider.events.on("accountsChanged", reload);
+    provider.events.on("networkChanged", reload);
+    provider.events.on("unlockStateChanged", reload);
     return () => {
-      provider.removeListener("connect", reload);
-      provider.removeListener("disconnect", reload);
-      provider.removeListener("accountsChanged", reload);
-      provider.removeListener("networkChanged", reload);
-      provider.removeListener("unlockStateChanged", reload);
+      provider.events.removeListener("connect", reload);
+      provider.events.removeListener("disconnect", reload);
+      provider.events.removeListener("accountsChanged", reload);
+      provider.events.removeListener("networkChanged", reload);
+      provider.events.removeListener("unlockStateChanged", reload);
     };
   }, [provider, reloadWallet]);
 

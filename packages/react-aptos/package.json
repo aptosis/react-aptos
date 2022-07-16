@@ -61,7 +61,7 @@
     "@movingco/aptos": "^0.1.54",
     "@movingco/core": "^0.1.54",
     "@movingco/prelude": "^0.1.54",
-    "@omnimask/provider-interface": "^0.1.4",
+    "@omnimask/provider-interface": "^0.1.7",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",
     "tiny-invariant": "^1.2.0",
