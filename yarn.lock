@@ -97,7 +97,7 @@ __metadata:
     "@movingco/aptos": ^0.1.54
     "@movingco/core": ^0.1.54
     "@movingco/prelude": ^0.1.54
-    "@omnimask/provider-interface": ^0.1.7
+    "@omnimask/provider-interface": ^0.1.8
     "@rushstack/eslint-patch": ^1.1.4
     "@saberhq/eslint-config": ^2.0.2
     "@saberhq/eslint-config-react": ^2.0.2
@@ -141,7 +141,7 @@ __metadata:
     "@movingco/aptos": ^0.1.54
     "@movingco/core": ^0.1.54
     "@movingco/prelude": ^0.1.54
-    "@omnimask/provider-interface": ^0.1.7
+    "@omnimask/provider-interface": ^0.1.8
     "@saberhq/tsconfig": ^2.0.2
     "@saberhq/tuple-utils": ^1.13.32
     "@types/react": ^18.0.15
@@ -440,9 +440,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@omnimask/provider-interface@npm:^0.1.7":
-  version: 0.1.7
-  resolution: "@omnimask/provider-interface@npm:0.1.7"
+"@omnimask/provider-interface@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "@omnimask/provider-interface@npm:0.1.8"
   dependencies:
     "@aptosis/aptos-api": ^0.0.5
     eventemitter3: ^4.0.7
@@ -451,7 +451,7 @@ __metadata:
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27
-  checksum: e6701a6822d795ab356e12681f2aec87241938caa8c769be945e8da3ceef321c1ef3710d454432a0bbf3e63a6db34a9178b3665ccc794e9f6ddc17576f5b5bb4
+  checksum: 201859bdd470e4463785825e9bf2c5627458c37db1e2714af89d11c7ff14e4b81d7e5204e2148efe89d7076f1fbb493a7eb12cfbf9045d9e7284d842fbb34b69
   languageName: node
   linkType: hard
 

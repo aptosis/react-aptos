@@ -9,13 +9,14 @@ import { HexString } from "@movingco/core";
 import type {
   AccountObject,
   SignAndSendTransactionResult,
+  TXSendOptions,
 } from "@omnimask/provider-interface";
 import { OmniRPC } from "@omnimask/provider-interface";
 import { useCallback } from "react";
 
 import { ensureProvider, useOmni } from "./context.js";
 
-export type SendTransactionParams = {
+export interface SendTransactionParams extends TXSendOptions {
   payload: TransactionPayload;
   options?: Partial<
     UserTransactionRequest & {
@@ -25,19 +26,18 @@ export type SendTransactionParams = {
       secondary_signers?: readonly AccountObject[];
     }
   >;
-};
+}
 
-export type SendTransactionFn = ({
-  payload,
-  options,
-}: SendTransactionParams) => Promise<SignAndSendTransactionResult>;
+export type SendTransactionFn = (
+  params: SendTransactionParams
+) => Promise<SignAndSendTransactionResult>;
 
 export const useSendTransaction = (): SendTransactionFn => {
   const { provider, wallet } = useOmni();
   const aptos = useAptosAPI();
   const { data: account } = useAccount(wallet?.selectedAccount);
   return useCallback(
-    async ({ payload, options = {} }: SendTransactionParams) => {
+    async ({ payload, options = {}, ...rest }: SendTransactionParams) => {
       ensureProvider(provider);
       if (!wallet) {
         throw new Error("Wallet not connected");
@@ -98,6 +98,7 @@ export const useSendTransaction = (): SendTransactionFn => {
       return await provider.request({
         method: OmniRPC.SignAndSendRawTransaction,
         params: {
+          ...rest,
           request,
           message,
           multi_agent_signature: multiAgentSignature,
