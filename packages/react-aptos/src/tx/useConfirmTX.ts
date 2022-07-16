@@ -14,7 +14,7 @@ export const useConfirmTX = (): UseMutationResult<
   string
 > => {
   const { aptosAPI } = useSeacliff();
-  const { onTXSuccess, onTXRevertError: onTXError } = useAptosEventHandlers();
+  const { onTXRevertError: onTXError } = useAptosEventHandlers();
   const onSuccess = useHandleTXSuccess();
   return useMutation(
     async (txHash: string) => {
@@ -29,7 +29,6 @@ export const useConfirmTX = (): UseMutationResult<
     },
     {
       onSuccess: (data) => {
-        onTXSuccess?.(data);
         onSuccess(data);
       },
       onError: (err) => {

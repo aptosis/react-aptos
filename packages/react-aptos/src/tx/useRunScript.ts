@@ -4,10 +4,10 @@ import { useCallback } from "react";
 import type { UseMutationResult } from "react-query";
 import { useMutation } from "react-query";
 
-import { useAptosEventHandlers } from "../index.js";
+import { useAptosEventHandlers, useHandleTXSuccess } from "../index.js";
 import { useSendTransaction } from "../omni/useSendTransaction.js";
 import type { SendParams } from "./txHelpers.js";
-import { TXPrepareError } from "./txHelpers.js";
+import { TXPrepareError, TXRevertError } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
 export const useRunScript = (): UseMutationResult<
@@ -19,9 +19,11 @@ export const useRunScript = (): UseMutationResult<
   },
   unknown
 > => {
-  const { onTXRequest, onTXSend, onTXPrepareError } = useAptosEventHandlers();
+  const { onTXRequest, onTXSend, onTXPrepareError, onTXRevertError } =
+    useAptosEventHandlers();
   const sendTransaction = useSendTransaction();
-  const confirmTransaction = useConfirmTX();
+  const { mutateAsync: confirmTransaction } = useConfirmTX();
+  const onSuccess = useHandleTXSuccess();
 
   const doRunScript = useCallback(
     async ({
@@ -47,16 +49,29 @@ export const useRunScript = (): UseMutationResult<
         options,
       });
       onTXSend?.(tx);
-      return await confirmTransaction.mutateAsync(tx.result.hash);
+      if (tx.confirmed) {
+        if (tx.confirmed.success) {
+          onSuccess(tx.confirmed);
+          return tx.confirmed;
+        } else {
+          throw new TXRevertError(tx.confirmed);
+        }
+      }
+      return await confirmTransaction(tx.result.hash);
     },
-    [confirmTransaction, onTXRequest, onTXSend, sendTransaction]
+    [confirmTransaction, onSuccess, onTXRequest, onTXSend, sendTransaction]
   );
 
   return useMutation(doRunScript, {
     onError: (e, { params }) => {
-      const error = new TXPrepareError(params, e);
-      onTXPrepareError?.(error);
-      throw error;
+      if (e instanceof TXRevertError) {
+        onTXRevertError?.(e);
+      } else {
+        const error = new TXPrepareError(params, e);
+        onTXPrepareError?.(error);
+        throw error;
+      }
+      throw e;
     },
   });
 };
