@@ -44,8 +44,8 @@
     "*.{json,js,jsx,html,css,md,yml,yaml}": "prettier --write"
   },
   "devDependencies": {
-    "@movingco/prelude": "^0.1.54",
-    "@saberhq/tsconfig": "^2.0.2",
+    "@movingco/prelude": "^0.1.58",
+    "@saberhq/tsconfig": "^2.0.3",
     "@types/react": "^18.0.15",
     "@yarnpkg/doctor": "^3.1.3",
     "axios": "^0.27.2",
@@ -55,12 +55,12 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.5",
-    "@aptosis/aptos-client": "^0.0.5",
+    "@aptosis/aptos-api": "^0.0.6",
+    "@aptosis/aptos-client": "^0.0.6",
     "@aptosis/seacliff": "workspace:^",
-    "@movingco/aptos": "^0.1.54",
-    "@movingco/core": "^0.1.54",
-    "@movingco/prelude": "^0.1.54",
+    "@movingco/aptos": "^0.1.58",
+    "@movingco/core": "^0.1.58",
+    "@movingco/prelude": "^0.1.58",
     "@omnimask/provider-interface": "^0.1.8",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",

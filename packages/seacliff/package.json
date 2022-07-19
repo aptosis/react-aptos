@@ -40,7 +40,7 @@
   },
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
-    "@saberhq/tsconfig": "^2.0.2",
+    "@saberhq/tsconfig": "^2.0.3",
     "@types/lodash-es": "^4.17.6",
     "@types/react": "^18.0.15",
     "axios": "^0.27.2",
@@ -50,12 +50,12 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.5",
-    "@aptosis/aptos-client": "^0.0.5",
+    "@aptosis/aptos-api": "^0.0.6",
+    "@aptosis/aptos-client": "^0.0.6",
     "@aptosis/aptos-framework": "^0.1.10",
-    "@movingco/aptos": "^0.1.54",
-    "@movingco/core": "^0.1.54",
-    "@movingco/prelude": "^0.1.54",
+    "@movingco/aptos": "^0.1.58",
+    "@movingco/core": "^0.1.58",
+    "@movingco/prelude": "^0.1.58",
     "@saberhq/tuple-utils": "^1.13.32",
     "aptos": "^1.2.0",
     "axios": "^0.27.2",
