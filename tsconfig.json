@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
+  "$schema": "https://json.schemastore.org/Tsconfig",
   "extends": "@saberhq/tsconfig/tsconfig.root.json",
   "include": [
     "packages/**/*.spec.ts",
@@ -11,7 +11,9 @@
     "lib": ["DOM", "ES2019"]
   },
   "references": [
+    { "path": "packages/seacliff/" },
+    { "path": "packages/seacliff/tsconfig.cjs.json" },
     { "path": "packages/react-aptos/" },
-    { "path": "packages/seacliff/" }
+    { "path": "packages/react-aptos/tsconfig.cjs.json" }
   ]
 }

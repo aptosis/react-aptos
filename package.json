@@ -19,15 +19,14 @@
   ],
   "homepage": "https://aptos.is",
   "scripts": {
-    "build": "yarn workspaces foreach --exclude @aptosis/react-aptos-workspace -vpti --topological-dev run build",
-    "clean": "yarn workspaces foreach --exclude @aptosis/react-aptos-workspace -vpti --topological-dev run clean",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
     "publish:all": "yarn workspaces foreach --exclude @aptosis/react-aptos-workspace -vpti --topological-dev npm publish",
     "docs:generate": "typedoc .",
     "bump": "yarn workspaces foreach -t version",
     "test": "jest",
     "lint": "eslint . --cache",
     "lint:ci": "eslint . --max-warnings=0",
-    "typecheck": "tsc --build",
     "prepare": "husky install"
   },
   "packageManager": "yarn@3.2.1",
