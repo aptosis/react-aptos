@@ -11,6 +11,8 @@
     "lib": ["DOM", "ES2019"]
   },
   "references": [
+    { "path": "packages/keyby/" },
+    { "path": "packages/keyby/tsconfig.cjs.json" },
     { "path": "packages/seacliff/" },
     { "path": "packages/seacliff/tsconfig.cjs.json" },
     { "path": "packages/react-aptos/" },

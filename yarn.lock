@@ -114,6 +114,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aptosis/keyby@workspace:^, @aptosis/keyby@workspace:packages/keyby":
+  version: 0.0.0-use.local
+  resolution: "@aptosis/keyby@workspace:packages/keyby"
+  dependencies:
+    "@saberhq/tsconfig": ^2.0.3
+    tslib: ^2.4.0
+  languageName: unknown
+  linkType: soft
+
 "@aptosis/react-aptos-workspace@workspace:.":
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-workspace@workspace:."
@@ -192,17 +201,16 @@ __metadata:
     "@aptosis/aptos-api": ^0.0.6
     "@aptosis/aptos-client": ^0.0.6
     "@aptosis/aptos-framework": ^0.1.10
+    "@aptosis/keyby": "workspace:^"
     "@movingco/aptos": ^0.1.58
     "@movingco/core": ^0.1.58
     "@movingco/prelude": ^0.1.58
     "@saberhq/tsconfig": ^2.0.3
     "@saberhq/tuple-utils": ^1.13.32
-    "@types/lodash-es": ^4.17.6
     "@types/react": ^18.0.15
     aptos: ^1.2.0
     axios: ^0.27.2
     jsbi: ^4.3.0
-    lodash-es: ^4.17.21
     react: ^18.2.0
     react-query: ^3.39.2
     tiny-invariant: ^1.2.0
@@ -718,16 +726,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash-es@npm:^4.17.6":
-  version: 4.17.6
-  resolution: "@types/lodash-es@npm:4.17.6"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: 9bd239dd525086e278821949ce12fbdd4f100a060fed9323fc7ad5661113e1641f28a7ebab617230ed3474680d8f4de705c1928b48252bb684be6ec9eed715db
-  languageName: node
-  linkType: hard
-
-"@types/lodash@npm:*, @types/lodash@npm:^4.14.175":
+"@types/lodash@npm:^4.14.175":
   version: 4.14.182
   resolution: "@types/lodash@npm:4.14.182"
   checksum: 7dd137aa9dbabd632408bd37009d984655164fa1ecc3f2b6eb94afe35bf0a5852cbab6183148d883e9c73a958b7fec9a9bcf7c8e45d41195add6a18c34958209

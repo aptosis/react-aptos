@@ -6,8 +6,8 @@ import type {
   WriteResource,
   WriteSetChange,
 } from "@aptosis/aptos-api";
+import { default as keyBy } from "@aptosis/keyby";
 import { HexString } from "@movingco/core";
-import { groupBy, keyBy } from "lodash-es";
 import { useCallback } from "react";
 import type { QueryClient } from "react-query";
 import { useQueryClient } from "react-query";
@@ -18,6 +18,14 @@ import {
   makeAllResourcesQueryKey,
   makeResourceQueryKey,
 } from "./useResource.js";
+
+const groupByAddress = <T extends { address: string }>(
+  writes: T[]
+): Record<string, T[]> =>
+  writes.reduce(
+    (r, v, _i, _a, k = v.address) => ((r[k] || (r[k] = [])).push(v), r),
+    {} as Record<string, T[]>
+  );
 
 const applyWritesToCache = (
   nodeUrl: string,
@@ -31,29 +39,27 @@ const applyWritesToCache = (
     );
   });
   // apply writes
-  Object.entries(groupBy(writes, (w) => w.address)).forEach(
-    ([address, writes]) => {
-      client.setQueryData(
-        makeAllResourcesQueryKey(nodeUrl, address),
-        (current: AccountResource[] | null | undefined): AccountResource[] => {
-          if (!current) {
-            return writes.map((w) => w.data);
-          }
-          const byType = keyBy(writes, (w) => w.data.type);
-          const existing = new Set([...current.map((v) => v.type)]);
-          const newValues = writes
-            .map((w) => w.data)
-            .filter((d) => !existing.has(d.type));
-          return [
-            ...current.map((v) => {
-              return byType[v.type]?.data ?? v;
-            }),
-            ...newValues,
-          ];
+  Object.entries(groupByAddress(writes)).forEach(([address, writes]) => {
+    client.setQueryData(
+      makeAllResourcesQueryKey(nodeUrl, address),
+      (current: AccountResource[] | null | undefined): AccountResource[] => {
+        if (!current) {
+          return writes.map((w) => w.data);
         }
-      );
-    }
-  );
+        const byType = keyBy(writes, (w) => w.data.type);
+        const existing = new Set([...current.map((v) => v.type)]);
+        const newValues = writes
+          .map((w) => w.data)
+          .filter((d) => !existing.has(d.type));
+        return [
+          ...current.map((v) => {
+            return byType[v.type]?.data ?? v;
+          }),
+          ...newValues,
+        ];
+      }
+    );
+  });
 };
 
 const applyDeletesToCache = (
@@ -68,25 +74,23 @@ const applyDeletesToCache = (
     );
   });
   // apply deletes
-  Object.entries(groupBy(deletes, (w) => w.address)).forEach(
-    ([address, deletes]) => {
-      client.setQueryData(
-        makeAllResourcesQueryKey(nodeUrl, address),
-        (
-          values: AccountResource[] | null | undefined
-        ): AccountResource[] | null => {
-          if (!values) {
-            return null;
-          }
-          const byType = keyBy(deletes, (w) => w.resource);
-          // delete all resources
-          return values.filter((v) => {
-            return !(v.type in byType);
-          });
+  Object.entries(groupByAddress(deletes)).forEach(([address, deletes]) => {
+    client.setQueryData(
+      makeAllResourcesQueryKey(nodeUrl, address),
+      (
+        values: AccountResource[] | null | undefined
+      ): AccountResource[] | null => {
+        if (!values) {
+          return null;
         }
-      );
-    }
-  );
+        const byType = keyBy(deletes, (w) => w.resource);
+        // delete all resources
+        return values.filter((v) => {
+          return !(v.type in byType);
+        });
+      }
+    );
+  });
 };
 
 /**

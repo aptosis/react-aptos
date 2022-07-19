@@ -2,7 +2,6 @@
   "extends": "@saberhq/tsconfig/tsconfig.mono.cjs.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "lib": ["DOM", "ES2019"],
     "outDir": "dist/cjs/",
     "jsx": "react-jsx"
   },
