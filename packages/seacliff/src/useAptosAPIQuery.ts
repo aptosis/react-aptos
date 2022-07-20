@@ -1,12 +1,12 @@
 import type { AptosError } from "@aptosis/aptos-api";
 import type { AptosAPI, AptosAPIResponse } from "@aptosis/aptos-client";
 import { raiseForStatus } from "@aptosis/aptos-client";
+import { useAptosAPI } from "@aptosis/react-aptos-api";
 import type { AxiosResponse } from "axios";
 import type { QueryClient, UseQueryOptions, UseQueryResult } from "react-query";
 import { useQuery, useQueryClient } from "react-query";
 
 import type { AptosAPIQueryType } from "./constants.js";
-import { useAptosAPI } from "./hooks.js";
 
 export type AptosAPIQueryKey<
   TArgs extends readonly unknown[] = readonly unknown[]

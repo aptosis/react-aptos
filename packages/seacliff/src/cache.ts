@@ -7,12 +7,12 @@ import type {
   WriteSetChange,
 } from "@aptosis/aptos-api";
 import { default as keyBy } from "@aptosis/keyby";
+import { useAptosAPI } from "@aptosis/react-aptos-api";
 import { HexString } from "@movingco/core";
 import { useCallback } from "react";
 import type { QueryClient } from "react-query";
 import { useQueryClient } from "react-query";
 
-import { useAptosAPI } from "./hooks.js";
 import { makeAccountQueryKey } from "./useAccount.js";
 import {
   makeAllResourcesQueryKey,
