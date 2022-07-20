@@ -1,7 +1,6 @@
 import type { NetworkConfig } from "@aptosis/aptos-client";
 import { APTOS_DEVNET, AptosAPI } from "@aptosis/aptos-client";
 import { TEST_COIN } from "@aptosis/aptos-common";
-import { createAptosClient } from "@movingco/aptos";
 import type { Coin } from "@movingco/core";
 import { useMemo } from "react";
 import { createContainer } from "unstated-next";
@@ -32,16 +31,12 @@ const useSeacliffInner = ({
   network = APTOS_DEVNET,
   ...rest
 }: UseSeacliffArgs = {}) => {
-  const aptos = useMemo(
-    () => createAptosClient(network.nodeUrl),
-    [network.nodeUrl]
-  );
   const aptosAPI = useMemo(
     () => new AptosAPI(network.nodeUrl),
     [network.nodeUrl]
   );
 
-  return { aptos, aptosAPI, coins, ...rest };
+  return { aptosAPI, coins, ...rest };
 };
 
 export const { useContainer: useSeacliff, Provider: SeacliffInternalProvider } =
