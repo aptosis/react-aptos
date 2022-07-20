@@ -8,7 +8,6 @@ import type {
 } from "@aptosis/aptos-api";
 import { default as keyBy } from "@aptosis/keyby";
 import { useAptosAPI } from "@aptosis/react-aptos-api";
-import { HexString } from "@movingco/core";
 import { useCallback } from "react";
 import type { QueryClient } from "react-query";
 import { useQueryClient } from "react-query";
@@ -126,7 +125,7 @@ export const applyUserTransactionToCache = (
   tx: UserTransaction
 ): void => {
   client.setQueryData(
-    makeAccountQueryKey(nodeUrl, HexString.ensure(tx.sender).checksum()),
+    makeAccountQueryKey(nodeUrl, tx.sender),
     (data: Account | null | undefined): Account | null => {
       if (data) {
         data.sequence_number = Math.max(

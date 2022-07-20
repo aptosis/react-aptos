@@ -1,5 +1,6 @@
-import type { Account, Address } from "@aptosis/aptos-api";
-import { HexString, mapN } from "@movingco/core";
+import type { Account } from "@aptosis/aptos-api";
+import type { MaybeHexString } from "@movingco/core";
+import { Address, mapN } from "@movingco/core";
 
 import { ACCOUNT_QUERY_PREFIX } from "./constants.js";
 import { makeQueryFunctions } from "./useAptosAPIQuery.js";
@@ -13,19 +14,16 @@ export const {
   useQuery: useAccount,
 } = makeQueryFunctions<
   Account,
-  readonly [address: Address | null | undefined],
+  readonly [address: MaybeHexString | null | undefined],
   1
 >({
   type: ACCOUNT_QUERY_PREFIX,
   argCount: 1,
   normalizeArgs: ([address]) => [
-    mapN(
-      (address) => HexString.ensure(address).toShortString().toLowerCase(),
-      address
-    ),
+    mapN((address) => Address.ensure(address).hex(), address),
   ],
   fetchData: async ({ aptos }, [address], signal) => {
-    return await aptos.accounts.getAccount(address, {
+    return await aptos.accounts.getAccount(Address.ensure(address).hex(), {
       signal,
     });
   },

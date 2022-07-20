@@ -35,7 +35,7 @@
     "*.{json,js,jsx,html,css,md,yml,yaml}": "prettier --write"
   },
   "devDependencies": {
-    "@movingco/prelude": "^0.1.58",
+    "@movingco/prelude": "^0.2.0",
     "@rushstack/eslint-patch": "^1.1.4",
     "@saberhq/eslint-config": "^2.0.3",
     "@saberhq/eslint-config-react": "^2.0.3",
@@ -59,9 +59,9 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@movingco/aptos": "^0.1.58",
-    "@movingco/core": "^0.1.58",
-    "@movingco/prelude": "^0.1.58",
+    "@movingco/aptos": "^0.2.0",
+    "@movingco/core": "^0.2.0",
+    "@movingco/prelude": "^0.2.0",
     "@omnimask/provider-interface": "^0.2.0",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",

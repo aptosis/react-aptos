@@ -1,5 +1,6 @@
-import type { AccountResource, Address } from "@aptosis/aptos-api";
-import { HexString, mapN } from "@movingco/core";
+import type { AccountResource } from "@aptosis/aptos-api";
+import type { MaybeHexString } from "@movingco/core";
+import { Address, mapN } from "@movingco/core";
 
 import {
   ALL_RESOURCES_QUERY_PREFIX,
@@ -24,7 +25,7 @@ export const {
   type: RESOURCE_QUERY_PREFIX,
   argCount: 2,
   normalizeArgs: ([owner, resourceType]) => [
-    owner ? HexString.ensure(owner).toShortString().toLowerCase() : owner,
+    owner ? Address.ensure(owner).hex() : owner,
     resourceType,
   ],
   fetchData: async ({ aptos }, [owner, resourceType], signal) => {
@@ -42,19 +43,16 @@ export const {
  */
 const allResources = makeQueryFunctions<
   readonly AccountResource[],
-  readonly [owner: Address | null | undefined]
+  readonly [owner: MaybeHexString | null | undefined]
 >({
   type: ALL_RESOURCES_QUERY_PREFIX,
   argCount: 1,
   normalizeArgs: ([owner]) => [
-    mapN(
-      (owner) => HexString.ensure(owner).toShortString().toLowerCase(),
-      owner
-    ),
+    mapN((owner) => Address.ensure(owner).hex(), owner),
   ],
   fetchData: async ({ aptos }, [owner], signal) => {
     return await aptos.accounts.getAccountResources(
-      { address: owner },
+      { address: Address.ensure(owner).hex() },
       {
         signal,
       }
@@ -63,7 +61,13 @@ const allResources = makeQueryFunctions<
   onSuccessfulFetch: ({ aptos, client }, [owner], data) => {
     if (data) {
       client.setQueriesData(
-        data.map((v) => makeResourceQueryKey(aptos.nodeUrl, owner, v.type)),
+        data.map((v) =>
+          makeResourceQueryKey(
+            aptos.nodeUrl,
+            Address.ensure(owner).hex(),
+            v.type
+          )
+        ),
         data
       );
     } else {

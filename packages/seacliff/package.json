@@ -44,13 +44,13 @@
     "react-query": "^3.39.2"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.6",
-    "@aptosis/aptos-client": "^0.0.6",
+    "@aptosis/aptos-api": "^0.0.7",
+    "@aptosis/aptos-client": "^0.0.7",
     "@aptosis/aptos-common": "^0.1.0",
     "@aptosis/aptos-framework": "^0.1.10",
     "@aptosis/keyby": "workspace:^",
     "@aptosis/react-aptos-api": "workspace:^",
-    "@movingco/core": "^0.1.58",
+    "@movingco/core": "^0.2.0",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",
     "tiny-invariant": "^1.2.0",
