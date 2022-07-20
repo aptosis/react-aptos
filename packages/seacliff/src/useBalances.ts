@@ -1,7 +1,7 @@
 import type { Address } from "@aptosis/aptos-api";
+import type { AccountResource } from "@aptosis/aptos-common";
+import { ZERO_TEST_COINS } from "@aptosis/aptos-common";
 import { CoinModule } from "@aptosis/aptos-framework";
-import type { AccountResource } from "@movingco/aptos";
-import { ZERO_TEST_COINS } from "@movingco/aptos";
 import { ChainId, Coin, CoinAmount, mapN, StructTag } from "@movingco/core";
 import type { Tuple } from "@saberhq/tuple-utils";
 import { tupleFill, tupleMapInner } from "@saberhq/tuple-utils";

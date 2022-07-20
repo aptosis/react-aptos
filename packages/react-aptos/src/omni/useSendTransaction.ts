@@ -3,11 +3,11 @@ import type {
   TransactionPayload,
   UserTransactionRequest,
 } from "@aptosis/aptos-api";
+import type { AccountObject } from "@aptosis/aptos-common";
+import { Account } from "@aptosis/aptos-common";
 import { useAccount, useAptosAPI } from "@aptosis/seacliff";
-import { Account } from "@movingco/aptos";
 import { HexString } from "@movingco/core";
 import type {
-  AccountObject,
   SignAndSendTransactionResult,
   TXSendOptions,
 } from "@omnimask/provider-interface";

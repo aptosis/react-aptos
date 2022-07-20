@@ -52,11 +52,12 @@
   "dependencies": {
     "@aptosis/aptos-api": "^0.0.6",
     "@aptosis/aptos-client": "^0.0.6",
+    "@aptosis/aptos-common": "^0.1.0",
     "@aptosis/seacliff": "workspace:^",
     "@movingco/aptos": "^0.1.58",
     "@movingco/core": "^0.1.58",
     "@movingco/prelude": "^0.1.58",
-    "@omnimask/provider-interface": "^0.1.8",
+    "@omnimask/provider-interface": "^0.2.0",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",
     "tiny-invariant": "^1.2.0",
