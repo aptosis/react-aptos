@@ -1,6 +1,6 @@
 import type { UserTransaction } from "@aptosis/aptos-api";
 import { confirmTransaction } from "@aptosis/aptos-client";
-import { useSeacliff } from "@aptosis/seacliff";
+import { useAptosAPI } from "@aptosis/seacliff";
 import type { UseMutationResult } from "react-query";
 import { useMutation } from "react-query";
 
@@ -13,7 +13,7 @@ export const useConfirmTX = (): UseMutationResult<
   unknown,
   string
 > => {
-  const { aptosAPI } = useSeacliff();
+  const aptosAPI = useAptosAPI();
   const { onTXRevertError: onTXError } = useAptosEventHandlers();
   const onSuccess = useHandleTXSuccess();
   return useMutation(
