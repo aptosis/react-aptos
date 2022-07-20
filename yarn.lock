@@ -188,7 +188,6 @@ __metadata:
     "@aptosis/aptos-client": ^0.0.6
     "@aptosis/aptos-common": ^0.1.0
     "@aptosis/seacliff": "workspace:^"
-    "@movingco/aptos": ^0.1.58
     "@movingco/core": ^0.1.58
     "@movingco/prelude": ^0.1.58
     "@omnimask/provider-interface": ^0.2.0
@@ -221,9 +220,7 @@ __metadata:
     "@aptosis/aptos-framework": ^0.1.10
     "@aptosis/keyby": "workspace:^"
     "@aptosis/react-aptos-api": "workspace:^"
-    "@movingco/aptos": ^0.1.58
     "@movingco/core": ^0.1.58
-    "@movingco/prelude": ^0.1.58
     "@saberhq/tsconfig": ^2.0.3
     "@saberhq/tuple-utils": ^1.13.32
     "@types/react": ^18.0.15

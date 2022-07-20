@@ -54,7 +54,6 @@
     "@aptosis/aptos-client": "^0.0.6",
     "@aptosis/aptos-common": "^0.1.0",
     "@aptosis/seacliff": "workspace:^",
-    "@movingco/aptos": "^0.1.58",
     "@movingco/core": "^0.1.58",
     "@movingco/prelude": "^0.1.58",
     "@omnimask/provider-interface": "^0.2.0",
