@@ -1,7 +1,7 @@
 {
-  "name": "@aptosis/seacliff",
+  "name": "@aptosis/react-aptos-api",
   "version": "0.1.25",
-  "description": "React library for querying the Aptos blockchain.",
+  "description": "Lightweight React hook for connecting to the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
   "license": "Apache-2.0",
@@ -39,31 +39,16 @@
     "@saberhq/tsconfig": "^2.0.3",
     "@types/react": "^18.0.15",
     "axios": "^0.27.2",
-    "jsbi": "^4.3.0",
-    "react": "^18.2.0",
-    "react-query": "^3.39.2"
+    "react": "^18.2.0"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.6",
     "@aptosis/aptos-client": "^0.0.6",
-    "@aptosis/aptos-common": "^0.1.0",
-    "@aptosis/aptos-framework": "^0.1.10",
-    "@aptosis/keyby": "workspace:^",
-    "@aptosis/react-aptos-api": "workspace:^",
-    "@movingco/aptos": "^0.1.58",
-    "@movingco/core": "^0.1.58",
-    "@movingco/prelude": "^0.1.58",
-    "@saberhq/tuple-utils": "^1.13.32",
-    "axios": "^0.27.2",
-    "tiny-invariant": "^1.2.0",
     "tslib": "^2.4.0",
     "unstated-next": "^1.1.0"
   },
   "peerDependencies": {
     "axios": "^0.27",
-    "jsbi": "^4.3.0",
-    "react": "*",
-    "react-query": "*"
+    "react": "*"
   },
   "typedoc": {
     "readmeFile": "./README.md"

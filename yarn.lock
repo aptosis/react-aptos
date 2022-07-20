@@ -123,6 +123,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@aptosis/react-aptos-api@workspace:^, @aptosis/react-aptos-api@workspace:packages/react-aptos-api":
+  version: 0.0.0-use.local
+  resolution: "@aptosis/react-aptos-api@workspace:packages/react-aptos-api"
+  dependencies:
+    "@aptosis/aptos-client": ^0.0.6
+    "@saberhq/tsconfig": ^2.0.3
+    "@types/react": ^18.0.15
+    axios: ^0.27.2
+    react: ^18.2.0
+    tslib: ^2.4.0
+    unstated-next: ^1.1.0
+  peerDependencies:
+    axios: ^0.27
+    react: "*"
+  languageName: unknown
+  linkType: soft
+
 "@aptosis/react-aptos-workspace@workspace:.":
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-workspace@workspace:."
@@ -203,6 +220,7 @@ __metadata:
     "@aptosis/aptos-common": ^0.1.0
     "@aptosis/aptos-framework": ^0.1.10
     "@aptosis/keyby": "workspace:^"
+    "@aptosis/react-aptos-api": "workspace:^"
     "@movingco/aptos": ^0.1.58
     "@movingco/core": ^0.1.58
     "@movingco/prelude": ^0.1.58
