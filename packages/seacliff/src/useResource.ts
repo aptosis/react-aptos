@@ -85,4 +85,5 @@ export const {
   makeQueryKey: makeAllResourcesQueryKey,
   makeQuery: makeAllResourcesQuery,
   useQuery: useAllResources,
+  useQueries: useAllResourcesMulti,
 } = allResources;

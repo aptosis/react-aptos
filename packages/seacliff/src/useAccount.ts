@@ -12,6 +12,7 @@ export const {
   makeQueryKey: makeAccountQueryKey,
   makeQuery: makeAccountQuery,
   useQuery: useAccount,
+  useQueries: useAccounts,
 } = makeQueryFunctions<
   Account,
   readonly [address: MaybeHexString | null | undefined],

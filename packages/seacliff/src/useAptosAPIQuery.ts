@@ -4,9 +4,14 @@ import { raiseForStatus } from "@aptosis/aptos-client";
 import { useAptosAPI } from "@aptosis/react-aptos-api";
 import type { AxiosResponse } from "axios";
 import type { QueryClient, UseQueryOptions, UseQueryResult } from "react-query";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueries, useQuery, useQueryClient } from "react-query";
 
 import type { AptosAPIQueryType } from "./constants.js";
+
+/**
+ * Query result from the Aptos API.
+ */
+export type UseAptosAPIQueryResult<TData> = UseQueryResult<TData, AptosError>;
 
 export type AptosAPIQueryKey<
   TArgs extends readonly unknown[] = readonly unknown[]
@@ -98,6 +103,9 @@ export type UseAptosQueryParams<
   options?: UseAptosAPIQueryUserOptions<T, TData, AptosAPIQueryKey<TArgs>>
 ];
 
+/**
+ * Types for Aptos API query functions.
+ */
 export type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
   /**
    * Builds the query key.
@@ -117,7 +125,15 @@ export type AptosAPIQueryFns<T, TArgs extends readonly unknown[]> = {
    */
   useQuery: <TData = T | null>(
     ...params: UseAptosQueryParams<T, TArgs, TData>
-  ) => UseQueryResult<TData, AptosError>;
+  ) => UseAptosAPIQueryResult<TData>;
+
+  /**
+   * Hook for fetching the queries.
+   */
+  useQueries: (
+    argsList: readonly TArgs[],
+    options?: UseAptosAPIQueryUserOptions<T, T | null, TArgs>
+  ) => UseAptosAPIQueryResult<T | null>[];
 };
 
 /**
@@ -129,22 +145,11 @@ const identity = <T>(input: T): T => input;
 
 export type APIQueryContext = { aptos: AptosAPI; client: QueryClient };
 
-/**
- * Builds functions related to a query.
- * @returns
- */
-export const makeQueryFunctions = <
+type MakeQueryFunctionsArgs<
   T,
   TArgs extends readonly unknown[],
   N extends number = number
->({
-  type,
-  argCount,
-  normalizeArgs = identity,
-  fetchData,
-  defaultQueryOptions,
-  onSuccessfulFetch,
-}: {
+> = {
   type: AptosAPIQueryType;
   argCount: N;
   normalizeArgs?: (args: TArgs) => TArgs;
@@ -162,11 +167,29 @@ export const makeQueryFunctions = <
     UseAptosAPIQueryUserOptions<T, T, TArgs>,
     "onSuccess" | "onSettled" | "refetchInterval" | "select"
   >;
-}): AptosAPIQueryFns<T, TArgs> => {
+};
+
+/**
+ * Builds functions related to a query.
+ * @returns
+ */
+export const makeQueryFunctions = <
+  T,
+  TArgs extends readonly unknown[],
+  N extends number = number
+>({
+  type,
+  argCount,
+  normalizeArgs = identity,
+  fetchData,
+  defaultQueryOptions,
+  onSuccessfulFetch,
+}: MakeQueryFunctionsArgs<T, TArgs, N>): AptosAPIQueryFns<T, TArgs> => {
   const makeQueryKey = (
     nodeUrl: string,
     ...args: TArgs
   ): AptosAPIQueryKey<TArgs> => [type, nodeUrl, ...normalizeArgs(args)];
+
   const makeQuery = <TData = T | null>(
     ctx: APIQueryContext,
     args: TArgs,
@@ -187,19 +210,42 @@ export const makeQueryFunctions = <
    */
   const useQueryHook = <TData = T | null>(
     ...params: UseAptosQueryParams<T, TArgs, TData>
-  ): UseQueryResult<TData, AptosError> => {
+  ): UseAptosAPIQueryResult<TData> => {
     const args = params.slice(0, argCount) as unknown as TArgs;
     const options = params[argCount - 1] as
       | UseAptosAPIQueryUserOptions<T, TData, TArgs>
       | undefined;
-    const client = useQueryClient();
-    const aptos = useAptosAPI();
-    return useQuery(makeQuery<TData>({ aptos, client }, args, options));
+    const ctx = useAPIQueryContext();
+    return useQuery(makeQuery<TData>(ctx, args, options));
+  };
+
+  /**
+   * Fetches the requested resource via react-query.
+   */
+  const useQueriesHook = (
+    argsList: readonly TArgs[],
+    options: UseAptosAPIQueryUserOptions<T, T | null, TArgs> = {}
+  ): UseAptosAPIQueryResult<T | null>[] => {
+    const ctx = useAPIQueryContext();
+    return useQueries(
+      argsList.map((args) => makeQuery<T | null>(ctx, args, options))
+    );
   };
 
   return {
     makeQueryKey,
     makeQuery,
     useQuery: useQueryHook,
+    useQueries: useQueriesHook,
   };
+};
+
+/**
+ * Loads the {@link APIQueryContext}.
+ * @returns
+ */
+export const useAPIQueryContext = (): APIQueryContext => {
+  const client = useQueryClient();
+  const aptos = useAptosAPI();
+  return { client, aptos };
 };
