@@ -16,38 +16,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-api@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@aptosis/aptos-api@npm:0.0.8"
+"@aptosis/aptos-api@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@aptosis/aptos-api@npm:0.0.9"
   dependencies:
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27.2
-  checksum: 55f79a8507180f5df5c057b4192d86dfa545d7f71f002eab5b4399788759f08edf5200eca0bea640f61f4989f290a848a6f70701550a650d88634302338c198a
+  checksum: 81ea379a7e985cc904169ade68118a71518050077a8434eb1a5d5c01a1c84043251f23cc6803977b4bc91b732ce95954763ba44e67126b152505b64493c6d463
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-client@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@aptosis/aptos-client@npm:0.0.8"
+"@aptosis/aptos-client@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@aptosis/aptos-client@npm:0.0.9"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
+    "@aptosis/aptos-api": ^0.0.9
     "@vespaiach/axios-fetch-adapter": ^0.3.0
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27.2
-  checksum: d018a4319a712b18d3508971ce2d5b5363139d087c03e6369e86bf92a87ca24349fe7cd26a4bedcbf1a326e436b7ed51ac5b38010374b3ff98cf60c41fce0065
+  checksum: 415d9ef99b4ed1138294dcbbf10013156ae61c1f578fd2ae29e232ba6c1ed2779e5f180d22572d567472636ba831113284d7e92f23c18330ecc01bda1591166d
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-common@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@aptosis/aptos-common@npm:0.1.4"
+"@aptosis/aptos-common@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@aptosis/aptos-common@npm:0.1.5"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
-    "@aptosis/aptos-client": ^0.0.8
-    "@aptosis/aptos-typed-api": ^0.0.8
-    "@aptosis/faucet-client": ^0.0.8
+    "@aptosis/aptos-api": ^0.0.9
+    "@aptosis/aptos-client": ^0.0.9
+    "@aptosis/aptos-typed-api": ^0.0.9
+    "@aptosis/faucet-client": ^0.0.9
     "@movingco/core": ^0.2.0
     "@movingco/leb128": ^0.2.0
     "@movingco/sha3": ^0.2.0
@@ -58,7 +58,7 @@ __metadata:
     tweetnacl: ^1.0.3
   peerDependencies:
     jsbi: ^4.3.0
-  checksum: 2791a8f24f61d010d5eb3831043dc607bd84c0794bdf8f94c671059ae34a4791992bf1c202b69d6289dc0c2f195e6196c1b3541edada3b7bc5318890db3275e2
+  checksum: c1cd1f493569aab27c71e9a7a0f38356e1b5337e6b540c8ca6be29bc3bc6863248ca0e0b920fced4df6c5ca91d82bce4e2a92e8e89cd1635a55bb7ce4c1645bc
   languageName: node
   linkType: hard
 
@@ -72,32 +72,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-typed-api@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@aptosis/aptos-typed-api@npm:0.0.8"
+"@aptosis/aptos-typed-api@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@aptosis/aptos-typed-api@npm:0.0.9"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
+    "@aptosis/aptos-api": ^0.0.9
     "@movingco/move-types": ^0.2.0
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27
-  checksum: f8c9ac8bf08fbb4762fe9dfb6c68a576081123af004376486c405b72d6b3e8e485cbadc789d0fe00d94330894100ec59c0a577acc64ad6ff42fda03d6824bcdc
+  checksum: f19fa5c763f888fb6f02ea11db107bcfb463053330e2d1c38cca60e0b394256ea1f5a97480d890ecde2dc2df6ebc663866db7cfa23d221220d05c00f00e9b602
   languageName: node
   linkType: hard
 
-"@aptosis/faucet-client@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@aptosis/faucet-client@npm:0.0.8"
+"@aptosis/faucet-client@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@aptosis/faucet-client@npm:0.0.9"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
-    "@aptosis/aptos-client": ^0.0.8
+    "@aptosis/aptos-api": ^0.0.9
+    "@aptosis/aptos-client": ^0.0.9
     "@movingco/core": ^0.2.0
     "@vespaiach/axios-fetch-adapter": ^0.3.0
     tslib: ^2.4.0
   peerDependencies:
     axios: ^0.27.2
     jsbi: ^4.3.0
-  checksum: a6d5528f6fd97d9db34f963ac46a84b1ef1b49a0d6e584ad7420f94c1f10be0d7dd32579d2358b097ab12d76256267a5d0ba4494ac4d4d60ecbbd136cbe0c7fc
+  checksum: 562e5fd37ab634d5a4c92f2ec646662869094d5746266618c31c3b7183140e2fd863838a9120210466d6e68ee097a75353e9dfab30a1159d5e4992ebde08a413
   languageName: node
   linkType: hard
 
@@ -114,7 +114,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos-api@workspace:packages/react-aptos-api"
   dependencies:
-    "@aptosis/aptos-client": ^0.0.8
+    "@aptosis/aptos-client": ^0.0.9
     "@saberhq/tsconfig": ^2.0.3
     "@types/react": ^18.0.15
     axios: ^0.27.2
@@ -170,9 +170,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/react-aptos@workspace:packages/react-aptos"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
-    "@aptosis/aptos-client": ^0.0.8
-    "@aptosis/aptos-common": ^0.1.4
+    "@aptosis/aptos-api": ^0.0.9
+    "@aptosis/aptos-client": ^0.0.9
+    "@aptosis/aptos-common": ^0.1.5
     "@aptosis/seacliff": "workspace:^"
     "@movingco/core": ^0.2.0
     "@movingco/prelude": ^0.2.0
@@ -200,9 +200,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aptosis/seacliff@workspace:packages/seacliff"
   dependencies:
-    "@aptosis/aptos-api": ^0.0.8
-    "@aptosis/aptos-client": ^0.0.8
-    "@aptosis/aptos-common": ^0.1.4
+    "@aptosis/aptos-api": ^0.0.9
+    "@aptosis/aptos-client": ^0.0.9
+    "@aptosis/aptos-common": ^0.1.5
     "@aptosis/aptos-framework": ^0.2.0
     "@aptosis/keyby": "workspace:^"
     "@aptosis/react-aptos-api": "workspace:^"

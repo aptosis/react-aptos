@@ -44,9 +44,9 @@
     "react-query": "^3.39.2"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.0.8",
-    "@aptosis/aptos-client": "^0.0.8",
-    "@aptosis/aptos-common": "^0.1.4",
+    "@aptosis/aptos-api": "^0.0.9",
+    "@aptosis/aptos-client": "^0.0.9",
+    "@aptosis/aptos-common": "^0.1.5",
     "@aptosis/aptos-framework": "^0.2.0",
     "@aptosis/keyby": "workspace:^",
     "@aptosis/react-aptos-api": "workspace:^",
