@@ -62,15 +62,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-framework@npm:^0.1.10":
-  version: 0.1.10
-  resolution: "@aptosis/aptos-framework@npm:0.1.10"
+"@aptosis/aptos-framework@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@aptosis/aptos-framework@npm:0.2.0"
   dependencies:
-    "@movingco/prelude": ^0.1.54
+    "@movingco/prelude": ^0.2.0
     tslib: ^2.4.0
-  peerDependencies:
-    jsbi: ^4.3.0
-  checksum: 6c03e8184b7bcb14d539f183e3c665d8278aa65b8374755707b376d18a0ccbaceba6c1cb924dafe115182376c3f2a5ccd8c63421f4080ec15923629f65e1dc38
+  checksum: 2a91f945b263c85fe210cb1ef4a279777f375dc6a5d158f1863c8778e8e2c07405cf86871597736e0a266aae985205d812c5dddfc453c8f3059c72ad4752a612
   languageName: node
   linkType: hard
 
@@ -205,7 +203,7 @@ __metadata:
     "@aptosis/aptos-api": ^0.0.8
     "@aptosis/aptos-client": ^0.0.8
     "@aptosis/aptos-common": ^0.1.3
-    "@aptosis/aptos-framework": ^0.1.10
+    "@aptosis/aptos-framework": ^0.2.0
     "@aptosis/keyby": "workspace:^"
     "@aptosis/react-aptos-api": "workspace:^"
     "@movingco/core": ^0.2.0
@@ -329,22 +327,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/core@npm:^0.1.54":
-  version: 0.1.54
-  resolution: "@movingco/core@npm:0.1.54"
-  dependencies:
-    "@movingco/sha3": ^0.1.53
-    "@saberhq/option-utils": ^1.13.32
-    "@ubeswap/token-math": ^5.2.0
-    buffer: ^6.0.3
-    tiny-invariant: ^1.2.0
-    tslib: ^2.4.0
-  peerDependencies:
-    jsbi: ^4.3.0
-  checksum: bdf8644135542c09bbf07ca65dda93e28b4d6a1cd0e90702cc609cbca8bc9a62cf37fa3b5578cbc4d8fbd0c745a22b34063125274bb04ee7bd986ed11ce6d454
-  languageName: node
-  linkType: hard
-
 "@movingco/core@npm:^0.2.0":
   version: 0.2.0
   resolution: "@movingco/core@npm:0.2.0"
@@ -373,18 +355,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/idl@npm:^0.1.54":
-  version: 0.1.54
-  resolution: "@movingco/idl@npm:0.1.54"
-  dependencies:
-    tiny-invariant: ^1.2.0
-    tslib: ^2.4.0
-  peerDependencies:
-    jsbi: ^4.3.0
-  checksum: fbf979fe9058cf7b8b66c1d346d328a2a0e065ecc8aa1e813770ae1147eca0121d04cad489c4debb8380db1f5161ceabbfe867fb5307f6b8202e5fbd6f8c047e
-  languageName: node
-  linkType: hard
-
 "@movingco/idl@npm:^0.2.0":
   version: 0.2.0
   resolution: "@movingco/idl@npm:0.2.0"
@@ -406,38 +376,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@movingco/move-types@npm:^0.1.53":
-  version: 0.1.53
-  resolution: "@movingco/move-types@npm:0.1.53"
-  dependencies:
-    tiny-invariant: ^1.2.0
-    tslib: ^2.4.0
-  peerDependencies:
-    jsbi: ^4.3.0
-  checksum: 8b5ba8fa2fad3617bf22f7c0cd172011f9ee9d74eb55eac199cf5b08f990af3b7c5c14059d1b65bf8b06f34af78c0db0265ea74c331f919811964a9c7b417f43
-  languageName: node
-  linkType: hard
-
 "@movingco/move-types@npm:^0.2.0":
   version: 0.2.0
   resolution: "@movingco/move-types@npm:0.2.0"
   dependencies:
     tslib: ^2.4.0
   checksum: b265e978f252775ab9b6ecbb7fc41e904fab26ba7a2f842580dbe842feb80c5b1136c32bdec698743d57d1e6861bf497a56bb6a1475f1d5f800f1f00fbc9659a
-  languageName: node
-  linkType: hard
-
-"@movingco/prelude@npm:^0.1.54":
-  version: 0.1.54
-  resolution: "@movingco/prelude@npm:0.1.54"
-  dependencies:
-    "@movingco/core": ^0.1.54
-    "@movingco/idl": ^0.1.54
-    "@movingco/move-types": ^0.1.53
-    tslib: ^2.4.0
-  peerDependencies:
-    jsbi: ^4.3.0
-  checksum: fd4e48954e9ea3671088b2334a7392a9f38c2946eed4d6db858f66931839ee3de30a25857a36baa4edd57edc37ee6467958ead34a5c545de4bdc1db8594424bf
   languageName: node
   linkType: hard
 
@@ -451,17 +395,6 @@ __metadata:
     jsbi: ^4.3.0
     tslib: ^2.4.0
   checksum: d5cbf1e3df6c94579ca3e9e52e7b990ac4a1c2ede7732706319a9b0d7d8655ba2ee4944404465efa89a3f1878ca0f467705da2ce9d11ccbc0c3142888ef092e6
-  languageName: node
-  linkType: hard
-
-"@movingco/sha3@npm:^0.1.53":
-  version: 0.1.53
-  resolution: "@movingco/sha3@npm:0.1.53"
-  dependencies:
-    js-sha3: ^0.8.0
-    tiny-invariant: ^1.2.0
-    tslib: ^2.4.0
-  checksum: a4d0d74691a65d49afc542e7c28c4f7d6ccce29bfc45d5f4f9a6dd51cab52dab7caa3fffafbd2ad0e3e76a3feea3fc4bc790d46a179ff1f64cab4a50bd1e64e2
   languageName: node
   linkType: hard
 
