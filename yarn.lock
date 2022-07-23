@@ -62,13 +62,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-framework@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@aptosis/aptos-framework@npm:0.2.0"
+"@aptosis/aptos-framework@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@aptosis/aptos-framework@npm:0.2.1"
   dependencies:
     "@movingco/prelude": ^0.2.0
     tslib: ^2.4.0
-  checksum: 2a91f945b263c85fe210cb1ef4a279777f375dc6a5d158f1863c8778e8e2c07405cf86871597736e0a266aae985205d812c5dddfc453c8f3059c72ad4752a612
+  checksum: 6be0e4eec788abfb275bf436f05b7961d4d7d9a8bd576ed57873d0ae0202c5228b6a99e37b664b99b0117bc5cd0f871369f9bafddb8698af1a94981aefdbae81
   languageName: node
   linkType: hard
 
@@ -203,7 +203,7 @@ __metadata:
     "@aptosis/aptos-api": ^0.0.9
     "@aptosis/aptos-client": ^0.0.9
     "@aptosis/aptos-common": ^0.1.5
-    "@aptosis/aptos-framework": ^0.2.0
+    "@aptosis/aptos-framework": ^0.2.1
     "@aptosis/keyby": "workspace:^"
     "@aptosis/react-aptos-api": "workspace:^"
     "@movingco/core": ^0.2.0
