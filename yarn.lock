@@ -40,9 +40,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptosis/aptos-common@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@aptosis/aptos-common@npm:0.1.3"
+"@aptosis/aptos-common@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "@aptosis/aptos-common@npm:0.1.4"
   dependencies:
     "@aptosis/aptos-api": ^0.0.8
     "@aptosis/aptos-client": ^0.0.8
@@ -58,7 +58,7 @@ __metadata:
     tweetnacl: ^1.0.3
   peerDependencies:
     jsbi: ^4.3.0
-  checksum: 73d20fb731eba584d41ce54d44a8ab952cf2da7b85163ee218559a4083cc8498fbef782267462d9f51570185fa3fe4ecac86836478e4a3c213ad1a592cd438f8
+  checksum: 2791a8f24f61d010d5eb3831043dc607bd84c0794bdf8f94c671059ae34a4791992bf1c202b69d6289dc0c2f195e6196c1b3541edada3b7bc5318890db3275e2
   languageName: node
   linkType: hard
 
@@ -172,7 +172,7 @@ __metadata:
   dependencies:
     "@aptosis/aptos-api": ^0.0.8
     "@aptosis/aptos-client": ^0.0.8
-    "@aptosis/aptos-common": ^0.1.3
+    "@aptosis/aptos-common": ^0.1.4
     "@aptosis/seacliff": "workspace:^"
     "@movingco/core": ^0.2.0
     "@movingco/prelude": ^0.2.0
@@ -202,7 +202,7 @@ __metadata:
   dependencies:
     "@aptosis/aptos-api": ^0.0.8
     "@aptosis/aptos-client": ^0.0.8
-    "@aptosis/aptos-common": ^0.1.3
+    "@aptosis/aptos-common": ^0.1.4
     "@aptosis/aptos-framework": ^0.2.0
     "@aptosis/keyby": "workspace:^"
     "@aptosis/react-aptos-api": "workspace:^"
