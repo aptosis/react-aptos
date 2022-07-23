@@ -1,6 +1,6 @@
 {
   "name": "@aptosis/react-aptos-api",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "description": "Lightweight React hook for connecting to the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
