@@ -46,7 +46,7 @@
   "dependencies": {
     "@aptosis/aptos-api": "^0.1.0",
     "@aptosis/aptos-client": "^0.1.0",
-    "@aptosis/aptos-common": "^0.1.5",
+    "@aptosis/aptos-common": "^0.2.0",
     "@aptosis/aptos-framework": "^0.2.2",
     "@aptosis/keyby": "workspace:^",
     "@aptosis/react-aptos-api": "workspace:^",
