@@ -1,5 +1,5 @@
-import type { UserTransaction } from "@aptosis/aptos-api";
 import { confirmTransaction } from "@aptosis/aptos-client";
+import type { UserTransaction } from "@aptosis/aptos-common";
 import { useAptosAPI } from "@aptosis/seacliff";
 import type { UseMutationResult } from "react-query";
 import { useMutation } from "react-query";

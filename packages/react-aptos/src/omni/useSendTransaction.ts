@@ -1,9 +1,10 @@
+import type { MultiAgentSignature } from "@aptosis/aptos-api";
 import type {
-  MultiAgentSignature,
+  AccountObject,
+  ByteStringHex,
   TransactionPayload,
   UserTransactionRequest,
-} from "@aptosis/aptos-api";
-import type { AccountObject } from "@aptosis/aptos-common";
+} from "@aptosis/aptos-common";
 import { Account } from "@aptosis/aptos-common";
 import { useAccount, useAptosAPI } from "@aptosis/seacliff";
 import { HexString } from "@movingco/core";
@@ -17,8 +18,8 @@ import { useCallback } from "react";
 import { ensureProvider, useOmni } from "./context.js";
 
 export interface SendTransactionParams extends TXSendOptions {
-  payload: TransactionPayload;
-  options?: Partial<
+  readonly payload: TransactionPayload;
+  readonly options?: Partial<
     UserTransactionRequest & {
       /**
        * Additional signers.
@@ -100,7 +101,7 @@ export const useSendTransaction = (): SendTransactionFn => {
         params: {
           ...rest,
           request,
-          message,
+          message: message as ByteStringHex,
           multi_agent_signature: multiAgentSignature,
         },
       });

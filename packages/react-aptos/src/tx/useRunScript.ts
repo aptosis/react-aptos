@@ -1,4 +1,4 @@
-import type { UserTransaction } from "@aptosis/aptos-api";
+import type { UserTransaction } from "@aptosis/aptos-common";
 import type { SignAndSendTransactionParams } from "@omnimask/provider-interface";
 import { useCallback } from "react";
 import type { UseMutationResult } from "react-query";

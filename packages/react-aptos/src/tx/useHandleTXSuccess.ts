@@ -1,4 +1,4 @@
-import type { UserTransaction } from "@aptosis/aptos-api";
+import type { UserTransaction } from "@aptosis/aptos-common";
 import { useApplyUserTransactionToCache } from "@aptosis/seacliff";
 import { useCallback } from "react";
 

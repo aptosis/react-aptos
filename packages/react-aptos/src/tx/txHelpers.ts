@@ -1,7 +1,7 @@
 import type {
   ScriptFunctionPayload,
   UserTransaction,
-} from "@aptosis/aptos-api";
+} from "@aptosis/aptos-common";
 
 export type SendParams = Pick<ScriptFunctionPayload, "function"> &
   Partial<Pick<ScriptFunctionPayload, "type_arguments" | "arguments">>;
