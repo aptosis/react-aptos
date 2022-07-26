@@ -1,6 +1,6 @@
 {
   "name": "@aptosis/seacliff",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "React library for querying the Aptos blockchain.",
   "repository": "git@github.com:aptosis/react-aptos.git",
   "author": "Ian Macalinao <ian@aptos.is>",
