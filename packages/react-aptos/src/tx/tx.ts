@@ -9,7 +9,7 @@ export class AptosTransaction {
   private _errorHandlers: ((err: TXRevertError | TXPrepareError) => void)[] =
     [];
 
-  constructor(readonly data: SendParams) {}
+  constructor(readonly title: string, readonly data: SendParams) {}
 
   /**
    * Constructs a promise.

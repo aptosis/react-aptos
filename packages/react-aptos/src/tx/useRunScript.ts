@@ -1,4 +1,5 @@
 import type { UserTransaction } from "@aptosis/aptos-common";
+import { StructTag } from "@movingco/core";
 import type {
   SignAndSendTransactionParams,
   TXSendOptions,
@@ -15,6 +16,10 @@ import { TXPrepareError, TXRevertError } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
 export interface RunScriptArgs extends TXSendOptions {
+  /**
+   * Title of the transaction.
+   */
+  title?: string;
   params: SendParams;
   options?: SignAndSendTransactionParams["options"];
 }
@@ -32,13 +37,24 @@ export const useRunScript = (): UseMutationResult<
   const onSuccess = useHandleTXSuccess();
 
   const doRunScript = useCallback(
-    async ({ params, options = {}, ...sendOptions }: RunScriptArgs) => {
+    async ({
+      title,
+      params,
+      options = {},
+      ...sendOptions
+    }: RunScriptArgs): Promise<UserTransaction<"script_function_payload">> => {
       const {
         type_arguments = [],
         ["arguments"]: args = [],
         ["function"]: fn,
       } = params;
-      const txWrapped = new AptosTransaction(params);
+
+      if (!title) {
+        const fnNameParts = StructTag.parse(fn);
+        title = `${fnNameParts.module.identifier}::${fnNameParts.name}`;
+      }
+
+      const txWrapped = new AptosTransaction(title, params);
       try {
         onTXRequest?.(txWrapped);
         const tx = await sendTransaction({
@@ -57,7 +73,7 @@ export const useRunScript = (): UseMutationResult<
           if (tx.confirmed.success) {
             onSuccess(tx.confirmed);
             txWrapped.handleSuccess(tx.confirmed);
-            return tx.confirmed;
+            return tx.confirmed as UserTransaction<"script_function_payload">;
           } else {
             throw new TXRevertError(tx.confirmed);
           }
@@ -66,7 +82,7 @@ export const useRunScript = (): UseMutationResult<
         // handle confirmation
         const result = await confirmTransaction(tx.result.hash);
         txWrapped.handleSuccess(result);
-        return result;
+        return result as UserTransaction<"script_function_payload">;
       } catch (err) {
         if (err instanceof TXRevertError) {
           txWrapped.handleError(err);
