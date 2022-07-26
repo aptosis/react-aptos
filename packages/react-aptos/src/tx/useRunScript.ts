@@ -25,10 +25,9 @@ export interface RunScriptArgs extends TXSendOptions {
 }
 
 export const useRunScript = (): UseMutationResult<
-  UserTransaction,
-  unknown,
-  RunScriptArgs,
-  unknown
+  UserTransaction<"script_function_payload">,
+  TXPrepareError | TXRevertError,
+  RunScriptArgs
 > => {
   const { onTXRequest, onTXSend, onTXPrepareError, onTXRevertError } =
     useAptosEventHandlers();
@@ -87,13 +86,11 @@ export const useRunScript = (): UseMutationResult<
         if (err instanceof TXRevertError) {
           txWrapped.handleError(err);
           onTXRevertError?.(err);
-        } else {
-          const error = new TXPrepareError(params, err);
-          txWrapped.handleError(error);
-          onTXPrepareError?.(error);
-          throw error;
         }
-        throw err;
+        const error = new TXPrepareError(params, err);
+        txWrapped.handleError(error);
+        onTXPrepareError?.(error);
+        throw error;
       }
     },
     [
