@@ -28,9 +28,7 @@ export const useConfirmTX = (): UseMutationResult<
       return txResult;
     },
     {
-      onSuccess: (data) => {
-        onSuccess(data);
-      },
+      onSuccess,
       onError: (err) => {
         if (err instanceof TXRevertError) {
           onTXError?.(err);

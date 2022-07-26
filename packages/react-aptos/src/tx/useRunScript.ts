@@ -56,12 +56,17 @@ export const useRunScript = (): UseMutationResult<
         if (tx.confirmed) {
           if (tx.confirmed.success) {
             onSuccess(tx.confirmed);
+            txWrapped.handleSuccess(tx.confirmed);
             return tx.confirmed;
           } else {
             throw new TXRevertError(tx.confirmed);
           }
         }
-        return await confirmTransaction(tx.result.hash);
+
+        // handle confirmation
+        const result = await confirmTransaction(tx.result.hash);
+        txWrapped.handleSuccess(result);
+        return result;
       } catch (err) {
         if (err instanceof TXRevertError) {
           txWrapped.handleError(err);
