@@ -2,7 +2,8 @@ import type { UserTransaction } from "@aptosis/aptos-api";
 import type { SignAndSendTransactionResult } from "@omnimask/provider-interface";
 import { createContainer } from "unstated-next";
 
-import type { SendParams, TXPrepareError, TXRevertError } from "./index.js";
+import type { TXPrepareError, TXRevertError } from "./index.js";
+import type { AptosTransaction } from "./tx/tx.js";
 
 /**
  * Handlers for error events.
@@ -22,7 +23,7 @@ export interface AptosEventHandlers extends AptosErrorEventHandlers {
   /**
    * Called when the signature for a transaction is requested.
    */
-  onTXRequest?: (data: SendParams) => void;
+  onTXRequest?: (data: AptosTransaction) => void;
   /**
    * Called when a transaction is sent.
    */
@@ -70,7 +71,7 @@ export const buildDefaultEventHandlers = (
   notify: NotifyFn
 ): AptosEventHandlers => ({
   ...buildDefaultErrorHandlers(notify),
-  onTXRequest: (data) => {
+  onTXRequest: ({ data }) => {
     notify({
       message: `Requesting signature for action: ${data.function}`,
     });
