@@ -1,7 +1,6 @@
 import type { MultiAgentSignature } from "@aptosis/aptos-api";
 import type {
   AccountObject,
-  ByteStringHex,
   TransactionPayload,
   UserTransactionRequest,
 } from "@aptosis/aptos-common";
@@ -72,6 +71,7 @@ export const useSendTransaction = (): SendTransactionFn => {
       const {
         data: { message },
       } = await aptos.transactions.createSigningMessage(request);
+      const messageHex = HexString.ensure(message);
 
       let multiAgentSignature:
         | Pick<
@@ -81,18 +81,13 @@ export const useSendTransaction = (): SendTransactionFn => {
         | undefined = undefined;
       if (secondary_signers) {
         const signers = secondary_signers.map((s) => Account.fromObject(s));
-        const messageHex = HexString.ensure(message);
         multiAgentSignature = {
           secondary_signer_addresses: signers.map((acc) => acc.address.hex()),
-          secondary_signers: await Promise.all(
-            signers.map(async (acc) => ({
-              type: "ed25519_signature",
-              public_key: acc.pubKey.hex(),
-              signature: HexString.fromUint8Array(
-                await acc.signData(messageHex.toUint8Array())
-              ).hex(),
-            }))
-          ),
+          secondary_signers: signers.map((acc) => ({
+            type: "ed25519_signature",
+            public_key: acc.pubKey.hex(),
+            signature: acc.signHexString(messageHex).hex(),
+          })),
         };
       }
 
@@ -101,7 +96,7 @@ export const useSendTransaction = (): SendTransactionFn => {
         params: {
           ...rest,
           request,
-          message: message as ByteStringHex,
+          message: messageHex.hex(),
           multi_agent_signature: multiAgentSignature,
         },
       });
