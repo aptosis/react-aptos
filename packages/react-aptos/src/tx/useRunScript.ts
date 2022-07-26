@@ -1,5 +1,8 @@
 import type { UserTransaction } from "@aptosis/aptos-common";
-import type { SignAndSendTransactionParams } from "@omnimask/provider-interface";
+import type {
+  SignAndSendTransactionParams,
+  TXSendOptions,
+} from "@omnimask/provider-interface";
 import { useCallback } from "react";
 import type { UseMutationResult } from "react-query";
 import { useMutation } from "react-query";
@@ -30,10 +33,11 @@ export const useRunScript = (): UseMutationResult<
     async ({
       params,
       options = {},
+      ...sendOptions
     }: {
       params: SendParams;
       options?: SignAndSendTransactionParams["options"];
-    }) => {
+    } & TXSendOptions) => {
       const {
         type_arguments = [],
         ["arguments"]: args = [],
@@ -50,6 +54,7 @@ export const useRunScript = (): UseMutationResult<
             function: fn,
           },
           options,
+          ...sendOptions,
         });
         onTXSend?.(tx);
         txWrapped.handleSend(tx);
