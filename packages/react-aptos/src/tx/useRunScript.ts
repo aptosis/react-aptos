@@ -14,13 +14,15 @@ import type { SendParams } from "./txHelpers.js";
 import { TXPrepareError, TXRevertError } from "./txHelpers.js";
 import { useConfirmTX } from "./useConfirmTX.js";
 
+export interface RunScriptArgs extends TXSendOptions {
+  params: SendParams;
+  options?: SignAndSendTransactionParams["options"];
+}
+
 export const useRunScript = (): UseMutationResult<
   UserTransaction,
   unknown,
-  {
-    params: SendParams;
-    options?: SignAndSendTransactionParams["options"];
-  },
+  RunScriptArgs,
   unknown
 > => {
   const { onTXRequest, onTXSend, onTXPrepareError, onTXRevertError } =
@@ -30,14 +32,7 @@ export const useRunScript = (): UseMutationResult<
   const onSuccess = useHandleTXSuccess();
 
   const doRunScript = useCallback(
-    async ({
-      params,
-      options = {},
-      ...sendOptions
-    }: {
-      params: SendParams;
-      options?: SignAndSendTransactionParams["options"];
-    } & TXSendOptions) => {
+    async ({ params, options = {}, ...sendOptions }: RunScriptArgs) => {
       const {
         type_arguments = [],
         ["arguments"]: args = [],
