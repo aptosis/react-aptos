@@ -56,7 +56,7 @@
     "@aptosis/seacliff": "workspace:^",
     "@movingco/core": "^0.3.0",
     "@movingco/prelude": "^0.3.0",
-    "@omnimask/provider-interface": "^0.2.1",
+    "@omnimask/provider-interface": "^0.2.2",
     "@saberhq/tuple-utils": "^1.13.32",
     "axios": "^0.27.2",
     "tiny-invariant": "^1.2.0",
