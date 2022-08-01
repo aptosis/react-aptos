@@ -52,7 +52,7 @@
   "dependencies": {
     "@aptosis/aptos-api": "^0.1.0",
     "@aptosis/aptos-client": "^0.1.0",
-    "@aptosis/aptos-common": "^0.2.0",
+    "@aptosis/aptos-common": "^0.3.0",
     "@aptosis/seacliff": "workspace:^",
     "@movingco/core": "^0.3.0",
     "@movingco/prelude": "^0.3.0",
