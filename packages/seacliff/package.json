@@ -47,7 +47,7 @@
     "@aptosis/aptos-api": "^0.1.0",
     "@aptosis/aptos-client": "^0.1.0",
     "@aptosis/aptos-common": "^0.2.0",
-    "@aptosis/aptos-framework": "^0.2.3",
+    "@aptosis/aptos-framework": "^0.2.6",
     "@aptosis/keyby": "workspace:^",
     "@aptosis/react-aptos-api": "workspace:^",
     "@movingco/core": "^0.3.0",
