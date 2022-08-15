@@ -50,7 +50,7 @@
     "react-query": "^3.39.2"
   },
   "dependencies": {
-    "@aptosis/aptos-api": "^0.1.0",
+    "@aptosis/aptos-api": "^0.1.1",
     "@aptosis/aptos-client": "^0.1.0",
     "@aptosis/aptos-common": "^0.2.0",
     "@aptosis/seacliff": "workspace:^",
